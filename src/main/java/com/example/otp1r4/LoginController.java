@@ -1,5 +1,6 @@
 package com.example.otp1r4;
 
+import com.example.otp1r4.dao.SignDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -22,33 +23,34 @@ public class LoginController {
     String username;
     String password;
 
-    public void clickLogin(ActionEvent actionEvent) throws IOException {
+    public void clickLogin(ActionEvent actionEvent) throws Exception {
+        SignDAO dao = new SignDAO();
 
-        errorLabelUsername.setText("");
-        errorLabelPassword.setText("");
+        username = usernameField.getText();
+        password = passwordField.getText();
 
         boolean isValid = true;
 
-        if(usernameField.getText().isEmpty()) {
+        if(username.isEmpty()) {
             usernameField.setText("");
             errorLabelUsername.setText("Syötä käyttäjätunnus!");
             isValid = false;
-        }  else if (!usernameField.getText().matches("([A-Za-z0-9\\-\\_]+)")){
+        }  else if (!username.matches("([A-Za-z0-9\\-\\_]+)")){
             errorLabelUsername.setText("Syötä käyttäjätunnus hyväksytyssä muodossa!");
             isValid =false;
         }
 
-        if (passwordField.getText().isEmpty()){
+        if (password.isEmpty()){
             errorLabelPassword.setText("Syötä salasana!");
             isValid = false;
         }
 
         if(isValid) {
-            username = usernameField.getText();
-            password = passwordField.getText();
-            // Löytyykö kannasta
-            u.changeScene("mainView.fxml", usernameField);
+            if(dao.authenticate(username,password)){
+                u.changeScene("mainView.fxml", usernameField);
+            }else {
+                System.out.println("Käyttäjää ei löytynyt!");
+            }
         }
     }
-
 }

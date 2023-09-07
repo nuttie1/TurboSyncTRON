@@ -8,14 +8,18 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class JDBCConnection {
-
     static Connection connection = null;
+
     static PreparedStatement preparedStatement = null;
 
     private static String username;
     private static String password;
 
     public static void main(String[] args) {
+        readCredentials();
+        makeJDBCConnection();
+    }
+    public void start() {
         readCredentials();
         makeJDBCConnection();
     }
