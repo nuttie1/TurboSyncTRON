@@ -26,7 +26,7 @@ public class JDBCConnection {
 
     private static void readCredentials() {
         File connectionFile = new File("src/main/java/com/example/otp1r4/dao/credentials.security");
-        assert !connectionFile.exists() : "Security file is non existent. Contact your administrator.";
+        if(!connectionFile.isFile()) throw new RuntimeException("Security file is non existent. To continue place the right file in DAO folder.");
 
         try {
             Scanner scanner = new Scanner(connectionFile);
