@@ -23,25 +23,31 @@ public class SignDAO implements DAO {
      */
     @Override
     public boolean authenticate(String name, String password) throws Exception {
-        byte[] hashedPassword = hashPassword(password);
         try {
-            String sql = "SELECT * FROM `users` WHERE `Name` = ? AND `Password` = ?";
+            // TODO: poista nää ohje kommentit ennen julkasuu LOL
+            // find using username passwordhash and salt
+            String sql = "SELECT `Password`,`salt` FROM `users` WHERE `Name` = ?";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,name);
-            prepStat.setBytes(2,hashedPassword);
 
             ResultSet rs = prepStat.executeQuery();
+            // if nothing is found return
+            if(!rs.next()){
+                return false;
+            }
 
-            if(rs.next()){
-                System.out.println("The user password combination was found.");
-                return true;
-            } else return false;
+            byte[] queryPass = rs.getBytes(1);
+            byte[] querySalt = rs.getBytes(2);
+
+            byte[] hashedPassword = this.hashPassword(password,querySalt);
+
+            // compare hashed password with new hashpassword that has been salted using database SALT
+            return Arrays.equals(queryPass,hashedPassword);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        throw new Exception("DB authentication went wrong");
+        return false;
     }
 
     /** Add new user to database w/o security questions
@@ -50,12 +56,14 @@ public class SignDAO implements DAO {
      * @param password
      */
     public void addUser(String name, String password){
-        byte[] hashedPassword = hashPassword(password);
+        byte[] salt = salt();
+        byte[] hashedPassword = hashPassword(password,salt);
         try {
-            String sql = "INSERT INTO `users`(`Name`, `Password`) VALUES (?,?)";
+            String sql = "INSERT INTO `users`(`Name`, `Password`,`salt`) VALUES (?,?,?)";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,name);
             prepStat.setBytes(2,hashedPassword);
+            prepStat.setBytes(3,salt);
 
             prepStat.executeUpdate();
 
@@ -72,29 +80,47 @@ public class SignDAO implements DAO {
      * @param securityQuestion2
      * @param securityQuestion3
      */
-   /* public void addUser(String name, String password, String securityQuestion1, String securityQuestion2, String securityQuestion3){
-        byte[] hashedPassword = hashPassword(password);
+    public void addUser(String name, String password, String securityQuestion1, String securityQuestion2, String securityQuestion3){
+        byte[] salt = salt();
+        byte[] hashedPassword = hashPassword(password,salt);
         try {
-            String sql = "INSERT INTO `users`(`Name`, `Password`, `Security1`, `Security2`, `Security3`) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO `users`(`Name`, `Password`,`salt`, `Security1`, `Security2`, `Security3`) VALUES (?,?,?,?,?,?)";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,name);
             prepStat.setBytes(2,hashedPassword);
-            prepStat.setString(3,securityQuestion1);
-            prepStat.setString(4,securityQuestion2);
-            prepStat.setString(5,securityQuestion3);
+            prepStat.setBytes(3,salt);
+            prepStat.setString(4,securityQuestion1);
+            prepStat.setString(5,securityQuestion2);
+            prepStat.setString(6,securityQuestion3);
 
             prepStat.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }*/
-    private byte[] hashPassword(String password) {
+    }
+
+    /** Create salt for the password hash
+     *
+     * @return byte[]
+     */
+    private byte[] salt(){
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
 
+        return salt;
+    }
+
+    /** Hash the password using salt
+     *
+     * @param password
+     * @param salt
+     * @return hashed password
+     */
+    private byte[] hashPassword(String password, byte[] salt) {
         byte[] hashedPassword;
+
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             md.update(salt);
