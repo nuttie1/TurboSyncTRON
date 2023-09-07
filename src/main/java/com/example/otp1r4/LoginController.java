@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import java.io.IOException;
 
 public class LoginController {
+
+    Utils u = new Utils();
 
     @FXML
     private TextField usernameField;
@@ -19,27 +22,32 @@ public class LoginController {
     String username;
     String password;
 
-    public void clickLogin(ActionEvent actionEvent) {
+    public void clickLogin(ActionEvent actionEvent) throws IOException {
 
-        if(usernameField.getText().isEmpty()){
+        errorLabelUsername.setText("");
+        errorLabelPassword.setText("");
+
+        boolean isValid = true;
+
+        if(usernameField.getText().isEmpty()) {
             usernameField.setText("");
             errorLabelUsername.setText("Syötä käyttäjätunnus!");
-        } else if (!usernameField.getText().matches("([A-Za-z0-9\\-\\_]+)")){
+            isValid = false;
+        }  else if (!usernameField.getText().matches("([A-Za-z0-9\\-\\_]+)")){
             errorLabelUsername.setText("Syötä käyttäjätunnus hyväksytyssä muodossa!");
-        } else if (true){
-            // Löytyykö kannasta
-        }
-        else {
-            username = usernameField.getText();
+            isValid =false;
         }
 
-        if(passwordField.getText().isEmpty()){
+        if (passwordField.getText().isEmpty()){
             errorLabelPassword.setText("Syötä salasana!");
-        } else if (true) {
-            // Löytyykö kannasta
+            isValid = false;
         }
-        else {
+
+        if(isValid) {
+            username = usernameField.getText();
             password = passwordField.getText();
+            // Löytyykö kannasta
+            u.changeScene("mainView.fxml", usernameField);
         }
     }
 
