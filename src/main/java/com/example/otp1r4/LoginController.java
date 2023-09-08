@@ -3,8 +3,13 @@ package com.example.otp1r4;
 import com.example.otp1r4.dao.SignDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class LoginController {
@@ -19,6 +24,8 @@ public class LoginController {
     private Label errorLabelUsername;
     @FXML
     private Label errorLabelPassword;
+    @FXML
+    private Hyperlink signUpLink;
 
     String username;
     String password;
@@ -53,5 +60,17 @@ public class LoginController {
                 System.out.println("Käyttäjää ei löytynyt!");
             }
         }
+    }
+
+    public void clickSignup() throws IOException {
+        Stage stage = (Stage) signUpLink.getScene().getWindow();
+        stage.close();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("registerView.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load(), 335, 525);
+        stage.setScene(scene);
+        stage.show();
     }
 }

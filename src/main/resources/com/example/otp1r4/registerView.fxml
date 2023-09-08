@@ -97,32 +97,32 @@
                <Font size="14.0" />
            </font>
         </Label>
-      <Label fx:id="questionErrorLabel1" layoutX="110.0" layoutY="253.0" text="Question not valid" textFill="RED">
+      <Label fx:id="questionErrorLabel1" layoutX="110.0" layoutY="253.0" textFill="RED">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="questionErrorLabel2" layoutX="110.0" layoutY="318.0" text="Question not valid" textFill="RED">
+      <Label fx:id="questionErrorLabel2" layoutX="110.0" layoutY="318.0" textFill="RED">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="questionErrorLabel3" layoutX="110.0" layoutY="386.0" text="Question not valid" textFill="RED">
+      <Label fx:id="questionErrorLabel3" layoutX="110.0" layoutY="386.0" textFill="RED">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="answerErrorLabel1" layoutX="116.0" layoutY="285.0" text="Answer not valid" textFill="RED">
+      <Label fx:id="answerErrorLabel1" layoutX="116.0" layoutY="285.0" textFill="RED">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="answerErrorLabel2" layoutX="116.0" layoutY="350.0" text="Answer not valid" textFill="RED">
+      <Label fx:id="answerErrorLabel2" layoutX="116.0" layoutY="350.0" textFill="RED">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="answerErrorLabel3" layoutX="116.0" layoutY="419.0" text="Answer not valid" textFill="RED">
+      <Label fx:id="answerErrorLabel3" layoutX="116.0" layoutY="419.0" textFill="RED">
          <font>
             <Font size="14.0" />
          </font>
