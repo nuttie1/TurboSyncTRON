@@ -87,12 +87,12 @@
     </Label>
     <Line endX="100.0" layoutX="167.0" layoutY="59.0" startX="-100.0" />
     <AnchorPane mouseTransparent="true" prefHeight="525.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Label fx:id="usernameErrorLabel" layoutX="107.0" layoutY="106.0" textFill="#fc0000">
+        <Label fx:id="usernameErrorLabel" layoutX="70.0" layoutY="106.0" textFill="#fc0000">
            <font>
                <Font size="14.0" />
            </font>
         </Label>
-        <Label fx:id="passwordErrorLabel" layoutX="107.0" layoutY="177.0" textFill="RED">
+        <Label fx:id="passwordErrorLabel" layoutX="70.0" layoutY="179.0" textFill="RED">
            <font>
                <Font size="14.0" />
            </font>

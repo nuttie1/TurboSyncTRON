@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class RegisterController {
-    boolean validData = true;
+
     @FXML
     Button backButton;
     @FXML
@@ -72,15 +72,28 @@ public class RegisterController {
     }
 
     public void submitButtonOnAction(ActionEvent event) {
-        if (inputValidation(usernameField.getText()) && !(Objects.equals(passwordField.getText(), ""))){
-            Stage stage = (Stage) submitButton.getScene().getWindow();
-            stage.close();
-        }   else {
-            usernameErrorLabel.setText("Username not valid");
-            passwordErrorLabel.setText("Password not valid");
+
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if (username.isEmpty()) {
+            usernameErrorLabel.setText("Syötä käyttäjätunnus!");
             usernameField.setText("");
+        }   else if ("illegal".equals(inputValidation(username))) {
+            usernameErrorLabel.setText("Käyttäjätunnus ei hyväksytty");
+            usernameField.setText("");
+        }
+
+        if (password.isEmpty()) {
+            passwordErrorLabel.setText("Syötä salasana!");
             passwordField.setText("");
         }
+
+        /*
+        Stage stage = (Stage) submitButton.getScene().getWindow();
+        stage.close();
+
+         */
     }
 
     public void onTextFieldClicked(KeyEvent event) {
@@ -105,13 +118,16 @@ public class RegisterController {
         }
     }
 
-    public static boolean inputValidation(String username) {
-        if (username == null) {
-            return false;
-        }
+    public static String inputValidation(String input) {
+
         String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
 
-        return username.matches(usernamePattern);
+        if (input.isEmpty()) {
+            return "empty";
+        }   else if (input.matches(usernamePattern)) {
+            return "illegal";
+        }
+        return "good";
     }
 
     public String getUsername() {
