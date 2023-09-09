@@ -5,11 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import com.example.otp1r4.dao.SignDAO;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 
 
@@ -47,6 +46,7 @@ public class RegisterController {
     Label errorLabelQandA3;
 
 
+    Utils u = new Utils();
     @FXML
     private void initialize() {
 
@@ -63,7 +63,7 @@ public class RegisterController {
         stage.show();
     }
 
-    public void submitButtonOnAction(ActionEvent event) {
+    public void submitButtonOnAction(ActionEvent event) throws IOException {
 
         SignDAO dao = new SignDAO();
 
@@ -83,10 +83,13 @@ public class RegisterController {
         String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
         String inputPattern = "^[a-zA-Z0-9_ ]{1,100}$";
 
+        boolean userTaken = false;
+
         if (dao.checkUsername(username)) {
-            usernameErrorLabel.setText("Käyttäjä tunnus" + username + " varattu!");
+            usernameErrorLabel.setText("Käyttäjä tunnus varattu!");
             usernameField.setText("");
             isValid = false;
+            userTaken = true;
         }
 
         if (username.isEmpty()) {
@@ -97,7 +100,7 @@ public class RegisterController {
             isValid = false;
             usernameErrorLabel.setText("Käyttäjätunnus ei hyväksytty");
             usernameField.setText("");
-        }   else {
+        }   else if (!userTaken){
             usernameErrorLabel.setText("");
         }
 
@@ -140,65 +143,25 @@ public class RegisterController {
         }
 
         if (isValid) {
+            u.changeScene("mainView.fxml", submitButton);
+
             Stage stage = (Stage) submitButton.getScene().getWindow();
-            stage.close();
+            showRegistrationSuccessMessage(stage);
         }
     }
 
-    /*
-    public void onTextFieldClicked(KeyEvent event) {
-        Node typed = (Node) event.getTarget();
+    private void showRegistrationSuccessMessage(Stage ownerStage) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Käyttäjä luotu");
+        alert.setHeaderText(null);
+        alert.setContentText("Käyttäjä luotu onnistuneesti!");
 
-        if (typed.equals(usernameField)) {
-            usernameErrorLabel.setText("");
-        }   else if (typed.equals(passwordField)) {
-            passwordErrorLabel.setText("");
-        }   else if (typed.equals(questionOneField)){
-            questionErrorLabel1.setText("");
-        }   else if (typed.equals(questionTwoField)){
-            questionErrorLabel2.setText("");
-        }   else if (typed.equals(questionThreeField)){
-            questionErrorLabel3.setText("");
-        }   else if (typed.equals(answerOneField)){
-            answerErrorLabel1.setText("");
-        }   else if (typed.equals(answerTwoField)){
-            answerErrorLabel2.setText("");
-        }   else if (typed.equals(answerThreeField)){
-            answerErrorLabel3.setText("");
-        }
+        alert.initOwner(ownerStage);
+        alert.show();
+
+        Duration duration = Duration.seconds(1.5);
+        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
+        pause.setOnFinished(event -> alert.close());
+        pause.play();
     }
-     */
-
-    public String getUsername() {
-        return usernameField.getText();
-    }
-
-    public String getPassword() {
-        return passwordField.getText();
-    }
-
-    public String getQuestionOne() {
-        return questionOneField.getText();
-    }
-
-    public String getQuestionTwo() {
-        return questionTwoField.getText();
-    }
-
-    public String getQuestionThree() {
-        return questionThreeField.getText();
-    }
-
-    public String getAnswerOne() {
-        return answerOneField.getText();
-    }
-
-    public String getAnswerTwo() {
-        return answerTwoField.getText();
-    }
-
-    public String getAnswerThree() {
-        return answerThreeField.getText();
-    }
-
 }
