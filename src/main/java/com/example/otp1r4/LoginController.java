@@ -69,7 +69,7 @@ public class LoginController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("registerView.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 335, 525);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
     }

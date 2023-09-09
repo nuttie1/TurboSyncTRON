@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class RegisterController {
@@ -42,17 +43,11 @@ public class RegisterController {
     @FXML
     Label passwordErrorLabel;
     @FXML
-    Label questionErrorLabel1;
+    Label errorLabelQandA1;
     @FXML
-    Label questionErrorLabel2;
+    Label errorLabelQandA2;
     @FXML
-    Label questionErrorLabel3;
-    @FXML
-    Label answerErrorLabel1;
-    @FXML
-    Label answerErrorLabel2;
-    @FXML
-    Label answerErrorLabel3;
+    Label errorLabelQandA3;
 
 
     @FXML
@@ -73,29 +68,80 @@ public class RegisterController {
 
     public void submitButtonOnAction(ActionEvent event) {
 
+        boolean isValid = true;
+
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        String questionOne = questionOneField.getText();
+        String questionTwo = questionTwoField.getText();
+        String questionThree = questionThreeField.getText();
+
+        String answerOne = answerOneField.getText();
+        String answerTwo = answerTwoField.getText();
+        String answerThree = answerThreeField.getText();
+
+        String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
+        String inputPattern = "^[a-zA-Z0-9_ ]{1,100}$";
+
+
         if (username.isEmpty()) {
+            isValid = false;
             usernameErrorLabel.setText("Syötä käyttäjätunnus!");
             usernameField.setText("");
-        }   else if ("illegal".equals(inputValidation(username))) {
+        }   else if (!username.matches(usernamePattern)) {
+            isValid = false;
             usernameErrorLabel.setText("Käyttäjätunnus ei hyväksytty");
             usernameField.setText("");
+        }   else {
+            usernameErrorLabel.setText("");
         }
 
         if (password.isEmpty()) {
+            isValid = false;
             passwordErrorLabel.setText("Syötä salasana!");
             passwordField.setText("");
+        }   else {
+            passwordErrorLabel.setText("");
         }
 
-        /*
-        Stage stage = (Stage) submitButton.getScene().getWindow();
-        stage.close();
+        if (questionOne.isEmpty() && answerOne.isEmpty()) {
+            isValid = false;
+            errorLabelQandA1.setText("Syötä kysymys/vastaus!");
+        }   else if (!questionOne.matches(inputPattern)) {
+            isValid = false;
+            errorLabelQandA1.setText("Kysymys/vastaus ei hyväksytty!");
+        }   else {
+            errorLabelQandA1.setText("");
+        }
 
-         */
+        if (questionTwo.isEmpty() && answerTwo.isEmpty()) {
+            isValid = false;
+            errorLabelQandA2.setText("Syötä kysymys/vastaus!");
+        }   else if (!questionTwo.matches(inputPattern) || !answerTwo.matches(inputPattern)) {
+            isValid = false;
+            errorLabelQandA2.setText("Kysymys/vastaus ei hyväksytty!");
+        }   else {
+            errorLabelQandA2.setText("");
+        }
+
+        if (questionThree.isEmpty() && answerThree.isEmpty()) {
+            isValid = false;
+            errorLabelQandA3.setText("Syötä kysymys/vastaus!");
+        }   else if (!questionThree.matches(inputPattern) || !answerThree.matches(inputPattern)) {
+            isValid = false;
+            errorLabelQandA3.setText("Kysymys/vastaus ei hyväksytty!");
+        }   else {
+            errorLabelQandA3.setText("");
+        }
+
+        if (isValid) {
+            Stage stage = (Stage) submitButton.getScene().getWindow();
+            stage.close();
+        }
     }
 
+    /*
     public void onTextFieldClicked(KeyEvent event) {
         Node typed = (Node) event.getTarget();
 
@@ -117,18 +163,7 @@ public class RegisterController {
             answerErrorLabel3.setText("");
         }
     }
-
-    public static String inputValidation(String input) {
-
-        String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
-
-        if (input.isEmpty()) {
-            return "empty";
-        }   else if (input.matches(usernamePattern)) {
-            return "illegal";
-        }
-        return "good";
-    }
+     */
 
     public String getUsername() {
         return usernameField.getText();
