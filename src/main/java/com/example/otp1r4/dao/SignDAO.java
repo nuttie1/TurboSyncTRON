@@ -100,6 +100,29 @@ public class SignDAO implements DAO {
         }
     }
 
+    /**
+     *
+     * @param name
+     * @return bool true if name found
+     */
+    public boolean checkUsername(String name){
+        try {
+            String sql = "SELECT COUNT(*) FROM `users` WHERE `Name` = ?";
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setString(1,name);
+
+            ResultSet rs = prepStat.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     /** Create salt for the password hash
      *
      * @return byte[]

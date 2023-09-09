@@ -3,18 +3,15 @@ package com.example.otp1r4;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import com.example.otp1r4.dao.SignDAO;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
+
 
 public class RegisterController {
 
@@ -68,6 +65,8 @@ public class RegisterController {
 
     public void submitButtonOnAction(ActionEvent event) {
 
+        SignDAO dao = new SignDAO();
+
         boolean isValid = true;
 
         String username = usernameField.getText();
@@ -84,6 +83,11 @@ public class RegisterController {
         String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
         String inputPattern = "^[a-zA-Z0-9_ ]{1,100}$";
 
+        if (dao.checkUsername(username)) {
+            usernameErrorLabel.setText("Käyttäjä tunnus" + username + " varattu!");
+            usernameField.setText("");
+            isValid = false;
+        }
 
         if (username.isEmpty()) {
             isValid = false;
