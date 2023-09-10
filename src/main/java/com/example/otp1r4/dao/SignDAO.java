@@ -80,11 +80,11 @@ public class SignDAO implements DAO {
      * @param securityQuestion2
      * @param securityQuestion3
      */
-    public void addUser(String name, String password, String securityQuestion1, String securityQuestion2, String securityQuestion3){
+    public void addUser(String name, String password, String securityQuestion1, String securityQuestion2, String securityQuestion3, String securityAnswer1, String securityAnswer2, String securityAnswer3){
         byte[] salt = salt();
         byte[] hashedPassword = hashPassword(password,salt);
         try {
-            String sql = "INSERT INTO `users`(`Name`, `Password`,`salt`, `Security1`, `Security2`, `Security3`) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO `users`(`Name`, `Password`,`salt`, `Security1`, `Security2`, `Security3`, `SecurityA1`, `SecurityA2`, `SecurityA3`) VALUES (?,?,?,?,?,?,?,?,?)";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,name);
             prepStat.setBytes(2,hashedPassword);
@@ -92,6 +92,9 @@ public class SignDAO implements DAO {
             prepStat.setString(4,securityQuestion1);
             prepStat.setString(5,securityQuestion2);
             prepStat.setString(6,securityQuestion3);
+            prepStat.setString(7,securityAnswer1);
+            prepStat.setString(8,securityAnswer2);
+            prepStat.setString(9,securityAnswer3);
 
             prepStat.executeUpdate();
 

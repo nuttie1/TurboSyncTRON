@@ -44,8 +44,6 @@ public class RegisterController {
     Label errorLabelQandA2;
     @FXML
     Label errorLabelQandA3;
-
-
     Utils u = new Utils();
     @FXML
     private void initialize() {
@@ -64,7 +62,6 @@ public class RegisterController {
     }
 
     public void submitButtonOnAction(ActionEvent event) throws IOException {
-
         SignDAO dao = new SignDAO();
 
         boolean isValid = true;
@@ -81,7 +78,7 @@ public class RegisterController {
         String answerThree = answerThreeField.getText();
 
         String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
-        String inputPattern = "^[a-zA-Z0-9_ ]{1,100}$";
+        String inputPattern = "^[a-zA-Z0-9_äöåÄÖÅ ]{1,100}$";
 
         boolean userTaken = false;
 
@@ -115,7 +112,7 @@ public class RegisterController {
         if (questionOne.isEmpty() && answerOne.isEmpty()) {
             isValid = false;
             errorLabelQandA1.setText("Syötä kysymys/vastaus!");
-        }   else if (!questionOne.matches(inputPattern)) {
+        }   else if (!questionOne.matches(inputPattern) || !answerOne.matches(inputPattern)) {
             isValid = false;
             errorLabelQandA1.setText("Kysymys/vastaus ei hyväksytty!");
         }   else {
@@ -143,6 +140,8 @@ public class RegisterController {
         }
 
         if (isValid) {
+            dao.addUser(username, password, questionOne, questionTwo, questionThree, answerOne, answerTwo, answerThree);
+
             u.changeScene("mainView.fxml", submitButton);
 
             Stage stage = (Stage) submitButton.getScene().getWindow();
