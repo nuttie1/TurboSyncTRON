@@ -53,7 +53,6 @@ public class LoginController {
         }
 
         if(isValid) {
-           // dao.addUser(username,password);
             if(dao.authenticate(username,password)){
                 u.changeScene("mainView.fxml", usernameField);
             }else {

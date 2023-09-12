@@ -24,14 +24,12 @@ public class SignDAO implements DAO {
     @Override
     public boolean authenticate(String name, String password) throws Exception {
         try {
-            // TODO: poista nää ohje kommentit ennen julkasuu LOL
-            // find using username passwordhash and salt
+
             String sql = "SELECT `Password`,`salt` FROM `users` WHERE `Name` = ?";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,name);
 
             ResultSet rs = prepStat.executeQuery();
-            // if nothing is found return
             if(!rs.next()){
                 return false;
             }
@@ -39,37 +37,14 @@ public class SignDAO implements DAO {
             byte[] queryPass = rs.getBytes(1);
             byte[] querySalt = rs.getBytes(2);
 
-            byte[] hashedPassword = this.hashPassword(password,querySalt);
+            byte[] hashedPassword = this.hashString(password,querySalt);
 
-            // compare hashed password with new hashpassword that has been salted using database SALT
             return Arrays.equals(queryPass,hashedPassword);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
-    }
-
-    /** Add new user to database w/o security questions
-     *
-     * @param name
-     * @param password
-     */
-    public void addUser(String name, String password){
-        byte[] salt = salt();
-        byte[] hashedPassword = hashPassword(password,salt);
-        try {
-            String sql = "INSERT INTO `users`(`Name`, `Password`,`salt`) VALUES (?,?,?)";
-            prepStat = conn.prepareStatement(sql);
-            prepStat.setString(1,name);
-            prepStat.setBytes(2,hashedPassword);
-            prepStat.setBytes(3,salt);
-
-            prepStat.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     /** Add new User to database with security questions
@@ -82,9 +57,10 @@ public class SignDAO implements DAO {
      */
     public void addUser(String name, String password, String securityQuestion1, String securityQuestion2, String securityQuestion3, String securityAnswer1, String securityAnswer2, String securityAnswer3){
         byte[] salt = salt();
-        byte[] hashedPassword = hashPassword(password,salt);
+        byte[] hashedPassword = hashString(password,salt);
         try {
-            String sql = "INSERT INTO `users`(`Name`, `Password`,`salt`, `Security1`, `Security2`, `Security3`, `SecurityA1`, `SecurityA2`, `SecurityA3`) VALUES (?,?,?,?,?,?,?,?,?)";
+            /// TODO: Refractor this mess. Use loops and lists. Easy clean up.
+            String sql = "INSERT INTO `users`(`Name`, `Password`,`salt`, `Security1`, `Security2`, `Security3`, `SecurityA1`,`SecASalt1`, `SecurityA2`,`SecASalt2`, `SecurityA3`,`SecASalt3`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,name);
             prepStat.setBytes(2,hashedPassword);
@@ -92,9 +68,15 @@ public class SignDAO implements DAO {
             prepStat.setString(4,securityQuestion1);
             prepStat.setString(5,securityQuestion2);
             prepStat.setString(6,securityQuestion3);
-            prepStat.setString(7,securityAnswer1);
-            prepStat.setString(8,securityAnswer2);
-            prepStat.setString(9,securityAnswer3);
+            salt = salt();
+            prepStat.setBytes(7, hashString(securityAnswer1,salt));
+            prepStat.setBytes(8,salt);
+            salt = salt();
+            prepStat.setBytes(9, hashString(securityAnswer2,salt));
+            prepStat.setBytes(10,salt);
+            salt = salt();
+            prepStat.setBytes(11, hashString(securityAnswer3,salt));
+            prepStat.setBytes(12,salt);
 
             prepStat.executeUpdate();
 
@@ -144,7 +126,7 @@ public class SignDAO implements DAO {
      * @param salt
      * @return hashed password
      */
-    private byte[] hashPassword(String password, byte[] salt) {
+    private byte[] hashString(String password, byte[] salt) {
         byte[] hashedPassword;
 
         try{
