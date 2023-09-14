@@ -9,7 +9,7 @@
       <Label layoutX="141.0" layoutY="207.0" text="Salasana" />
       <TextField fx:id="usernameField" layoutX="224.0" layoutY="150.0" />
       <Button layoutX="251.0" layoutY="265.0" mnemonicParsing="false" onAction="#clickLogin" text="Kirjaudu sisään" />
-      <Hyperlink fx:id="forgotPasswordLink" layoutX="236.0" layoutY="345.0" text="Unohditko salasanasi?" />
+      <Hyperlink fx:id="forgotPasswordLink" layoutX="236.0" layoutY="345.0" onAction="#clickForgotPassword" text="Unohditko salasanasi?" />
       <Hyperlink fx:id="signUpLink" layoutX="264.0" layoutY="310.0" onAction="#clickSignup" text="Luo käyttäjä" />
       <Label fx:id="errorLabelUsername" layoutX="228.0" layoutY="182.0" prefHeight="17.0" prefWidth="141.0" textFill="RED" />
       <PasswordField fx:id="passwordField" layoutX="224.0" layoutY="203.0" />

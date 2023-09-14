@@ -72,4 +72,9 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void clickForgotPassword() throws IOException{
+        u.changeScene("forgotPasswordView.fxml", usernameField);
+    }
+
 }
