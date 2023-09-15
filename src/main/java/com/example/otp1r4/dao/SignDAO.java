@@ -171,4 +171,58 @@ public class SignDAO implements DAO {
         return false;
     }
 
+    public void changePassword(String name, String password){
+        byte[] salt = salt();
+        byte[] hashedPassword = hashString(password,salt);
+        try {
+            String sql = "UPDATE users SET Password = ?, salt = ? WHERE Name = ?";
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setBytes(1,hashedPassword);
+            prepStat.setBytes(2,salt);
+            prepStat.setString(3,name);
+
+            prepStat.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getSecurityQuestion(String name, int questionNumber) {
+        String question = null;
+
+        try {
+            String columnName = null;
+            switch (questionNumber) {
+                case 1:
+                    columnName = "Security1";
+                    break;
+                case 2:
+                    columnName = "Security2";
+                    break;
+                case 3:
+                    columnName = "Security3";
+                    break;
+                default:
+                    break;
+            }
+
+            if (columnName != null) {
+                String sql = "SELECT " + columnName + " FROM users WHERE Name = ?";
+                prepStat = conn.prepareStatement(sql);
+                prepStat.setString(1, name);
+
+                ResultSet resultSet = prepStat.executeQuery();
+
+                if (resultSet.next()) {
+                    question = resultSet.getString(columnName);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return question;
+    }
+
 }
