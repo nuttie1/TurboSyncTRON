@@ -139,4 +139,36 @@ public class SignDAO implements DAO {
 
         return hashedPassword;
     }
+
+    public boolean authenticateSecurityQuestions(String name, String securityA1, String securityA2, String securityA3) throws Exception {
+        try {
+
+            String sql = "SELECT `SecurityA1`,`SecASalt1`,`SecurityA2`,`SecASalt2`,`SecurityA3`,`SecASalt3` FROM `users` WHERE `Name` = ?";
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setString(1,name);
+
+            ResultSet rs = prepStat.executeQuery();
+            if(!rs.next()){
+                return false;
+            }
+
+            byte[] querySecA1 = rs.getBytes(1);
+            byte[] querySecASalt1 = rs.getBytes(2);
+            byte[] querySecA2 = rs.getBytes(3);
+            byte[] querySecASalt2 = rs.getBytes(4);
+            byte[] querySecA3 = rs.getBytes(5);
+            byte[] querySecASalt3 = rs.getBytes(6);
+
+            byte[] hashedA1 = this.hashString(securityA1,querySecASalt1);
+            byte[] hashedA2 = this.hashString(securityA2,querySecASalt2);
+            byte[] hashedA3 = this.hashString(securityA3,querySecASalt3);
+
+            return Arrays.equals(querySecA1,hashedA1) && Arrays.equals(querySecA2,hashedA2) && Arrays.equals(querySecA3,hashedA3);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
