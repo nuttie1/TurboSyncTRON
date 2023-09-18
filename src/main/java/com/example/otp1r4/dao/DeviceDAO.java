@@ -17,7 +17,7 @@ public class DeviceDAO implements DAO{
         return false;
     }
 
-    public List<String> geteDevices(String name) throws SQLException {
+    public List<String> getDevices(String name) throws SQLException {
         List<String> deviceNames = new ArrayList<>();
 
         String sql = "SELECT Devices.Name FROM users INNER JOIN Ownership ON users.UserID = Ownership.UserID " +
