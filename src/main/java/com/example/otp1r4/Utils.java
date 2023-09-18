@@ -22,4 +22,18 @@ public class Utils {
         window.setScene(new Scene(root));
     }
 
+    /**
+     *
+     * @param nextView fxml file name ex. mainView.fxml
+     * @param currentNode Scene node 'object' ex. TextField usernameField
+     * @throws IOException
+     */
+    public void addSceneOnTop(String nextView, Node currentNode) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(nextView));
+        Stage window = new Stage();
+        window.initOwner(currentNode.getScene().getWindow());
+
+        window.setScene(new Scene(root));
+        window.show();
+    }
 }

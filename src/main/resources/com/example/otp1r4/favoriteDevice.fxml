@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="150.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.DeviceController">
+   <children>
+      <Label fx:id="deviceName" layoutX="66.0" layoutY="6.0" text="Laitteen nimi" />
+      <Line endX="100.0" layoutX="100.0" layoutY="31.0" startX="-100.0" />
+   </children>
+</AnchorPane>

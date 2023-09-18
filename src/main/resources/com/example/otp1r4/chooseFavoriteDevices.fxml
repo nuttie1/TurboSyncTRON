@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.ChooseFavoriteController">
+   <children>
+      <Button fx:id="favoritesSaveButton" layoutX="316.0" layoutY="350.0" mnemonicParsing="false" onAction="#saveFavoriteDevices" text="Tallenna" />
+      <Button fx:id="backButton" layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Takaisin" />
+      <Label layoutX="163.0" layoutY="27.0" text="Valitse laitteet" />
+      <ListView fx:id="devicesList" layoutX="22.0" layoutY="63.0" prefHeight="276.0" prefWidth="356.0" />
+   </children>
+</AnchorPane>
