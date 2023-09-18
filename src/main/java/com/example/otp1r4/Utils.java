@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/// TODO: Make into interface or something
 public class Utils {
 
     /**
