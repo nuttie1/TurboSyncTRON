@@ -1,6 +1,7 @@
 package com.example.otp1r4;
 
 import com.example.otp1r4.dao.DeviceDAO;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ChooseFavoriteController implements Initializable {
@@ -27,10 +30,7 @@ public class ChooseFavoriteController implements Initializable {
     ListView<String> devicesList;
     @FXML
     Label devicesWarning;
-
     DeviceDAO dao = new DeviceDAO();
-
-    String[] devices = {"Kone1", "Kone2", "Kone3"};
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -52,8 +52,19 @@ public class ChooseFavoriteController implements Initializable {
         // Tallenna laitteet..
     }
     public void showDevices() throws SQLException {
-        if (dao.getDevices("OnniP").isEmpty()) {
+        List<Device> devices;
+        devices = dao.getDevices("OnniP");
+
+        if (devices.isEmpty()) {
             devicesWarning.setText("Laitteita ei vielä lisätty.");
+        }
+
+        List<String> deviceNames = new ArrayList<>();
+        if (!devices.isEmpty()) {
+            for (Device device : devices) {
+                deviceNames.add(device.getDeviceName());
+            }
+            devicesList.getItems().addAll(deviceNames);
         }
     }
 
