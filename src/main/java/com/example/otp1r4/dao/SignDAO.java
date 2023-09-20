@@ -229,6 +229,21 @@ public class SignDAO implements DAO {
         return question;
     }
 
+    public String getUserID () throws SQLException {
+        String sql = "SELECT UserID FROM users WHERE Name = ?";
+
+        prepStat = conn.prepareStatement(sql);
+        prepStat.setString(1, loggedUsername);
+
+        ResultSet resultSet = prepStat.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getString("UserID");
+        }
+
+        return null;
+    }
+
     public String getLoggedUsername() {
         return loggedUsername;
     }

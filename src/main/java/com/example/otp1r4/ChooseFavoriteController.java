@@ -2,16 +2,15 @@ package com.example.otp1r4;
 
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.dao.SignDAO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,9 +27,11 @@ public class ChooseFavoriteController implements Initializable {
     @FXML
     Button backButton;
     @FXML
-    ListView<String> devicesList;
+    ListView<Device> devicesList;
     @FXML
     Label devicesWarningLabel;
+
+    ObservableList<Device> selectedDevices = FXCollections.observableArrayList();
     DeviceDAO dao = new DeviceDAO();
     SignDAO signDAO = new SignDAO();
 
@@ -38,6 +39,22 @@ public class ChooseFavoriteController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             showDevices();
+            devicesList.setCellFactory(new Callback<ListView<Device>, ListCell<Device>>() {
+                @Override
+                public ListCell<Device> call(ListView<Device> deviceListView) {
+                    return new ListCell<Device>() {
+                        @Override
+                        protected void updateItem(Device device, boolean empty) {
+                            super.updateItem(device, empty);
+                            if (device != null && !empty) {
+                                setText(device.getDeviceName());
+                            } else {
+                                setText(null);
+                            }
+                        }
+                    };
+                }
+            });
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -48,9 +65,20 @@ public class ChooseFavoriteController implements Initializable {
         stage.close();
     }
 
-    public void saveFavoriteDevices (ActionEvent event) throws IOException {
+    public void saveFavoriteDevices (ActionEvent event) throws IOException, SQLException {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Virhe");
+        if (devicesList.getItems().size() >= 6) {
+            alert.setContentText("Liikaa laitteita valittu");
+            alert.show();
+        }   else if (devicesList.getSelectionModel().isEmpty()) {
+            alert.setContentText("Pitää valita jokin laite.");
+            alert.show();
+        } else {
+            for (Device device : selectedDevices) {
+                dao.addFavoriteDevices(signDAO.getUserID(), device.getDeviceId());
+            }
 
-        if (devicesList.getItems().size() <= 6) {
             Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();
             stage.close();
         }
@@ -63,13 +91,16 @@ public class ChooseFavoriteController implements Initializable {
             devicesWarningLabel.setText("Laitteita ei vielä lisätty.");
         }
 
-        List<String> deviceNames = new ArrayList<>();
         if (!devices.isEmpty()) {
-            for (Device device : devices) {
-                deviceNames.add(device.getDeviceName());
-            }
-            devicesList.getItems().addAll(deviceNames);
+            devicesList.getItems().addAll(devices);
         }
+
+        devicesList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedDevices.add(newValue);
+            }
+        });
+
     }
 
 }

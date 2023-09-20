@@ -1,6 +1,7 @@
 package com.example.otp1r4;
 
 import com.example.otp1r4.dao.DeviceDAO;
+import com.example.otp1r4.dao.SignDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,11 +44,12 @@ public class MainViewController implements Initializable {
 
     public void addFavoriteDevice() throws IOException, SQLException {
         DeviceDAO dao = new DeviceDAO();
-        List<Device> devices = dao.getFavoriteDevices("OnniP");
+        SignDAO signDAO = new SignDAO();
+        List<Device> devices = dao.getFavoriteDevices(signDAO.getLoggedUsername());
         DeviceController controller;
-        String[] joku = {"Joklu", "das", "adasdsa", "fdsfsaf", "fsfs", "dsadaw"};
 
         if (!devices.isEmpty()) {
+            favDevicesGridPane.setVisible(true);
             int column = 0;
             int row = 0;
             for (Device device : devices) {
@@ -66,7 +68,7 @@ public class MainViewController implements Initializable {
                 }
             }
         } else {
-            favDevicesWarningLabel.setText("Ei vielä");
+            favDevicesGridPane.setVisible(false);
         }
     }
 }

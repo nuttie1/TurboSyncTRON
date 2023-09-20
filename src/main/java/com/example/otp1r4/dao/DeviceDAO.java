@@ -69,5 +69,17 @@ public class DeviceDAO implements DAO{
        return favDevices;
    }
 
+    public void addFavoriteDevices (String userID, String deviceID) {
+        try {
+            String sql = "UPDATE Ownership SET Favorite = 1 WHERE UserID = ? AND DeviceID = ?";
 
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setString(1,userID);
+            prepStat.setString(2,deviceID);
+
+            prepStat.executeUpdate();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
