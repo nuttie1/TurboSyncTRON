@@ -43,25 +43,31 @@ public class DeviceDAO implements DAO{
         return deviceList;
     }
 
-   public List<String> getFavoriteDevice(String name) throws SQLException {
-       List<String> deviceNames = new ArrayList<>();
+   public List<Device> getFavoriteDevices(String name) throws SQLException {
+       List<Device> favDevices = new ArrayList<>();
 
-        String sql = "SELECT Devices.Name FROM users INNER JOIN Ownership ON users.UserID = Ownership.UserID " +
-                "INNER JOIN Devices ON Ownership.DeviceID = Devices.DeviceID " +
-                "WHERE users.Name = ? " +
-                "AND Ownership.Favorite = 1";
+       String sql = "SELECT Devices.Name FROM users INNER JOIN Ownership ON users.UserID = Ownership.UserID " +
+               "INNER JOIN Devices ON Ownership.DeviceID = Devices.DeviceID " +
+               "INNER JOIN Devicetype ON Devices.devicetypeID = Devicetype.devicetypeid " +
+               "WHERE users.Name = ? " +
+               "AND Ownership.Favorite = 1";
 
-        prepStat = conn.prepareStatement(sql);
-        prepStat.setString(1,name);
+       prepStat = conn.prepareStatement(sql);
+       prepStat.setString(1,name);
 
-        ResultSet rs = prepStat.executeQuery();
+       ResultSet rs = prepStat.executeQuery();
 
-        while (rs.next()) {
-            String deviceName = rs.getString("Name");
-            deviceNames.add(deviceName);
-        }
+       while (rs.next()) {
+           String deviceId = rs.getString("DeviceID");
+           String deviceName = rs.getString("Name");
+           String deviceType = rs.getString("typename");
 
-        return deviceNames;
+           Device device = new Device(deviceId, deviceName, deviceType);
+           favDevices.add(device);
+       }
+
+       return favDevices;
    }
+
 
 }

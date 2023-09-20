@@ -7,21 +7,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainViewController implements Initializable {
     @FXML
     Button favoriteDeviceAdd;
     @FXML
-    VBox favoriteDevicesContainer1;
+    GridPane favDevicesGridPane;
     @FXML
-    VBox favoriteDevicesContainer2;
+    Label favDevicesWarningLabel;
 
     Utils u = new Utils();
 
@@ -40,46 +43,30 @@ public class MainViewController implements Initializable {
 
     public void addFavoriteDevice() throws IOException, SQLException {
         DeviceDAO dao = new DeviceDAO();
-
-
+        List<Device> devices = dao.getFavoriteDevices("OnniP");
         DeviceController controller;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("favoriteDevice.fxml"));
-        Parent deviceNode = loader.load();
+        String[] joku = {"Joklu", "das", "adasdsa", "fdsfsaf", "fsfs", "dsadaw"};
 
-        controller = loader.getController();
+        if (!devices.isEmpty()) {
+            int column = 0;
+            int row = 0;
+            for (Device device : devices) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("favoriteDevice.fxml"));
+                Parent deviceNode = loader.load();
 
-        if (!dao.getFavoriteDevice("OnniP").isEmpty()) {
-            controller.deviceName.setText(dao.getFavoriteDevice("OnniP").get(0));
+                controller = loader.getController();
+
+                controller.deviceName.setText(device.getDeviceName());
+
+                favDevicesGridPane.add(deviceNode, column, row);
+                column++;
+                if (column == 2) {
+                    column = 0;
+                    row++;
+                }
+            }
+        } else {
+            favDevicesWarningLabel.setText("Ei vielä");
         }
-
-        favoriteDevicesContainer1.getChildren().add(deviceNode);
-        /*
-        for (int i = 0; i < 3; i++){
-            DeviceController controller;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("favoriteDevice.fxml"));
-            Parent deviceNode = loader.load();
-
-            controller = loader.getController();
-
-            controller.deviceName.setText(devicesName[i]);
-
-            favoriteDevicesContainer1.getChildren().add(deviceNode);
-
-        }
-
-        for (int i = 3; i < 6; i++){
-            DeviceController controller;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("favoriteDevice.fxml"));
-            Parent deviceNode = loader.load();
-
-            controller = loader.getController();
-
-            controller.deviceName.setText(devicesName[i]);
-
-            favoriteDevicesContainer2.getChildren().add(deviceNode);
-
-        }
-
-         */
     }
 }

@@ -1,6 +1,7 @@
 package com.example.otp1r4;
 
 import com.example.otp1r4.dao.DeviceDAO;
+import com.example.otp1r4.dao.SignDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,8 +30,10 @@ public class ChooseFavoriteController implements Initializable {
     @FXML
     ListView<String> devicesList;
     @FXML
-    Label devicesWarning;
+    Label devicesWarningLabel;
     DeviceDAO dao = new DeviceDAO();
+    SignDAO signDAO = new SignDAO();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -46,17 +49,18 @@ public class ChooseFavoriteController implements Initializable {
     }
 
     public void saveFavoriteDevices (ActionEvent event) throws IOException {
-        Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();
-        stage.close();
 
-        // Tallenna laitteet..
+        if (devicesList.getItems().size() <= 6) {
+            Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();
+            stage.close();
+        }
     }
     public void showDevices() throws SQLException {
         List<Device> devices;
-        devices = dao.getDevices("OnniP");
+        devices = dao.getDevices(signDAO.getLoggedUsername());
 
         if (devices.isEmpty()) {
-            devicesWarning.setText("Laitteita ei vielä lisätty.");
+            devicesWarningLabel.setText("Laitteita ei vielä lisätty.");
         }
 
         List<String> deviceNames = new ArrayList<>();

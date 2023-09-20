@@ -9,6 +9,6 @@
       <Button fx:id="backButton" layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Takaisin" />
       <Label layoutX="163.0" layoutY="27.0" text="Valitse laitteet" />
       <ListView fx:id="devicesList" layoutX="22.0" layoutY="63.0" prefHeight="276.0" prefWidth="356.0" />
-      <Label fx:id="devicesWarning" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="44.0" prefHeight="17.0" prefWidth="400.0" textFill="RED" />
+      <Label fx:id="devicesWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="44.0" prefHeight="17.0" prefWidth="400.0" textFill="RED" />
    </children>
 </AnchorPane>
