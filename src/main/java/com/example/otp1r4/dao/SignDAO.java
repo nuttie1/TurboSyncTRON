@@ -175,6 +175,20 @@ public class SignDAO implements DAO {
         return false;
     }
 
+    public void changeUsername(String newName, String oldName){
+        try {
+            String sql = "UPDATE users SET Name = ? WHERE Name = ?";
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setString(1,newName);
+            prepStat.setString(2,oldName);
+
+            prepStat.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void changePassword(String name, String password){
         byte[] salt = salt();
         byte[] hashedPassword = hashString(password,salt);
@@ -191,7 +205,6 @@ public class SignDAO implements DAO {
             e.printStackTrace();
         }
     }
-
     public String getSecurityQuestion(String name, int questionNumber) {
         String question = null;
 
