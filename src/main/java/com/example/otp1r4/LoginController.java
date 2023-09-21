@@ -54,6 +54,8 @@ public class LoginController {
 
         if(isValid) {
             if(dao.authenticate(username,password)){
+                UserData userData = UserData.getInstance();
+                userData.setUsername(username);
                 u.changeScene("mainView.fxml", usernameField);
             }else {
                 System.out.println("Käyttäjää ei löytynyt!");

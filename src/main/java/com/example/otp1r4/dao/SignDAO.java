@@ -176,7 +176,7 @@ public class SignDAO implements DAO {
             String sql = "UPDATE users SET Name = ? WHERE Name = ?";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,newName);
-            prepStat.setString(1,oldName);
+            prepStat.setString(2,oldName);
 
             prepStat.executeUpdate();
 
@@ -201,24 +201,6 @@ public class SignDAO implements DAO {
             e.printStackTrace();
         }
     }
-
-    public String getUsername(String name){
-        try {
-            String sql = "SELECT Name FROM users WHERE Name = ?";
-            prepStat = conn.prepareStatement(sql);
-            prepStat.setString(1,name);
-
-            ResultSet rs = prepStat.executeQuery();
-
-            if (rs.next()) {
-                return rs.getString(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public String getSecurityQuestion(String name, int questionNumber) {
         String question = null;
 
