@@ -4,26 +4,74 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72b68307-37c4-46aa-a6e2-545bcd9c1b1f" name="Changes" comment="Initial" />
+    <list default="true" id="72b68307-37c4-46aa-a6e2-545bcd9c1b1f" name="Changes" comment="Initial">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/AddDevice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/RegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/addDevice.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/ChooseFavoriteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/ChooseFavoriteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/model/Device.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/DeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/DeviceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/ForgotPasswordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/RegisterController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/UserData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/model/UserData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/MtoV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/controller/VtoM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/dao/DeviceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/dao/DeviceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/dao/SignDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/dao/SignDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/model/temp.temp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/otp1r4/view/temp.temp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/chooseFavoriteDevices.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/chooseFavoriteDevices.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/favoriteDevice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/favoriteDevice.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/forgotPasswordView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/forgotPasswordView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/profileView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/profileView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/registerView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/otp1r4/registerView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/otp1r4/HelloApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/otp1r4/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/otp1r4/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="favorite-devices" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2UhuzGZstXXqFoqGx2heoReyIVJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -35,16 +83,37 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "last_directory_selection": "C:/Koulu/Koulu_23_p1/githubi/Ohjelmistotuotantonnon-projekti/src/main/java/com/example/otp1r4",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.otp1r4" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Koulu\Koulu_23_p1\githubi\Ohjelmistotuotantonnon-projekti\src\main\java\com\example\otp1r4\dao" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.otp1r4" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.otp1r4.HelloApplication" />
+    <configuration name="User" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.otp1r4.model.User" />
       <module name="OTP1R4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.otp1r4.*" />
+          <option name="PATTERN" value="com.example.otp1r4.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -54,7 +123,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="Application.User" />
+        <item itemvalue="Application.User" />
       </list>
     </recent_temporary>
   </component>
@@ -66,6 +136,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693404396051</updated>
+      <workItem from="1694121823573" duration="1403000" />
+      <workItem from="1694364803329" duration="827000" />
+      <workItem from="1695151048735" duration="80000" />
+      <workItem from="1695151137355" duration="307000" />
+      <workItem from="1695151465639" duration="1000000" />
+      <workItem from="1695314000538" duration="7811000" />
     </task>
     <task id="LOCAL−00001" summary="Initial">
       <created>1693404678557</created>
@@ -75,6 +151,9 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -107,5 +186,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial" />
     <option name="LAST_COMMIT_MESSAGE" value="Initial" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -1,7 +1,6 @@
 package com.example.otp1r4.dao;
 
-import com.example.otp1r4.Device;
-import javafx.scene.control.ListView;
+import com.example.otp1r4.model.Device;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -83,17 +82,5 @@ public class DeviceDAO implements DAO{
         return null;
    }
 
-    public void addFavoriteDevices (String userID, String deviceID) {
-        try {
-            String sql = "UPDATE Ownership SET Favorite = 1 WHERE UserID = ? AND DeviceID = ?";
 
-            prepStat = conn.prepareStatement(sql);
-            prepStat.setString(1,userID);
-            prepStat.setString(2,deviceID);
-
-            prepStat.executeUpdate();
-        }   catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

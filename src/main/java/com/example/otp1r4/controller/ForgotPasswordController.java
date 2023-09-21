@@ -1,5 +1,6 @@
-package com.example.otp1r4;
+package com.example.otp1r4.controller;
 
+import com.example.otp1r4.controller.Controller;
 import com.example.otp1r4.dao.SignDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,9 +9,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class ForgotPasswordController {
-
-    Utils u = new Utils();
+public class ForgotPasswordController implements Controller {
 
     @FXML
     private TextField usernameField, answerField1, answerField2, answerField3, newPasswordField;
@@ -19,9 +18,13 @@ public class ForgotPasswordController {
     @FXML
     private Button submitAnswersButton, changePasswordButton;
 
-    public void submitUsernameButton() {
+    SignDAO dao;
 
-        SignDAO dao = new SignDAO();
+    public ForgotPasswordController(SignDAO dao) {
+        this.dao = dao;
+    }
+
+    public void submitUsernameButton() {
         usernameErrorLabel.setText("");
 
         if(dao.checkUsername(usernameField.getText())) {
@@ -42,9 +45,6 @@ public class ForgotPasswordController {
     }
 
     public void submitAnswersButton() throws Exception {
-
-        SignDAO dao = new SignDAO();
-
         if(dao.authenticateSecurityQuestions(usernameField.getText(),answerField1.getText(), answerField2.getText(), answerField3.getText())){
             newPasswordHeader.setDisable(false);
             newPasswordField.setDisable(false);
@@ -58,7 +58,6 @@ public class ForgotPasswordController {
 
     public void clickChangePassword() throws Exception {
 
-        SignDAO dao = new SignDAO();
         boolean isValid = true;
         String password = newPasswordField.getText();
 
@@ -69,13 +68,12 @@ public class ForgotPasswordController {
         if(isValid) {
             dao.changePassword(usernameField.getText(), newPasswordField.getText());
             System.out.println("Salasana vaihdettu!");
-            u.changeScene("login.fxml", usernameField);
+            this.changeScene("login.fxml", usernameField);
         }
-
     }
 
     public void clickBack() throws IOException {
-        u.changeScene("login.fxml", usernameField);
+        this.changeScene("login.fxml", usernameField);
     }
 
 }

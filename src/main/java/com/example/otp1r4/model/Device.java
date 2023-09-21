@@ -1,4 +1,4 @@
-package com.example.otp1r4;
+package com.example.otp1r4.model;
 
 public class Device {
     String deviceId;

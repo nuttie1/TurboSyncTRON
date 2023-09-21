@@ -1,26 +1,26 @@
-package com.example.otp1r4;
+package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.dao.SignDAO;
+import com.example.otp1r4.model.Device;
+import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ChooseFavoriteController implements Initializable {
-    Utils u = new Utils();
+public class ChooseFavoriteController implements Controller, Initializable {
+
 
     @FXML
     Button favoritesSaveButton;
@@ -32,9 +32,15 @@ public class ChooseFavoriteController implements Initializable {
     Label devicesWarningLabel;
 
     ObservableList<Device> selectedDevices = FXCollections.observableArrayList();
-    DeviceDAO dao = new DeviceDAO();
-    SignDAO signDAO = new SignDAO();
-    UserData user = UserData.getInstance();
+    DeviceDAO deviceDAO;
+    SignDAO signDAO;
+    UserData user;
+
+    public ChooseFavoriteController(DeviceDAO deviceDAO, SignDAO signDAO) {
+        this.deviceDAO = deviceDAO;
+        this.signDAO = signDAO;
+        this.user = UserData.getInstance();;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -77,10 +83,10 @@ public class ChooseFavoriteController implements Initializable {
             alert.show();
         } else {
             for (Device device : selectedDevices) {
-                dao.addFavoriteDevices(signDAO.getUserID(user.getUsername()), device.getDeviceId());
+                signDAO.addFavoriteDevices(String.valueOf(user.getUserID()), device.getDeviceId());
             }
 
-            MainViewController controller = new MainViewController();
+            MainViewController controller = new MainViewController(signDAO);
             controller.addFavoriteDevice();
 
             Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();
@@ -89,7 +95,7 @@ public class ChooseFavoriteController implements Initializable {
     }
     public void showDevices() throws SQLException {
         List<Device> devices;
-        devices = dao.getDevices(user.getUsername());
+        devices = deviceDAO.getDevices(user.getUsername());
 
         if (devices.isEmpty()) {
             devicesWarningLabel.setText("Laitteita ei vielä lisätty.");
@@ -104,7 +110,6 @@ public class ChooseFavoriteController implements Initializable {
                 selectedDevices.add(newValue);
             }
         });
-
     }
 
 }

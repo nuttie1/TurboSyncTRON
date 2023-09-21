@@ -15,4 +15,8 @@ module com.example.otp1r4 {
     exports com.example.otp1r4;
     exports com.example.otp1r4.dao;
     opens com.example.otp1r4.dao to javafx.fxml;
+    exports com.example.otp1r4.model;
+    opens com.example.otp1r4.model to javafx.fxml;
+    exports com.example.otp1r4.controller;
+    opens com.example.otp1r4.controller to javafx.fxml;
 }

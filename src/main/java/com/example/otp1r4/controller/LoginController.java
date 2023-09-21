@@ -1,6 +1,7 @@
-package com.example.otp1r4;
+package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.SignDAO;
+import com.example.otp1r4.model.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginController {
-
-    Utils u = new Utils();
-
+public class LoginController implements Controller {
     @FXML
     private TextField usernameField;
     @FXML
@@ -29,10 +27,13 @@ public class LoginController {
 
     String username;
     String password;
+    SignDAO dao;
+
+    public LoginController(SignDAO dao) {
+        this.dao = dao;
+    }
 
     public void clickLogin(ActionEvent actionEvent) throws Exception {
-        SignDAO dao = new SignDAO();
-
         username = usernameField.getText();
         password = passwordField.getText();
 
@@ -56,7 +57,7 @@ public class LoginController {
             if(dao.authenticate(username,password)){
                 UserData userData = UserData.getInstance();
                 userData.setUsername(username);
-                u.changeScene("mainView.fxml", usernameField);
+                this.changeScene("mainView.fxml", usernameField);
             }else {
                 System.out.println("Käyttäjää ei löytynyt!");
             }
@@ -76,7 +77,6 @@ public class LoginController {
     }
 
     public void clickForgotPassword() throws IOException{
-        u.changeScene("forgotPasswordView.fxml", usernameField);
+        this.changeScene("forgotPasswordView.fxml", usernameField);
     }
-
 }

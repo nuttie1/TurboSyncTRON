@@ -34,7 +34,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.otp1r4/com.example.otp1r4.Login</mainClass>
+                            <mainClass>com.example.otp1r4/com.example.otp1r4.model.User</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

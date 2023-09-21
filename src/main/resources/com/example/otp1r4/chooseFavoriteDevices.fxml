@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.ChooseFavoriteController">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.ChooseFavoriteController">
    <children>
       <Button fx:id="favoritesSaveButton" layoutX="316.0" layoutY="350.0" mnemonicParsing="false" onAction="#saveFavoriteDevices" text="Tallenna" />
       <Button fx:id="backButton" layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Takaisin" />

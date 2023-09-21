@@ -1,5 +1,6 @@
 package com.example.otp1r4.controller;
 
+import com.example.otp1r4.dao.SignDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,7 +15,8 @@ import java.util.Objects;
  *
  *  See VtoM Interface for view to model applications.
  */
-public interface MtoV {
+public interface Controller {
+
     /**
      * @param nextView fxml file name ex. mainView.fxml
      * @param currentNode Scene node 'object' ex. TextField usernameField
