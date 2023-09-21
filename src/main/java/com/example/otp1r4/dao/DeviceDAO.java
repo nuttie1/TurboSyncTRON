@@ -69,6 +69,20 @@ public class DeviceDAO implements DAO{
        return favDevices;
    }
 
+   public String getDeviceData(String deviceID) throws SQLException {
+        String sql = "SELECT Data FROM Devicedata WHERE DeviceID = ?";
+
+        prepStat = conn.prepareStatement(sql);
+        prepStat.setString(1,deviceID);
+
+        ResultSet resultSet = prepStat.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getString("Data");
+        }
+        return null;
+   }
+
     public void addFavoriteDevices (String userID, String deviceID) {
         try {
             String sql = "UPDATE Ownership SET Favorite = 1 WHERE UserID = ? AND DeviceID = ?";

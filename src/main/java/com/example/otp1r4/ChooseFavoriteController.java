@@ -79,6 +79,9 @@ public class ChooseFavoriteController implements Initializable {
                 dao.addFavoriteDevices(signDAO.getUserID(), device.getDeviceId());
             }
 
+            MainViewController controller = new MainViewController();
+            controller.addFavoriteDevice();
+
             Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();
             stage.close();
         }

@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 public class DeviceController {
     @FXML
     Label deviceName;
+    @FXML
+    Label deviceDataLabel;
 
     public Label getDeviceName() {
         return deviceName;

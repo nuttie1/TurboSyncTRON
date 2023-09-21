@@ -33,6 +33,7 @@ public class MainViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             addFavoriteDevice();
+            System.out.println("JOTAI");
         } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
@@ -59,6 +60,7 @@ public class MainViewController implements Initializable {
                 controller = loader.getController();
 
                 controller.deviceName.setText(device.getDeviceName());
+                controller.deviceDataLabel.setText(dao.getDeviceData(device.deviceId));
 
                 favDevicesGridPane.add(deviceNode, column, row);
                 column++;
