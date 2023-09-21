@@ -29,11 +29,12 @@ public class MainViewController implements Initializable {
 
     Utils u = new Utils();
 
+    UserData user = UserData.getInstance();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             addFavoriteDevice();
-            System.out.println("JOTAI");
         } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
@@ -45,8 +46,7 @@ public class MainViewController implements Initializable {
 
     public void addFavoriteDevice() throws IOException, SQLException {
         DeviceDAO dao = new DeviceDAO();
-        SignDAO signDAO = new SignDAO();
-        List<Device> devices = dao.getFavoriteDevices(signDAO.getLoggedUsername());
+        List<Device> devices = dao.getFavoriteDevices(user.getUsername());
         DeviceController controller;
 
         if (!devices.isEmpty()) {

@@ -14,8 +14,6 @@ public class SignDAO implements DAO {
     Connection conn = JDBCConnection.connection;
     PreparedStatement prepStat = JDBCConnection.preparedStatement;
 
-    String loggedUsername;
-
     /** Check if user credentials are found in the database
      *
      * @param name
@@ -35,8 +33,6 @@ public class SignDAO implements DAO {
             if(!rs.next()){
                 return false;
             }
-
-            loggedUsername = name;
 
             byte[] queryPass = rs.getBytes(1);
             byte[] querySalt = rs.getBytes(2);
@@ -242,11 +238,11 @@ public class SignDAO implements DAO {
         return question;
     }
 
-    public String getUserID () throws SQLException {
+    public String getUserID (String name) throws SQLException {
         String sql = "SELECT UserID FROM users WHERE Name = ?";
 
         prepStat = conn.prepareStatement(sql);
-        prepStat.setString(1, loggedUsername);
+        prepStat.setString(1, name);
 
         ResultSet resultSet = prepStat.executeQuery();
 
@@ -255,9 +251,5 @@ public class SignDAO implements DAO {
         }
 
         return null;
-    }
-
-    public String getLoggedUsername() {
-        return loggedUsername;
     }
 }

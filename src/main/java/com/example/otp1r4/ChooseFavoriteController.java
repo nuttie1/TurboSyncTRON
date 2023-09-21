@@ -34,6 +34,7 @@ public class ChooseFavoriteController implements Initializable {
     ObservableList<Device> selectedDevices = FXCollections.observableArrayList();
     DeviceDAO dao = new DeviceDAO();
     SignDAO signDAO = new SignDAO();
+    UserData user = UserData.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,7 +77,7 @@ public class ChooseFavoriteController implements Initializable {
             alert.show();
         } else {
             for (Device device : selectedDevices) {
-                dao.addFavoriteDevices(signDAO.getUserID(), device.getDeviceId());
+                dao.addFavoriteDevices(signDAO.getUserID(user.getUsername()), device.getDeviceId());
             }
 
             MainViewController controller = new MainViewController();
@@ -88,7 +89,7 @@ public class ChooseFavoriteController implements Initializable {
     }
     public void showDevices() throws SQLException {
         List<Device> devices;
-        devices = dao.getDevices(signDAO.getLoggedUsername());
+        devices = dao.getDevices(user.getUsername());
 
         if (devices.isEmpty()) {
             devicesWarningLabel.setText("Laitteita ei vielä lisätty.");
