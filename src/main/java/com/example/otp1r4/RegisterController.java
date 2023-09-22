@@ -2,9 +2,7 @@ package com.example.otp1r4;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import com.example.otp1r4.dao.SignDAO;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -50,15 +48,7 @@ public class RegisterController {
 
     }
     public void backButtonOnAction(ActionEvent event) throws IOException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        stage.close();
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("login.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-        stage.show();
+        u.changeScene("login.fxml", usernameField);
     }
 
     public void submitButtonOnAction(ActionEvent event) throws IOException {
@@ -80,10 +70,16 @@ public class RegisterController {
         String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
         String inputPattern = "^[a-zA-Z0-9_äöåÄÖÅ ]{1,100}$";
 
+        usernameErrorLabel.setText("");
+        passwordErrorLabel.setText("");
+        errorLabelQandA1.setText("");
+        errorLabelQandA2.setText("");
+        errorLabelQandA3.setText("");
+
         boolean userTaken = false;
 
         if (dao.checkUsername(username)) {
-            usernameErrorLabel.setText("Käyttäjä tunnus varattu!");
+            usernameErrorLabel.setText("Käyttäjätunnus varattu!");
             usernameField.setText("");
             isValid = false;
             userTaken = true;
@@ -92,10 +88,9 @@ public class RegisterController {
         if (username.isEmpty()) {
             isValid = false;
             usernameErrorLabel.setText("Syötä käyttäjätunnus!");
-            usernameField.setText("");
         }   else if (!username.matches(usernamePattern)) {
             isValid = false;
-            usernameErrorLabel.setText("Käyttäjätunnus ei hyväksytty");
+            usernameErrorLabel.setText("Syötä käyttäjätunnus\nhyväksytyssä muodossa!");
             usernameField.setText("");
         }   else if (!userTaken){
             usernameErrorLabel.setText("");
@@ -104,22 +99,21 @@ public class RegisterController {
         if (password.isEmpty()) {
             isValid = false;
             passwordErrorLabel.setText("Syötä salasana!");
-            passwordField.setText("");
         }   else {
             passwordErrorLabel.setText("");
         }
 
-        if (questionOne.isEmpty() && answerOne.isEmpty()) {
+        if (questionOne.isEmpty() || answerOne.isEmpty()) {
             isValid = false;
             errorLabelQandA1.setText("Syötä kysymys/vastaus!");
         }   else if (!questionOne.matches(inputPattern) || !answerOne.matches(inputPattern)) {
             isValid = false;
-            errorLabelQandA1.setText("Kysymys/vastaus ei hyväksytty!");
+            errorLabelQandA1.setText("Syötä kysymys/vastaus hyväksytyssä muodossa!");
         }   else {
             errorLabelQandA1.setText("");
         }
 
-        if (questionTwo.isEmpty() && answerTwo.isEmpty()) {
+        if (questionTwo.isEmpty() || answerTwo.isEmpty()) {
             isValid = false;
             errorLabelQandA2.setText("Syötä kysymys/vastaus!");
         }   else if (!questionTwo.matches(inputPattern) || !answerTwo.matches(inputPattern)) {
@@ -129,7 +123,7 @@ public class RegisterController {
             errorLabelQandA2.setText("");
         }
 
-        if (questionThree.isEmpty() && answerThree.isEmpty()) {
+        if (questionThree.isEmpty() || answerThree.isEmpty()) {
             isValid = false;
             errorLabelQandA3.setText("Syötä kysymys/vastaus!");
         }   else if (!questionThree.matches(inputPattern) || !answerThree.matches(inputPattern)) {
@@ -163,4 +157,5 @@ public class RegisterController {
         pause.setOnFinished(event -> alert.close());
         pause.play();
     }
+
 }

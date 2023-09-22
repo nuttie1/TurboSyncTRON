@@ -2,9 +2,12 @@ package com.example.otp1r4;
 
 import com.example.otp1r4.dao.SignDAO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -15,7 +18,7 @@ public class ForgotPasswordController {
     @FXML
     private TextField usernameField, answerField1, answerField2, answerField3, newPasswordField;
     @FXML
-    private Label usernameErrorLabel, questionLabel1, questionLabel2, questionLabel3, newPasswordHeader, passwordErrorLabel, newPasswordLabel;
+    private Label usernameErrorLabel, questionLabel1, questionLabel2, questionLabel3, answerErrorLabel, newPasswordHeader, passwordErrorLabel, newPasswordLabel;
     @FXML
     private Button submitAnswersButton, changePasswordButton;
 
@@ -24,7 +27,9 @@ public class ForgotPasswordController {
         SignDAO dao = new SignDAO();
         usernameErrorLabel.setText("");
 
-        if(dao.checkUsername(usernameField.getText())) {
+        if (usernameField.getText().isEmpty()) {
+            usernameErrorLabel.setText("Syötä käyttäjätunnus!");
+        } else if(dao.checkUsername(usernameField.getText())) {
             questionLabel1.setDisable(false);
             answerField1.setDisable(false);
             questionLabel2.setDisable(false);
@@ -44,14 +49,17 @@ public class ForgotPasswordController {
     public void submitAnswersButton() throws Exception {
 
         SignDAO dao = new SignDAO();
+        answerErrorLabel.setText("");
 
-        if(dao.authenticateSecurityQuestions(usernameField.getText(),answerField1.getText(), answerField2.getText(), answerField3.getText())){
+        if (answerField1.getText().isEmpty() || answerField2.getText().isEmpty() || answerField3.getText().isEmpty()) {
+            answerErrorLabel.setText("Syötä vastaukset kysymyksiin!");
+        } else if(dao.authenticateSecurityQuestions(usernameField.getText(),answerField1.getText(), answerField2.getText(), answerField3.getText())){
             newPasswordHeader.setDisable(false);
             newPasswordField.setDisable(false);
             newPasswordLabel.setDisable(false);
             changePasswordButton.setDisable(false);
-        }else {
-            System.out.println("Jotkin tiedoista ovat väärin!");
+        } else {
+            answerErrorLabel.setText("Vastaukset eivät täsmää!");
         }
 
     }
@@ -68,10 +76,28 @@ public class ForgotPasswordController {
         }
         if(isValid) {
             dao.changePassword(usernameField.getText(), newPasswordField.getText());
-            System.out.println("Salasana vaihdettu!");
             u.changeScene("login.fxml", usernameField);
+
+            Stage stage = (Stage) submitAnswersButton.getScene().getWindow();
+            showChangePasswordSuccessMessage(stage);
         }
 
+    }
+
+    // TODO duplicate code; move this to MtoV interface
+    private void showChangePasswordSuccessMessage(Stage ownerStage) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Salasana vaihdettu");
+        alert.setHeaderText(null);
+        alert.setContentText("Salasana vaihdettu onnistuneesti!");
+
+        alert.initOwner(ownerStage);
+        alert.show();
+
+        Duration duration = Duration.seconds(3);
+        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
+        pause.setOnFinished(event -> alert.close());
+        pause.play();
     }
 
     public void clickBack() throws IOException {

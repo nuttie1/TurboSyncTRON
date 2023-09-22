@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="400.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.RegisterController">
-    <Button fx:id="submitButton" layoutX="203.0" layoutY="305.0" mnemonicParsing="false" onAction="#submitButtonOnAction" text="Rekistöröidy" />
+<AnchorPane minHeight="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.RegisterController">
     <Button fx:id="backButton" layoutX="107.0" layoutY="305.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Takaisin" />
+    <Button fx:id="submitButton" layoutX="203.0" layoutY="305.0" mnemonicParsing="false" onAction="#submitButtonOnAction" text="Rekistöröidy" />
       <TextField fx:id="questionOneField" layoutX="377.0" layoutY="88.0">
           <font>
               <Font size="14.0" />
@@ -55,29 +55,9 @@
    <Label layoutX="314.0" layoutY="128.0" text="Vastaus" />
    <Label layoutX="314.0" layoutY="219.0" text="Vastaus" />
    <Label layoutX="314.0" layoutY="309.0" text="Vastaus" />
-     <Label fx:id="usernameErrorLabel" layoutX="136.0" layoutY="126.0" prefHeight="20.0" prefWidth="149.0" textFill="#fc0000">
-        <font>
-            <Font size="14.0" />
-        </font>
-     </Label>
-     <Label fx:id="passwordErrorLabel" layoutX="136.0" layoutY="178.0" prefHeight="20.0" prefWidth="149.0" textFill="RED">
-        <font>
-            <Font size="14.0" />
-        </font>
-     </Label>
-   <Label fx:id="errorLabelQandA1" layoutX="377.0" layoutY="65.0" prefHeight="20.0" prefWidth="173.0" textFill="RED">
-      <font>
-         <Font size="14.0" />
-      </font>
-   </Label>
-   <Label fx:id="errorLabelQandA2" layoutX="378.0" layoutY="154.0" prefHeight="20.0" prefWidth="173.0" textFill="RED">
-      <font>
-         <Font size="14.0" />
-      </font>
-   </Label>
-   <Label fx:id="errorLabelQandA3" layoutX="377.0" layoutY="244.0" prefHeight="20.0" prefWidth="173.0" textFill="RED">
-      <font>
-         <Font size="14.0" />
-      </font>
-   </Label>
+     <Label fx:id="usernameErrorLabel" layoutX="136.0" layoutY="108.0" prefHeight="38.0" prefWidth="167.0" textFill="#fc0000" />
+     <Label fx:id="passwordErrorLabel" layoutX="136.0" layoutY="178.0" prefHeight="20.0" prefWidth="149.0" textFill="RED" />
+   <Label fx:id="errorLabelQandA1" layoutX="377.0" layoutY="65.0" prefHeight="20.0" prefWidth="173.0" textFill="RED" />
+   <Label fx:id="errorLabelQandA2" layoutX="378.0" layoutY="154.0" prefHeight="20.0" prefWidth="173.0" textFill="RED" />
+   <Label fx:id="errorLabelQandA3" layoutX="377.0" layoutY="244.0" prefHeight="20.0" prefWidth="173.0" textFill="RED" />
 </AnchorPane>

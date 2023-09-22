@@ -3,12 +3,9 @@ package com.example.otp1r4;
 import com.example.otp1r4.dao.SignDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -36,13 +33,16 @@ public class LoginController {
         username = usernameField.getText();
         password = passwordField.getText();
 
+        errorLabelUsername.setText("");
+        errorLabelPassword.setText("");
+
         boolean isValid = true;
 
         if(username.isEmpty()) {
-            usernameField.setText("");
             errorLabelUsername.setText("Syötä käyttäjätunnus!");
             isValid = false;
         }  else if (!username.matches("([A-Za-z0-9\\-\\_]+)")){
+            usernameField.setText("");
             errorLabelUsername.setText("Syötä käyttäjätunnus hyväksytyssä muodossa!");
             isValid =false;
         }
@@ -58,21 +58,13 @@ public class LoginController {
                 userData.setUsername(username);
                 u.changeScene("mainView.fxml", usernameField);
             }else {
-                System.out.println("Käyttäjää ei löytynyt!");
+                errorLabelPassword.setText("Käyttäjätunnus tai salasana väärin!");
             }
         }
     }
 
     public void clickSignup() throws IOException {
-        Stage stage = (Stage) signUpLink.getScene().getWindow();
-        stage.close();
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("registerView.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-        stage.show();
+        u.changeScene("registerView.fxml", usernameField);
     }
 
     public void clickForgotPassword() throws IOException{
