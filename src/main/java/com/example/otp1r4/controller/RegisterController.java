@@ -67,10 +67,16 @@ public class RegisterController implements Controller {
         String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
         String inputPattern = "^[a-zA-Z0-9_äöåÄÖÅ ]{1,100}$";
 
+        usernameErrorLabel.setText("");
+        passwordErrorLabel.setText("");
+        errorLabelQandA1.setText("");
+        errorLabelQandA2.setText("");
+        errorLabelQandA3.setText("");
+
         boolean userTaken = false;
 
         if (dao.checkUsername(username)) {
-            usernameErrorLabel.setText("Käyttäjä tunnus varattu!");
+            usernameErrorLabel.setText("Käyttäjätunnus varattu!");
             usernameField.setText("");
             isValid = false;
             userTaken = true;
@@ -79,50 +85,48 @@ public class RegisterController implements Controller {
         if (username.isEmpty()) {
             isValid = false;
             usernameErrorLabel.setText("Syötä käyttäjätunnus!");
-            usernameField.setText("");
-        } else if (!username.matches(usernamePattern)) {
+        }   else if (!username.matches(usernamePattern)) {
             isValid = false;
-            usernameErrorLabel.setText("Käyttäjätunnus ei hyväksytty");
+            usernameErrorLabel.setText("Syötä käyttäjätunnus\nhyväksytyssä muodossa!");
             usernameField.setText("");
-        } else if (!userTaken) {
+        }   else if (!userTaken){
             usernameErrorLabel.setText("");
         }
 
         if (password.isEmpty()) {
             isValid = false;
             passwordErrorLabel.setText("Syötä salasana!");
-            passwordField.setText("");
-        } else {
+        }   else {
             passwordErrorLabel.setText("");
         }
 
-        if (questionOne.isEmpty() && answerOne.isEmpty()) {
+        if (questionOne.isEmpty() || answerOne.isEmpty()) {
             isValid = false;
             errorLabelQandA1.setText("Syötä kysymys/vastaus!");
-        } else if (!questionOne.matches(inputPattern) || !answerOne.matches(inputPattern)) {
+        }   else if (!questionOne.matches(inputPattern) || !answerOne.matches(inputPattern)) {
             isValid = false;
-            errorLabelQandA1.setText("Kysymys/vastaus ei hyväksytty!");
-        } else {
+            errorLabelQandA1.setText("Syötä kysymys/vastaus hyväksytyssä muodossa!");
+        }   else {
             errorLabelQandA1.setText("");
         }
 
-        if (questionTwo.isEmpty() && answerTwo.isEmpty()) {
+        if (questionTwo.isEmpty() || answerTwo.isEmpty()) {
             isValid = false;
             errorLabelQandA2.setText("Syötä kysymys/vastaus!");
-        } else if (!questionTwo.matches(inputPattern) || !answerTwo.matches(inputPattern)) {
+        }   else if (!questionTwo.matches(inputPattern) || !answerTwo.matches(inputPattern)) {
             isValid = false;
             errorLabelQandA2.setText("Kysymys/vastaus ei hyväksytty!");
-        } else {
+        }   else {
             errorLabelQandA2.setText("");
         }
 
-        if (questionThree.isEmpty() && answerThree.isEmpty()) {
+        if (questionThree.isEmpty() || answerThree.isEmpty()) {
             isValid = false;
             errorLabelQandA3.setText("Syötä kysymys/vastaus!");
-        } else if (!questionThree.matches(inputPattern) || !answerThree.matches(inputPattern)) {
+        }   else if (!questionThree.matches(inputPattern) || !answerThree.matches(inputPattern)) {
             isValid = false;
             errorLabelQandA3.setText("Kysymys/vastaus ei hyväksytty!");
-        } else {
+        }   else {
             errorLabelQandA3.setText("");
         }
         if (isValid) {

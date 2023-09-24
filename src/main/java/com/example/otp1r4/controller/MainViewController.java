@@ -80,4 +80,11 @@ public class MainViewController implements Controller, Initializable {
             favDevicesGridPane.setVisible(false);
         }
     }
+
+    // TODO Siirrä fiksumpaan paikkaan
+    public void clickLogout() throws IOException {
+        user = null;
+        u.changeScene("login.fxml", favoriteDeviceAdd);
+    }
+
 }
