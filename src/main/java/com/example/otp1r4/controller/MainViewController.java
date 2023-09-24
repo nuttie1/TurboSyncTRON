@@ -84,7 +84,7 @@ public class MainViewController implements Controller, Initializable {
     // TODO Siirrä fiksumpaan paikkaan
     public void clickLogout() throws IOException {
         user = null;
-        u.changeScene("login.fxml", favoriteDeviceAdd);
+        this.changeScene("login.fxml", favoriteDeviceAdd);
     }
 
 }
