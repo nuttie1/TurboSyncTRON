@@ -41,7 +41,19 @@ public class DeviceDAO implements DAO{
 
         return deviceList;
     }
+    public void addFavoriteDevices (String userID, String deviceID) {
+        try {
+            String sql = "UPDATE Ownership SET Favorite = 1 WHERE UserID = ? AND DeviceID = ?";
 
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setString(1,userID);
+            prepStat.setString(2,deviceID);
+
+            prepStat.executeUpdate();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
    public List<Device> getFavoriteDevices(String name) throws SQLException {
        List<Device> favDevices = new ArrayList<>();
 

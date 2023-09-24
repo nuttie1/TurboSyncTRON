@@ -27,10 +27,12 @@ public class MainViewController implements Controller, Initializable {
     @FXML
     Label favDevicesWarningLabel;
 
-    SignDAO dao;
+    SignDAO signDAO;
+    DeviceDAO deviceDAO;
 
-    public MainViewController(SignDAO dao) {
-        this.dao = dao;
+    public MainViewController(SignDAO signDAO, DeviceDAO deviceDAO) {
+        this.signDAO = signDAO;
+        this.deviceDAO = deviceDAO;
     }
 
     UserData user = UserData.getInstance();
@@ -51,7 +53,7 @@ public class MainViewController implements Controller, Initializable {
     }
 
     public void addFavoriteDevice() throws IOException, SQLException {
-        List<Device> devices = dao.getFavoriteDevices(user.getUsername());
+        List<Device> devices = deviceDAO.getFavoriteDevices(user.getUsername());
        // DeviceController controller;
 
         if (!devices.isEmpty()) {

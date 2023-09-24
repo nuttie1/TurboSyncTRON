@@ -3,7 +3,7 @@ package com.example.otp1r4.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class DeviceController {
+public class DeviceController implements Controller {
     @FXML
     Label deviceName;
     @FXML

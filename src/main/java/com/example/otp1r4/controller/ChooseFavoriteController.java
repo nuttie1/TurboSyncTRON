@@ -83,10 +83,10 @@ public class ChooseFavoriteController implements Controller, Initializable {
             alert.show();
         } else {
             for (Device device : selectedDevices) {
-                signDAO.addFavoriteDevices(String.valueOf(user.getUserID()), device.getDeviceId());
+                deviceDAO.addFavoriteDevices(String.valueOf(user.getUserID()), device.getDeviceId());
             }
 
-            MainViewController controller = new MainViewController(signDAO);
+            MainViewController controller = new MainViewController(signDAO,deviceDAO);
             controller.addFavoriteDevice();
 
             Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();

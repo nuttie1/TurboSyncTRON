@@ -9,9 +9,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class ProfileController {
-
-    Utils u = new Utils();
+public class ProfileController implements Controller{
 
     @FXML
     private TextField usernameField;
@@ -61,7 +59,7 @@ public class ProfileController {
     }
 
     public void clickBack() throws IOException {
-        u.changeScene("mainView.fxml", usernameField);
+        this.changeScene("mainView.fxml", usernameField);
     }
 
 }

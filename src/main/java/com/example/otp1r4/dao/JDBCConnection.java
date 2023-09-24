@@ -37,16 +37,16 @@ public class JDBCConnection {
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            throw new RuntimeException("Security file not found - " + e.getMessage());
         }
     }
     private static void makeJDBCConnection() {
         try {
             Class.forName("org.mariadb.jdbc.Driver");
-            System.out.println("Congrats - Seems your MySQL JDBC Driver Registered!");
+            System.out.println("MySQL JDBC Driver Registered!");
         } catch (ClassNotFoundException e) {
-            System.out.println("Sorry, couldn't found JDBC driver. Make sure you have added JDBC Maven Dependency Correctly");
             e.printStackTrace();
-            return;
+            throw new RuntimeException("Couldn't found JDBC driver. -" + e.getMessage()) ;
         }
 
         try {
@@ -58,9 +58,8 @@ public class JDBCConnection {
                 System.out.println("Failed to make connection!");
             }
         } catch (SQLException e) {
-            System.out.println("MySQL Connection Failed!");
             e.printStackTrace();
-            return;
+            throw new RuntimeException("MySQL Connection Failed! - " + e.getMessage());
         }
     }
 }
