@@ -36,14 +36,13 @@ public class ChooseFavoriteController implements Controller, Initializable {
     SignDAO signDAO;
     UserData user;
 
-    public ChooseFavoriteController(DeviceDAO deviceDAO, SignDAO signDAO) {
-        this.deviceDAO = deviceDAO;
-        this.signDAO = signDAO;
-        this.user = UserData.getInstance();;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.deviceDAO = new DeviceDAO();
+        this.signDAO = new SignDAO();
+
+        this.user = UserData.getInstance();;
         try {
             showDevices();
             devicesList.setCellFactory(new Callback<ListView<Device>, ListCell<Device>>() {
@@ -86,7 +85,7 @@ public class ChooseFavoriteController implements Controller, Initializable {
                 deviceDAO.addFavoriteDevices(String.valueOf(user.getUserID()), device.getDeviceId());
             }
 
-            MainViewController controller = new MainViewController(signDAO,deviceDAO);
+            MainViewController controller = new MainViewController();
             controller.addFavoriteDevice();
 
             Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();

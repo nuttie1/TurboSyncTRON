@@ -30,9 +30,9 @@ public class MainViewController implements Controller, Initializable {
     SignDAO signDAO;
     DeviceDAO deviceDAO;
 
-    public MainViewController(SignDAO signDAO, DeviceDAO deviceDAO) {
-        this.signDAO = signDAO;
-        this.deviceDAO = deviceDAO;
+    public MainViewController() {
+        this.signDAO = new SignDAO();
+        this.deviceDAO = new DeviceDAO();
     }
 
     UserData user = UserData.getInstance();

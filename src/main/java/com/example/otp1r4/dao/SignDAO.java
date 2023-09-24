@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.Arrays;
 
 public class SignDAO implements DAO {
-    private final Connection conn = JDBCConnection.connection;
     PreparedStatement prepStat;
 
     /** Check if user credentials are found in the database
@@ -21,10 +20,8 @@ public class SignDAO implements DAO {
      * @return bool true if found else false
      * @throws Exception
      */
-    @Override
     public boolean authenticate(String name, String password) throws Exception {
         try {
-
             String sql = "SELECT `Password`,`salt` FROM `users` WHERE `Name` = ?";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,name);
@@ -252,5 +249,4 @@ public class SignDAO implements DAO {
 
         return null;
     }
-
 }

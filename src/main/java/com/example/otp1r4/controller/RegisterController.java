@@ -3,9 +3,7 @@ package com.example.otp1r4.controller;
 import com.example.otp1r4.dao.SignDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -45,20 +43,11 @@ public class RegisterController implements Controller {
     Label errorLabelQandA3;
     SignDAO dao;
     public RegisterController() {
-        dao = new SignDAO();
+        this.dao = new SignDAO();
     }
 
-
     public void backButtonOnAction(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("login.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-        stage.show();
+        this.changeScene("login.fxml", (Node) event.getTarget());
     }
 
     public void submitButtonOnAction(ActionEvent event) throws IOException {

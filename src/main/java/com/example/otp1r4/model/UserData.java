@@ -9,9 +9,6 @@ public class UserData {
 
     private static UserData instance;
 
-
-
-
     public static void setInstance(UserData instance) {
         UserData.instance = instance;
     }

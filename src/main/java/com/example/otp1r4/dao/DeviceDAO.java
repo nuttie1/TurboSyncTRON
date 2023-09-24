@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceDAO implements DAO{
-    Connection conn = JDBCConnection.connection;
     PreparedStatement prepStat = JDBCConnection.preparedStatement;
-    @Override
-    public boolean authenticate(String email, String password) throws Exception {
-        return false;
-    }
+
 
     public List<Device> getDevices(String name) throws SQLException {
         List<Device> deviceList = new ArrayList<>();

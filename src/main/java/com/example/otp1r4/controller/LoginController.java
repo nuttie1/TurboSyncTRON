@@ -1,5 +1,6 @@
 package com.example.otp1r4.controller;
 
+import com.example.otp1r4.Main;
 import com.example.otp1r4.dao.SignDAO;
 import com.example.otp1r4.model.UserData;
 import javafx.event.ActionEvent;
@@ -29,8 +30,8 @@ public class LoginController implements Controller {
     String password;
     SignDAO dao;
 
-    public LoginController(SignDAO dao) {
-        this.dao = dao;
+    public LoginController() {
+        this.dao = new SignDAO();
     }
 
     public void clickLogin(ActionEvent actionEvent) throws Exception {
@@ -68,8 +69,7 @@ public class LoginController implements Controller {
         Stage stage = (Stage) signUpLink.getScene().getWindow();
         stage.close();
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("registerView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("registerView.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);

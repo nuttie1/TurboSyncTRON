@@ -20,8 +20,8 @@ public class ForgotPasswordController implements Controller {
 
     SignDAO dao;
 
-    public ForgotPasswordController(SignDAO dao) {
-        this.dao = dao;
+    public ForgotPasswordController() {
+        this.dao = new SignDAO();
     }
 
     public void submitUsernameButton() {

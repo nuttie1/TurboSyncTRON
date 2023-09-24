@@ -1,5 +1,9 @@
 package com.example.otp1r4.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 public interface DAO {
-    public boolean authenticate(String email, String password) throws Exception;
+    Connection conn = JDBCConnection.connection;
+
 }

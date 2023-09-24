@@ -1,6 +1,7 @@
 package com.example.otp1r4;
 
 import com.example.otp1r4.controller.RegisterController;
+import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.dao.JDBCConnection;
 import com.example.otp1r4.dao.SignDAO;
 import javafx.application.Application;
@@ -17,8 +18,6 @@ public class Main extends Application{
     public void start(Stage stage) throws IOException {
         JDBCConnection jdbc = new JDBCConnection();
         jdbc.start();
-
-
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
