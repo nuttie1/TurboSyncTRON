@@ -4,13 +4,12 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-public class SignDAO implements DAO {
+public class UserDAO implements DAO {
     PreparedStatement prepStat;
 
     /** Check if user credentials are found in the database

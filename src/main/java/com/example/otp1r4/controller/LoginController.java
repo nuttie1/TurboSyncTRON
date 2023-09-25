@@ -1,7 +1,6 @@
 package com.example.otp1r4.controller;
 
-import com.example.otp1r4.Main;
-import com.example.otp1r4.dao.SignDAO;
+import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,14 +24,14 @@ public class LoginController implements Controller {
 
     String username;
     String password;
-    SignDAO dao;
+    UserDAO dao;
 
     public LoginController() {
-        this.dao = new SignDAO();
+        this.dao = new UserDAO();
     }
 
     public void clickLogin(ActionEvent actionEvent) throws Exception {
-        SignDAO dao = new SignDAO();
+        UserDAO dao = new UserDAO();
 
         username = usernameField.getText();
         password = passwordField.getText();

@@ -1,7 +1,6 @@
 package com.example.otp1r4.controller;
 
-import com.example.otp1r4.controller.Controller;
-import com.example.otp1r4.dao.SignDAO;
+import com.example.otp1r4.dao.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -21,15 +20,15 @@ public class ForgotPasswordController implements Controller {
     @FXML
     private Button submitAnswersButton, changePasswordButton;
 
-    SignDAO dao;
+    UserDAO dao;
 
     public ForgotPasswordController() {
-        this.dao = new SignDAO();
+        this.dao = new UserDAO();
     }
 
     public void submitUsernameButton() {
 
-        SignDAO dao = new SignDAO();
+        UserDAO dao = new UserDAO();
         usernameErrorLabel.setText("");
 
         if (usernameField.getText().isEmpty()) {

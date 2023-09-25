@@ -1,7 +1,7 @@
 package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.DeviceDAO;
-import com.example.otp1r4.dao.SignDAO;
+import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.Device;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
@@ -33,14 +33,14 @@ public class ChooseFavoriteController implements Controller, Initializable {
 
     ObservableList<Device> selectedDevices = FXCollections.observableArrayList();
     DeviceDAO deviceDAO;
-    SignDAO signDAO;
+    UserDAO userDAO;
     UserData user;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.deviceDAO = new DeviceDAO();
-        this.signDAO = new SignDAO();
+        this.userDAO = new UserDAO();
 
         this.user = UserData.getInstance();;
         try {

@@ -1,7 +1,6 @@
 package com.example.otp1r4.controller;
 
 import com.example.otp1r4.Main;
-import com.example.otp1r4.dao.SignDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -9,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 /** {@code @Brief} Interface for controllers - model to view.
  *  Methods that are needed for in model to view order.

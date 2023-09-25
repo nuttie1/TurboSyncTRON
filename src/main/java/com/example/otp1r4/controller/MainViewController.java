@@ -1,6 +1,6 @@
 package com.example.otp1r4.controller;
 
-import com.example.otp1r4.dao.SignDAO;
+import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.Device;
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.model.UserData;
@@ -27,11 +27,11 @@ public class MainViewController implements Controller, Initializable {
     @FXML
     Label favDevicesWarningLabel;
 
-    SignDAO signDAO;
+    UserDAO userDAO;
     DeviceDAO deviceDAO;
 
     public MainViewController() {
-        this.signDAO = new SignDAO();
+        this.userDAO = new UserDAO();
         this.deviceDAO = new DeviceDAO();
     }
 

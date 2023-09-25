@@ -1,6 +1,6 @@
 package com.example.otp1r4.controller;
 
-import com.example.otp1r4.dao.SignDAO;
+import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.UserData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,7 +33,7 @@ public class ProfileController implements Controller{
 
     public void clickSave() throws IOException {
 
-        SignDAO dao = new SignDAO();
+        UserDAO dao = new UserDAO();
         String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
         boolean isValid = true;
 

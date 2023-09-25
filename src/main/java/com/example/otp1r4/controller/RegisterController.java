@@ -1,6 +1,6 @@
 package com.example.otp1r4.controller;
 
-import com.example.otp1r4.dao.SignDAO;
+import com.example.otp1r4.dao.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -41,9 +41,9 @@ public class RegisterController implements Controller {
     Label errorLabelQandA2;
     @FXML
     Label errorLabelQandA3;
-    SignDAO dao;
+    UserDAO dao;
     public RegisterController() {
-        this.dao = new SignDAO();
+        this.dao = new UserDAO();
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
