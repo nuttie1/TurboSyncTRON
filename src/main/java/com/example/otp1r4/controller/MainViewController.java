@@ -1,90 +1,56 @@
 package com.example.otp1r4.controller;
 
-import com.example.otp1r4.dao.UserDAO;
-import com.example.otp1r4.model.Device;
-import com.example.otp1r4.dao.DeviceDAO;
+
 import com.example.otp1r4.model.UserData;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainViewController implements Controller, Initializable {
-    @FXML
-    Button favoriteDeviceAdd;
-    @FXML
-    GridPane favDevicesGridPane;
-    @FXML
-    Label favDevicesWarningLabel;
 
-    UserDAO userDAO;
-    DeviceDAO deviceDAO;
-
-    public MainViewController() {
-        this.userDAO = new UserDAO();
-        this.deviceDAO = new DeviceDAO();
-    }
+    @FXML
+    TabPane mainViewTabPane;
+    @FXML
+    Tab favoriteDevicesTab, allDevicesTab, deviceDataTab;
+    @FXML
+    Button profileButton, logoutButton;
 
     UserData user = UserData.getInstance();
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FXMLLoader tab1Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/favoriteDevicesView.fxml"));
+        FXMLLoader tab2Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/allDevicesView.fxml"));
+        FXMLLoader tab3Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/deviceDataView.fxml"));
         try {
-            addFavoriteDevice();
-        } catch (IOException | SQLException e) {
+            Node tab1Content = tab1Loader.load();
+            //Node tab2Content = tab2Loader.load();
+            //Node tab3Content = tab3Loader.load();
+
+            favoriteDevicesTab.setContent(tab1Content);
+            //allDevicesTab.setContent(tab2Content);
+            //deviceDataTab.setContent(tab3Content);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void clickFavoriteAdd(ActionEvent event) throws IOException {
-        this.addSceneOnTop("chooseFavoriteDevices.fxml", favoriteDeviceAdd);
-    }
-
-    public void addFavoriteDevice() throws IOException, SQLException {
-        List<Device> devices = deviceDAO.getFavoriteDevices(user.getUsername());
-       // DeviceController controller;
-
-        if (!devices.isEmpty()) {
-            favDevicesGridPane.setVisible(true);
-            int column = 0;
-            int row = 0;
-            for (Device device : devices) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("favoriteDevice.fxml"));
-                Parent deviceNode = loader.load();
-
-               /* controller = loader.getController();
-
-                controller.deviceName.setText(device.getDeviceName());
-                controller.deviceDataLabel.setText(dao.getDeviceData(device.deviceId));
-*/
-                favDevicesGridPane.add(deviceNode, column, row);
-                column++;
-                if (column == 2) {
-                    column = 0;
-                    row++;
-                }
-            }
-        } else {
-            favDevicesGridPane.setVisible(false);
-        }
-    }
-
-    // TODO Siirrä fiksumpaan paikkaan
     public void clickLogout() throws IOException {
         user = null;
-        this.changeScene("login.fxml", favoriteDeviceAdd);
+        this.changeScene("login.fxml", logoutButton);
     }
 
+    public void clickProfile() throws IOException {
+        this.changeScene("profileView.fxml", profileButton);
+    }
 }

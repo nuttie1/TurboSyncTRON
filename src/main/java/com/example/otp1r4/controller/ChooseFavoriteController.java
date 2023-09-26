@@ -85,7 +85,7 @@ public class ChooseFavoriteController implements Controller, Initializable {
                 deviceDAO.addFavoriteDevices(String.valueOf(user.getUserID()), device.getDeviceId());
             }
 
-            MainViewController controller = new MainViewController();
+            FavoriteDevicesController controller = new FavoriteDevicesController();
             controller.addFavoriteDevice();
 
             Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();
