@@ -5,6 +5,7 @@ import com.example.otp1r4.model.Device;
 import com.example.otp1r4.model.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -63,7 +64,7 @@ public class AllDevicesController implements Controller, Initializable {
             labelPane.add(deviceName, 0, 0);
             labelPane.add(deviceType, 0, 1);
 
-            labelPane.setAlignment(Pos.CENTER);
+            labelPane.setAlignment(Pos.CENTER_LEFT);
 
             pane.add(labelPane, column, row);
 
@@ -87,14 +88,14 @@ public class AllDevicesController implements Controller, Initializable {
             pane.add(deviceImage, column, row);
 
             column++;
-            if (column == 2) {
+            if (column == 4) {
                 column = 0;
                 row++;
             }
         }
 
-
-
+        pane.setHgap(20);
+        pane.setPadding(new Insets(10));
         allDevicesPane.getChildren().add(pane);
 
     }
