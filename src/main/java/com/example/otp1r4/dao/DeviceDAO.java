@@ -13,21 +13,21 @@ public class DeviceDAO implements DAO{
     PreparedStatement prepStat = JDBCConnection.preparedStatement;
 
 
-    public List<Device> getDevices(String name) throws SQLException {
+    public List<Device> getDevices(int userID) throws SQLException {
         List<Device> deviceList = new ArrayList<>();
 
         String sql = "SELECT Devices.Name FROM users INNER JOIN Ownership ON users.UserID = Ownership.UserID " +
                 "INNER JOIN Devices ON Ownership.DeviceID = Devices.DeviceID " +
                 "INNER JOIN Devicetype ON Devices.devicetypeID = Devicetype.devicetypeid " +
-                "WHERE users.Name = ? ";
+                "WHERE users.UserID = ? ";
 
         prepStat = conn.prepareStatement(sql);
-        prepStat.setString(1,name);
+        prepStat.setInt(1,userID);
 
         ResultSet rs = prepStat.executeQuery();
 
         while (rs.next()) {
-            String deviceId = rs.getString("DeviceID");
+            int deviceId = rs.getInt("DeviceID");
             String deviceName = rs.getString("Name");
             String deviceType = rs.getString("typename");
 
@@ -37,35 +37,36 @@ public class DeviceDAO implements DAO{
 
         return deviceList;
     }
-    public void addFavoriteDevices (String userID, String deviceID) {
+    public void addFavoriteDevices (int userID, int deviceID) {
         try {
             String sql = "UPDATE Ownership SET Favorite = 1 WHERE UserID = ? AND DeviceID = ?";
 
             prepStat = conn.prepareStatement(sql);
-            prepStat.setString(1,userID);
-            prepStat.setString(2,deviceID);
+            prepStat.setInt(1,userID);
+            prepStat.setInt(2,deviceID);
 
             prepStat.executeUpdate();
         }   catch (SQLException e) {
             e.printStackTrace();
         }
     }
-   public List<Device> getFavoriteDevices(String name) throws SQLException {
+   public List<Device> getFavoriteDevices(int userID) throws SQLException {
        List<Device> favDevices = new ArrayList<>();
 
-       String sql = "SELECT Devices.Name FROM users INNER JOIN Ownership ON users.UserID = Ownership.UserID " +
-               "INNER JOIN Devices ON Ownership.DeviceID = Devices.DeviceID " +
-               "INNER JOIN Devicetype ON Devices.devicetypeID = Devicetype.devicetypeid " +
-               "WHERE users.Name = ? " +
-               "AND Ownership.Favorite = 1";
+       String sql = "SELECT Devices.Name " +
+                    "FROM Ownership " +
+                    "INNER JOIN Devices ON Ownership.DeviceID = Devices.DeviceID " +
+                    "INNER JOIN Devicetype ON Devices.devicetypeID = Devicetype.devicetypeid " +
+                    "WHERE Ownership.UserID = ? " +
+                    "AND Ownership.Favorite = 1";
 
        prepStat = conn.prepareStatement(sql);
-       prepStat.setString(1,name);
+       prepStat.setInt(1,userID);
 
        ResultSet rs = prepStat.executeQuery();
 
        while (rs.next()) {
-           String deviceId = rs.getString("DeviceID");
+           int deviceId = rs.getInt("DeviceID");
            String deviceName = rs.getString("Name");
            String deviceType = rs.getString("typename");
 
@@ -76,11 +77,11 @@ public class DeviceDAO implements DAO{
        return favDevices;
    }
 
-   public String getDeviceData(String deviceID) throws SQLException {
+   public String getDeviceData(int deviceID) throws SQLException {
         String sql = "SELECT Data FROM Devicedata WHERE DeviceID = ?";
 
         prepStat = conn.prepareStatement(sql);
-        prepStat.setString(1,deviceID);
+        prepStat.setInt(1,deviceID);
 
         ResultSet resultSet = prepStat.executeQuery();
 
@@ -89,6 +90,4 @@ public class DeviceDAO implements DAO{
         }
         return null;
    }
-
-
 }

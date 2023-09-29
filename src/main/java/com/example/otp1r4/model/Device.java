@@ -1,11 +1,11 @@
 package com.example.otp1r4.model;
 
 public class Device {
-    String deviceId;
-    String deviceName;
-    String deviceType;
+    private int deviceId;
+    private String deviceName;
+    private String deviceType;
 
-    public Device (String id, String name, String type) {
+    public Device (int id, String name, String type) {
         deviceId = id;
         deviceName = name;
         deviceType = type;
@@ -15,7 +15,7 @@ public class Device {
         return deviceName;
     }
 
-    public String getDeviceId() {
+    public int getDeviceId() {
         return deviceId;
     }
 

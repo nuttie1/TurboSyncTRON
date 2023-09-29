@@ -34,11 +34,11 @@ public class MainViewController implements Controller, Initializable {
         FXMLLoader tab3Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/deviceDataView.fxml"));
         try {
             Node tab1Content = tab1Loader.load();
-            //Node tab2Content = tab2Loader.load();
+            Node tab2Content = tab2Loader.load();
             //Node tab3Content = tab3Loader.load();
 
             favoriteDevicesTab.setContent(tab1Content);
-            //allDevicesTab.setContent(tab2Content);
+            allDevicesTab.setContent(tab2Content);
             //deviceDataTab.setContent(tab3Content);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -51,6 +51,6 @@ public class MainViewController implements Controller, Initializable {
     }
 
     public void clickProfile() throws IOException {
-        this.changeScene("profileView.fxml", profileButton);
+        this.addSceneOnTop("profileView.fxml", profileButton);
     }
 }
