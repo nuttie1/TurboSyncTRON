@@ -234,18 +234,29 @@ public class UserDAO implements DAO {
         return question;
     }
 
-    public String getUserID (String name) throws SQLException {
-        String sql = "SELECT UserID FROM users WHERE Name = ?";
+    /** Remove user from database. Used for testing.
+     *
+     * @param name
+     * @throws SQLException
+     */
+    public void removeUser (String name) throws SQLException {
+        String sql = "DELETE FROM users WHERE Name = ?";
 
         prepStat = conn.prepareStatement(sql);
         prepStat.setString(1, name);
+        prepStat.executeUpdate();
+    }
 
-        ResultSet resultSet = prepStat.executeQuery();
+    public boolean checkUser (String name) {
+        String sql = "SELECT * FROM users WHERE Name = ?";
 
-        if (resultSet.next()) {
-            return resultSet.getString("UserID");
+        try (PreparedStatement prepStat = conn.prepareStatement(sql)) {
+            prepStat.setString(1,name);
+
+            ResultSet rs = prepStat.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        return null;
     }
 }

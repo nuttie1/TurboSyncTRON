@@ -16,21 +16,21 @@ public class RegisterController implements Controller {
     @FXML
     Button submitButton;
     @FXML
-    TextField usernameField;
+    public TextField usernameField;
     @FXML
-    PasswordField passwordField;
+    public PasswordField passwordField;
     @FXML
-    TextField questionOneField;
+    public TextField questionOneField;
     @FXML
-    TextField questionTwoField;
+    public TextField questionTwoField;
     @FXML
-    TextField questionThreeField;
+    public TextField questionThreeField;
     @FXML
-    TextField answerOneField;
+    public TextField answerOneField;
     @FXML
-    TextField answerTwoField;
+    public TextField answerTwoField;
     @FXML
-    TextField answerThreeField;
+    public TextField answerThreeField;
     @FXML
     Label usernameErrorLabel;
     @FXML
@@ -139,7 +139,7 @@ public class RegisterController implements Controller {
         }
     }
 
-    private void showRegistrationSuccessMessage(Stage ownerStage) {
+    public void showRegistrationSuccessMessage(Stage ownerStage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Käyttäjä luotu");
         alert.setHeaderText(null);
