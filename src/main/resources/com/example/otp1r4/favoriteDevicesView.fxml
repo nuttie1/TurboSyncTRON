@@ -9,7 +9,6 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.FavoriteDevicesController">
     <children>
-        <Label layoutX="265.0" layoutY="20.0" text="PÄÄNÄKYMÄ" />
         <Label layoutX="264.0" layoutY="128.0" text="Lempi laitteet" />
         <Button fx:id="favoriteDeviceAdd" layoutX="259.0" layoutY="152.0" mnemonicParsing="false" onAction="#clickFavoriteAdd" text="Lisää laitteet" />
         <Label fx:id="favDevicesWarningLabel" alignment="CENTER" contentDisplay="TOP" layoutX="-1.0" layoutY="178.0" prefHeight="17.0" prefWidth="600.0" textFill="RED" />

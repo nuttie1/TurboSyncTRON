@@ -96,8 +96,8 @@ public class AllDevicesController implements Controller, Initializable {
 
         pane.setHgap(20);
         pane.setPadding(new Insets(10));
-        allDevicesPane.getChildren().add(pane);
 
+        allDevicesPane.getChildren().add(pane);
     }
 
 
