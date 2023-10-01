@@ -1,6 +1,6 @@
 package com.example.otp1r4.model;
 
-public class Device {
+public class Device implements Model{
     String deviceId;
     String deviceName;
     String deviceType;

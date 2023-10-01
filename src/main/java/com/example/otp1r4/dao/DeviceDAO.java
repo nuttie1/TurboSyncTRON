@@ -16,10 +16,10 @@ public class DeviceDAO implements DAO{
     public List<Device> getDevices(String name) throws SQLException {
         List<Device> deviceList = new ArrayList<>();
 
-        String sql = "SELECT Devices.Name FROM users INNER JOIN Ownership ON users.UserID = Ownership.UserID " +
-                "INNER JOIN Devices ON Ownership.DeviceID = Devices.DeviceID " +
-                "INNER JOIN Devicetype ON Devices.devicetypeID = Devicetype.devicetypeid " +
-                "WHERE users.Name = ? ";
+        String sql = "SELECT Devices.DeviceID, Devices.DeviceName, Devices.DeviceType " +
+                "FROM Devices " +
+                "left JOIN users on users.UserID = Devices.UserID " +
+                "WHERE users.Name = ?";
 
         prepStat = conn.prepareStatement(sql);
         prepStat.setString(1,name);
@@ -53,11 +53,10 @@ public class DeviceDAO implements DAO{
    public List<Device> getFavoriteDevices(String name) throws SQLException {
        List<Device> favDevices = new ArrayList<>();
 
-       String sql = "SELECT Devices.Name FROM users INNER JOIN Ownership ON users.UserID = Ownership.UserID " +
-               "INNER JOIN Devices ON Ownership.DeviceID = Devices.DeviceID " +
-               "INNER JOIN Devicetype ON Devices.devicetypeID = Devicetype.devicetypeid " +
-               "WHERE users.Name = ? " +
-               "AND Ownership.Favorite = 1";
+       String sql = "SELECT Devices.DeviceID, Devices.DeviceName, Devices.DeviceType " +
+               "FROM Devices " +
+               "left JOIN users on users.UserID = Devices.UserID " +
+               "WHERE users.Name = ? and Devices.IsFavorite = 1";
 
        prepStat = conn.prepareStatement(sql);
        prepStat.setString(1,name);
@@ -77,6 +76,7 @@ public class DeviceDAO implements DAO{
    }
 
    public String getDeviceData(String deviceID) throws SQLException {
+        // TODO: fix the query
         String sql = "SELECT Data FROM Devicedata WHERE DeviceID = ?";
 
         prepStat = conn.prepareStatement(sql);
