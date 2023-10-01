@@ -25,7 +25,7 @@ Data on tarkasteltavissa käyttöliittymän kautta.
     - Käyttäjän luonti
     - Sisäänkirjautuminen
     - Päänäkymä josta suoraviivainen navigointi muihin näkymiin
-    - Käyttäjän laitteet: Listaus käyttäjän lisäämistä kaitteista
+    - Käyttäjän laitteet: Listaus käyttäjän lisäämistä laitteista
     - Laitteen lisääminen: Näkymä jossa käyttäjä valitsee lisättävän laitteen tyypin, nimeää laitteen ja asettaa sen asetukset sekä halutessaan tarkemman tekstikuvauksen.
     - Lempilaitteet: Käyttäjän omista laitteistaan valitsema lista tärkeimpiä tai useimmin käytettyjä laitteita. Helpottamaan ohejelmiston rutiinikäyttöä ja laitteiden ohjaamista.
     - Laitedata: Esittää valitun laitteen tuottamaa dataa graafisesti
