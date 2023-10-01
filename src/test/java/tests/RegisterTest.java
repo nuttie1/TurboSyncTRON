@@ -1,17 +1,13 @@
 package tests;
 
-import com.example.otp1r4.Main;
 import com.example.otp1r4.controller.RegisterController;
 import com.example.otp1r4.dao.JDBCConnection;
 import com.example.otp1r4.dao.UserDAO;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.controlsfx.tools.Platform;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +18,7 @@ import java.util.concurrent.TimeoutException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.testfx.api.FxAssert;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -66,4 +63,26 @@ public class RegisterTest extends ApplicationTest {
 
         assertTrue(userDAO.checkUser("TestUser"));
     }
+
+    @Test
+    public void usernameIllegalInput() {
+        clickOn("#usernameField").write("!!&%HAHA!#");
+
+        clickOn("#submitButton");
+
+        Label label = lookup("#usernameErrorLabel").query();
+
+        assertEquals("Syötä käyttäjätunnus\nhyväksytyssä muodossa!", label.getText());
+    }
+    @Test
+    public void qaIllegalInputOne() {
+        clickOn("#questionOneField").write("!#%%&!");
+
+        clickOn("#answerOneField").write("!#%%&!");
+
+        Label label = lookup("#errorLabelQandA1").query();
+
+        assertEquals("Syötä kysymys/vastaus hyväksytyssä muodossa!", label.getText());
+    }
+
 }

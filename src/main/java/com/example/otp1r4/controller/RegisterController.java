@@ -32,15 +32,15 @@ public class RegisterController implements Controller {
     @FXML
     public TextField answerThreeField;
     @FXML
-    Label usernameErrorLabel;
+    public Label usernameErrorLabel;
     @FXML
-    Label passwordErrorLabel;
+    public Label passwordErrorLabel;
     @FXML
-    Label errorLabelQandA1;
+    public Label errorLabelQandA1;
     @FXML
-    Label errorLabelQandA2;
+    public Label errorLabelQandA2;
     @FXML
-    Label errorLabelQandA3;
+    public Label errorLabelQandA3;
     UserDAO dao;
     public RegisterController() {
         this.dao = new UserDAO();
