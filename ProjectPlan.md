@@ -84,7 +84,7 @@ Data on tarkasteltavissa käyttöliittymän kautta.
 - Budjetti
     - Verta, hikeä ja kyyneleitä
 - Henkilöstö
-    - Kaikki saatavilla olevat ohjelmistokehittäjät: Niko Ala-aho, Ilkka Karvinen, Onni Pajula, Otta Palssa
+    - Kaikki saatavilla olevat ohjelmistokehittäjät: Niko Ala-aho, Ilkka Karvinen, Onni Pajula, Otto Palssa
 - Laitteisto ja laitteistoinfrastruktuuri
     - Tietokoneet kehittäjille
     - SQL-tietokantapalvelin joka on saavutettavissa internetin välityksellä
@@ -112,7 +112,7 @@ Data on tarkasteltavissa käyttöliittymän kautta.
 
 ---
 ## Kehitystiimi
-Niko Ala-aho, Ilkka Karvinen, Onni Pajula, Otta Palssa
+Niko Ala-aho, Ilkka Karvinen, Onni Pajula, Otto Palssa
 
 ---
 ## Kommunikaatiosuunnitelma
