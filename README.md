@@ -8,4 +8,4 @@ Home automation system created by using Java. A school project with the emphasis
 ---
 Tekijät: Niko Ala-aho, Ilkka Karvinen, Onni Pajula, Otto Palssa
 
-2023 TurboSync Tron
+2023 TurboSyncTRON
