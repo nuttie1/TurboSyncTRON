@@ -1,7 +1,7 @@
-# TurboSync Tron
+# TurboSyncTRON
 **Home automation system**
 
-![TurboSync Tron Logo](link_to_logo.png)
+![TurboSyncTRON Logo](link_to_logo.png)
 
 Home automation system created by using Java. A school project with the emphasis on agile project management.
 
