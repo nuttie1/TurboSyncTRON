@@ -31,20 +31,13 @@ public class AllDevicesController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Device device1 = new Device(1, "Tiskikone", "kodinkone");
-        Device device2 = new Device(2, "Liike sensori", "sensori");
-        Device device3 = new Device(3, "Keittiö lamppu", "lamppu");
-        allDevices.add(device1);
-        allDevices.add(device2);
-        allDevices.add(device3);
-
         showAllDevices();
-        /*
+
         try {
-            allDevices = deviceDAO.getDevices(userData.getUserID());
+            allDevices = deviceDAO.getDevices(userData.getUsername());
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }*/
+        }
     }
 
     public void showAllDevices() {
