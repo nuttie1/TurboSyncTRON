@@ -2,7 +2,7 @@ package com.example.otp1r4.model;
 
 import java.util.List;
 
-public class UserData {
+public class UserData implements Model {
     private String username;
     private int userID;
     private List<Device> favoriteDevices;
