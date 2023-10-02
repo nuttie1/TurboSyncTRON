@@ -53,6 +53,7 @@ public class ProfileController implements Controller{
             dao.changeUsername(usernameField.getText(), oldUsername);
             usernameField.setDisable(true);
             saveButton.setDisable(true);
+            userData.setUsername(usernameField.getText());
             usernameSuccessLabel.setText("Käyttäjätunnus vaihdettu!");
         }
 
