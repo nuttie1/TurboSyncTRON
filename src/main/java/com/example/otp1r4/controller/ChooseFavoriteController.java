@@ -82,10 +82,10 @@ public class ChooseFavoriteController implements Controller, Initializable {
             alert.show();
         } else {
             for (Device device : selectedDevices) {
-                deviceDAO.addFavoriteDevices(String.valueOf(user.getUserID()), device.getDeviceId());
+                deviceDAO.addFavoriteDevices(user.getUserID(), device.getDeviceId());
             }
 
-            MainViewController controller = new MainViewController();
+            FavoriteDevicesController controller = new FavoriteDevicesController();
             controller.addFavoriteDevice();
 
             Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();
@@ -94,7 +94,7 @@ public class ChooseFavoriteController implements Controller, Initializable {
     }
     public void showDevices() throws SQLException {
         List<Device> devices;
-        devices = deviceDAO.getDevices(user.getUsername());
+        devices = deviceDAO.getDevices(user.getUserID());
 
         if (devices.isEmpty()) {
             devicesWarningLabel.setText("Laitteita ei vielä lisätty.");
