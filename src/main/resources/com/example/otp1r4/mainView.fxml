@@ -1,57 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="463.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.MainViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.MainViewController">
    <children>
-      <TabPane fx:id="mainViewTabPane" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="540.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab fx:id="favoriteDevicesTab" text="Lempi laitteet">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-          <Tab fx:id="allDevicesTab" text="Kaikki laitteet">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-            <Tab fx:id="deviceDataTab" text="Laite data">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="382.0" prefWidth="605.0" />
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-      <Button fx:id="profileButton" layoutX="431.0" layoutY="7.0" mnemonicParsing="false" onAction="#clickProfile" prefHeight="45.0" prefWidth="50.0">
-         <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/profile.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="logoutButton" layoutX="490.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickLogout" prefHeight="30.0" prefWidth="30.0">
-         <graphic>
-            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/logout.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Label layoutX="82.0" layoutY="3.0" text="TurboSyncTRON">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
+      <Label layoutX="265.0" layoutY="20.0" text="PÄÄNÄKYMÄ" />
+      <Label layoutX="264.0" layoutY="128.0" text="Lempi laitteet" />
+      <Button fx:id="favoriteDeviceAdd" layoutX="259.0" layoutY="152.0" mnemonicParsing="false" onAction="#clickFavoriteAdd" text="Lisää laitteet" />
+      <Label fx:id="favDevicesWarningLabel" alignment="CENTER" contentDisplay="TOP" layoutX="-1.0" layoutY="178.0" prefHeight="17.0" prefWidth="600.0" textFill="RED" />
+      <GridPane fx:id="favDevicesGridPane" gridLinesVisible="true" layoutX="146.0" layoutY="187.0" prefHeight="197.0" prefWidth="310.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="155.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="155.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
    </children>
 </AnchorPane>
