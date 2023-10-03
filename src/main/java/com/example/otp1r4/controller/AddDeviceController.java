@@ -13,18 +13,22 @@ public class AddDeviceController {
     @FXML
     private ComboBox<String> deviceType;
     @FXML
-    private TextField deviceName, applianceTimerText, applianceCommandText;
+    private TextField deviceName, applianceTimerText, applianceCommandText, formatText, unitText;
     @FXML
     private TextArea deviceDescription;
     @FXML
     private Label deviceDescriptionLabel, deviceLabel, nameErrorLabel, typeErrorLabel, addSucces;
     @FXML
-    private Label applianceTimerLabel, applianceCommandLabel;
+    private Label applianceTimerLabel, applianceCommandLabel, formatLabel, unitLabel;
     @FXML
     private CheckBox applianceCheckBox, lampStatus, favCheck;
 
     private UserData userData = UserData.getInstance();
     DeviceDAO dDao = new DeviceDAO();
+
+    String deviceControl = "";
+    String format = "";
+    String unit = "";
 
     public void initialize() {
         deviceType.setItems(FXCollections.observableArrayList( "Kodinkone", "Valaisin", "Sensori"));
@@ -32,12 +36,7 @@ public class AddDeviceController {
     }
 
     public void typeChanged() {
-        lampStatus.setVisible(false);
-        applianceCheckBox.setVisible(false);
-        applianceTimerLabel.setVisible(false);
-        applianceTimerText.setVisible(false);
-        applianceCommandLabel.setVisible(false);
-        applianceCommandText.setVisible(false);
+        hideAll();
         favCheck.setVisible(true);
         if(deviceType.getValue().equals("Kodinkone")) {
             deviceLabel.setText("Kodinkone:");
@@ -46,6 +45,10 @@ public class AddDeviceController {
             applianceTimerText.setVisible(true);
             applianceCommandLabel.setVisible(true);
             applianceCommandText.setVisible(true);
+            formatText.setVisible(true);
+            unitText.setVisible(true);
+            formatLabel.setVisible(true);
+            unitLabel.setVisible(true);
         } else if(deviceType.getValue().equals("Valaisin")) {
             deviceLabel.setText("Valaisin:");
             lampStatus.setVisible(true);
@@ -56,10 +59,7 @@ public class AddDeviceController {
     }
 
     public void addDeviceButton() throws SQLException {
-        String deviceControl = "";
         boolean isValid = true;
-        String format = "";
-        String unit = "";
         nameErrorLabel.setText("");
         typeErrorLabel.setText("");
         if (deviceName.getText().isEmpty()) {
@@ -71,27 +71,12 @@ public class AddDeviceController {
             isValid = false;
         }
 
-        // KODINKONE [WIP]
         if (deviceType.getValue().equals("Kodinkone")) {
-            format = "";
-            unit = "";
-        }
-
-        // VALAISIN
-        if (deviceType.getValue().equals("Valaisin")) {
-            format = "Status";
-            unit = null;
-            if (lampStatus.isSelected()) {
-                deviceControl = "On";
-            } else {
-                deviceControl = "Off";
-            }
-        }
-
-        // SENSORI [WIP]
-        if (deviceType.getValue().equals("Sensori")) {
-            format = "";
-            unit = "";
+            addAppliance();
+        } else if (deviceType.getValue().equals("Valaisin")) {
+            addLighting();
+        } else if (deviceType.getValue().equals("Sensori")) {
+            addSensor();
         }
 
         if (isValid) {
@@ -102,6 +87,51 @@ public class AddDeviceController {
             deviceDescription.setText("");
             addSucces.setText("Laite lisätty!");
         }
+    }
+
+    public void addAppliance() {
+        deviceControl = "Appliance;";
+        format = formatText.getText();
+        unit = unitText.getText();
+        if (applianceCheckBox.isSelected()) {
+            deviceControl += "On;";
+        } else {
+            deviceControl += "Off;";
+        }
+        if (applianceTimerText.getText().isEmpty()) {
+            deviceControl += ";";
+        } else {
+            deviceControl += applianceTimerText.getText() + ";";
+        }
+        deviceControl += applianceCommandText.getText();
+    }
+
+    public void addLighting() {
+        deviceControl = "Lighting;";
+        format = "Status";
+        unit = null;
+        if (lampStatus.isSelected()) {
+            deviceControl += "On";
+        } else {
+            deviceControl += "Off";
+        }
+    }
+
+    public void addSensor() {
+        deviceControl = "Sensor";
+    }
+
+    public void hideAll() {
+        lampStatus.setVisible(false);
+        applianceCheckBox.setVisible(false);
+        applianceTimerLabel.setVisible(false);
+        applianceTimerText.setVisible(false);
+        applianceCommandLabel.setVisible(false);
+        applianceCommandText.setVisible(false);
+        formatText.setVisible(false);
+        unitText.setVisible(false);
+        formatLabel.setVisible(false);
+        unitLabel.setVisible(false);
     }
 
 }

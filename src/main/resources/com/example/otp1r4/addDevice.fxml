@@ -14,7 +14,7 @@
    <children>
       <TextField fx:id="deviceName" layoutX="116.0" layoutY="78.0" prefHeight="27.0" prefWidth="186.0" promptText="Nimi" />
       <ComboBox fx:id="deviceType" layoutX="434.0" layoutY="79.0" onAction="#typeChanged" prefWidth="150.0" promptText="Laitteen tyyppi" />
-      <TextArea fx:id="deviceDescription" layoutX="116.0" layoutY="130.0" prefHeight="69.0" prefWidth="186.0" />
+      <TextArea fx:id="deviceDescription" layoutX="116.0" layoutY="130.0" prefHeight="69.0" prefWidth="186.0" promptText="Kuvaus" />
       <Text layoutX="1.0" layoutY="50.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää uusi laite" textAlignment="CENTER" wrappingWidth="601.0">
          <font>
             <Font size="33.0" />
@@ -42,10 +42,14 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <CheckBox fx:id="applianceCheckBox" layoutX="113.0" layoutY="235.0" mnemonicParsing="false" text="Kodinkone Checkbox" visible="false" />
-      <TextField fx:id="applianceTimerText" layoutX="168.0" layoutY="264.0" visible="false" />
+      <CheckBox fx:id="applianceCheckBox" layoutX="113.0" layoutY="235.0" mnemonicParsing="false" text="Laite päällä" visible="false" />
+      <TextField fx:id="applianceTimerText" layoutX="168.0" layoutY="264.0" promptText="0000" visible="false" />
       <Label fx:id="applianceTimerLabel" layoutX="116.0" layoutY="268.0" text="Ajastus:" visible="false" />
-      <TextField fx:id="applianceCommandText" layoutX="416.0" layoutY="264.0" visible="false" />
+      <TextField fx:id="applianceCommandText" layoutX="416.0" layoutY="264.0" promptText="Komento" visible="false" />
       <Label fx:id="applianceCommandLabel" layoutX="346.0" layoutY="268.0" text="Komento:" visible="false" />
+      <TextField fx:id="formatText" layoutX="434.0" layoutY="130.0" prefHeight="25.0" prefWidth="89.0" promptText="Format" visible="false" />
+      <TextField fx:id="unitText" layoutX="435.0" layoutY="174.0" prefHeight="25.0" prefWidth="89.0" promptText="Yksikkö" visible="false" />
+      <Label fx:id="formatLabel" layoutX="346.0" layoutY="134.0" text="Datan muoto:" visible="false" />
+      <Label fx:id="unitLabel" layoutX="346.0" layoutY="178.0" text="Datan yksikkö:" visible="false" />
    </children>
 </AnchorPane>
