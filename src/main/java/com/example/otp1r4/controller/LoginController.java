@@ -59,7 +59,11 @@ public class LoginController implements Controller {
             if(dao.authenticate(username,password)){
                 UserData userData = UserData.getInstance();
                 userData.setUsername(username);
-                this.changeScene("mainView.fxml", usernameField);
+                int userId = dao.getUserID(username);
+                if (userId == -1)
+                    throw new Exception();
+                userData.setUserID(userId);
+                this.changeScene("addDevice.fxml", usernameField);
             }else {
                 errorLabelPassword.setText("Käyttäjätunnus tai salasana väärin!");
             }

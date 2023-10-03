@@ -234,7 +234,7 @@ public class UserDAO implements DAO {
         return question;
     }
 
-    public String getUserID (String name) throws SQLException {
+    public int getUserID (String name) throws SQLException {
         String sql = "SELECT UserID FROM users WHERE Name = ?";
 
         prepStat = conn.prepareStatement(sql);
@@ -243,9 +243,9 @@ public class UserDAO implements DAO {
         ResultSet resultSet = prepStat.executeQuery();
 
         if (resultSet.next()) {
-            return resultSet.getString("UserID");
+            return resultSet.getInt("UserID");
         }
 
-        return null;
+        return -1;
     }
 }
