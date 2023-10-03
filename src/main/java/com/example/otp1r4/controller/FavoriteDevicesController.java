@@ -53,7 +53,7 @@ public class FavoriteDevicesController implements Controller, Initializable {
 
     public void addFavoriteDevice() throws IOException, SQLException {
         List<Device> devices = deviceDAO.getFavoriteDevices(user.getUsername());
-        // DeviceController controller;
+        FavoriteDeviceController controller;
 
         if (!devices.isEmpty()) {
             favDevicesGridPane.setVisible(true);
@@ -62,12 +62,9 @@ public class FavoriteDevicesController implements Controller, Initializable {
             for (Device device : devices) {
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("favoriteDevice.fxml"));
                 Parent deviceNode = loader.load();
+                controller = loader.getController();
+                controller.setDevice(device);
 
-               /* controller = loader.getController();
-
-                controller.deviceName.setText(device.getDeviceName());
-                controller.deviceDataLabel.setText(dao.getDeviceData(device.deviceId));
-*/
                 favDevicesGridPane.add(deviceNode, column, row);
                 column++;
                 if (column == 2) {

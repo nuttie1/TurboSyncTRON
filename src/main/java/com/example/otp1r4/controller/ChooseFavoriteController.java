@@ -84,12 +84,6 @@ public class ChooseFavoriteController implements Controller, Initializable {
             for (Device device : selectedDevices) {
                 deviceDAO.addFavoriteDevices(user.getUsername(), device.getDeviceId());
             }
-
-            FavoriteDevicesController controller = new FavoriteDevicesController();
-            controller.addFavoriteDevice();
-
-            Stage stage = (Stage) favoritesSaveButton.getScene().getWindow();
-            stage.close();
         }
     }
     public void showDevices() throws SQLException {
