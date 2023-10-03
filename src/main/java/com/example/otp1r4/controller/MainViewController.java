@@ -21,7 +21,7 @@ public class MainViewController implements Controller, Initializable {
     @FXML
     TabPane mainViewTabPane;
     @FXML
-    Tab favoriteDevicesTab, allDevicesTab, deviceDataTab;
+    Tab favoriteDevicesTab, allDevicesTab, deviceDataTab, addDevicesTab;
     @FXML
     Button profileButton, logoutButton;
 
@@ -32,14 +32,18 @@ public class MainViewController implements Controller, Initializable {
         FXMLLoader tab1Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/favoriteDevicesView.fxml"));
         FXMLLoader tab2Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/allDevicesView.fxml"));
         FXMLLoader tab3Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/deviceDataView.fxml"));
+        FXMLLoader tab4Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/addDevice.fxml"));
         try {
             Node tab1Content = tab1Loader.load();
             Node tab2Content = tab2Loader.load();
             //Node tab3Content = tab3Loader.load();
+            Node tab4Content = tab4Loader.load();
 
             favoriteDevicesTab.setContent(tab1Content);
             allDevicesTab.setContent(tab2Content);
             //deviceDataTab.setContent(tab3Content);
+            addDevicesTab.setContent(tab4Content);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
