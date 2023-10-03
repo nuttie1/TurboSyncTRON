@@ -1,5 +1,6 @@
 package com.example.otp1r4.controller;
 
+import com.example.otp1r4.Main;
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.Device;
@@ -59,7 +60,7 @@ public class FavoriteDevicesController implements Controller, Initializable {
             int column = 0;
             int row = 0;
             for (Device device : devices) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("favoriteDevice.fxml"));
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("favoriteDevice.fxml"));
                 Parent deviceNode = loader.load();
 
                /* controller = loader.getController();
