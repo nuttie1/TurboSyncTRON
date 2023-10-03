@@ -1,6 +1,7 @@
 package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.UserDAO;
+import com.example.otp1r4.model.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RegisterController implements Controller {
     @FXML
@@ -42,6 +44,8 @@ public class RegisterController implements Controller {
     @FXML
     Label errorLabelQandA3;
     UserDAO dao;
+    UserData userData = UserData.getInstance();
+
     public RegisterController() {
         this.dao = new UserDAO();
     }
@@ -50,7 +54,7 @@ public class RegisterController implements Controller {
         this.changeScene("login.fxml", (Node) event.getTarget());
     }
 
-    public void submitButtonOnAction(ActionEvent event) throws IOException {
+    public void submitButtonOnAction(ActionEvent event) throws Exception {
         boolean isValid = true;
 
         String username = usernameField.getText();
@@ -131,7 +135,11 @@ public class RegisterController implements Controller {
         }
         if (isValid) {
             dao.addUser(username, password, questionOne, questionTwo, questionThree, answerOne, answerTwo, answerThree);
-
+            userData.setUsername(username);
+            int userId = dao.getUserID(username);
+            if (userId == -1)
+                throw new Exception();
+            userData.setUserID(userId);
             this.changeScene("mainView.fxml", submitButton);
 
             Stage stage = (Stage) submitButton.getScene().getWindow();
