@@ -13,13 +13,15 @@ public class AddDeviceController {
     @FXML
     private ComboBox<String> deviceType;
     @FXML
-    private TextField deviceName;
+    private TextField deviceName, applianceTimerText, applianceCommandText;
     @FXML
     private TextArea deviceDescription;
     @FXML
     private Label deviceDescriptionLabel, deviceLabel, nameErrorLabel, typeErrorLabel, addSucces;
     @FXML
-    private CheckBox lampStatus, favCheck;
+    private Label applianceTimerLabel, applianceCommandLabel;
+    @FXML
+    private CheckBox applianceCheckBox, lampStatus, favCheck;
 
     private UserData userData = UserData.getInstance();
     DeviceDAO dDao = new DeviceDAO();
@@ -31,9 +33,19 @@ public class AddDeviceController {
 
     public void typeChanged() {
         lampStatus.setVisible(false);
+        applianceCheckBox.setVisible(false);
+        applianceTimerLabel.setVisible(false);
+        applianceTimerText.setVisible(false);
+        applianceCommandLabel.setVisible(false);
+        applianceCommandText.setVisible(false);
         favCheck.setVisible(true);
         if(deviceType.getValue().equals("Kodinkone")) {
             deviceLabel.setText("Kodinkone:");
+            applianceCheckBox.setVisible(true);
+            applianceTimerLabel.setVisible(true);
+            applianceTimerText.setVisible(true);
+            applianceCommandLabel.setVisible(true);
+            applianceCommandText.setVisible(true);
         } else if(deviceType.getValue().equals("Valaisin")) {
             deviceLabel.setText("Valaisin:");
             lampStatus.setVisible(true);

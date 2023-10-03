@@ -30,17 +30,22 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="267.0" layoutY="331.0" mnemonicParsing="false" onAction="#addDeviceButton" text="Lisää laite" />
+      <Button layoutX="267.0" layoutY="336.0" mnemonicParsing="false" onAction="#addDeviceButton" text="Lisää laite" />
       <Label fx:id="deviceDescriptionLabel" layoutX="24.0" layoutY="130.0" prefHeight="44.0" prefWidth="89.0" text="Laitteen kuvaus:" />
       <Label fx:id="deviceLabel" layoutX="116.0" layoutY="209.0" />
       <CheckBox fx:id="lampStatus" layoutX="116.0" layoutY="259.0" mnemonicParsing="false" text="Lamppu päällä" visible="false" />
       <CheckBox fx:id="favCheck" layoutX="116.0" layoutY="304.0" mnemonicParsing="false" text="Lisää laite suosikiksi" visible="false" />
       <Label fx:id="nameErrorLabel" layoutX="116.0" layoutY="113.0" textFill="RED" />
       <Label fx:id="typeErrorLabel" layoutX="434.0" layoutY="113.0" textFill="RED" />
-      <Label fx:id="addSucces" layoutX="251.0" layoutY="360.0" prefHeight="25.0" prefWidth="113.0" textFill="#00ff44">
+      <Label fx:id="addSucces" layoutX="246.0" layoutY="361.0" prefHeight="25.0" prefWidth="113.0" textFill="#00ff44">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <CheckBox fx:id="applianceCheckBox" layoutX="113.0" layoutY="235.0" mnemonicParsing="false" text="Kodinkone Checkbox" visible="false" />
+      <TextField fx:id="applianceTimerText" layoutX="168.0" layoutY="264.0" visible="false" />
+      <Label fx:id="applianceTimerLabel" layoutX="116.0" layoutY="268.0" text="Ajastus:" visible="false" />
+      <TextField fx:id="applianceCommandText" layoutX="416.0" layoutY="264.0" visible="false" />
+      <Label fx:id="applianceCommandLabel" layoutX="346.0" layoutY="268.0" text="Komento:" visible="false" />
    </children>
 </AnchorPane>
