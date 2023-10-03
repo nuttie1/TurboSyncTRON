@@ -90,5 +90,24 @@ public class DeviceDAO implements DAO{
         return null;
    }
 
+    public void addDevice(String dName, String dDesc, boolean isFav, int userId, String dControl, String dFormat, String dUnit) throws SQLException {
+        try {
+        String sql = "INSERT INTO `Devices`(`DeviceName`,`DeviceDesc`, `IsFavorite`, `UserID`, `DeviceControl`, `Format`, `Unit`) VALUES (?,?,?,?,?,?,?)";
+        prepStat = conn.prepareStatement(sql);
+        prepStat.setString(1,dName);
+        prepStat.setString(2,dDesc);
+        prepStat.setBoolean(3,isFav);
+        prepStat.setInt(4,userId);
+        prepStat.setString(5, dControl);
+        prepStat.setString(6, dFormat);
+        prepStat.setString(7, dUnit);
+
+        prepStat.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
