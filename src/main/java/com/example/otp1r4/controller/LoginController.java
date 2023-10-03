@@ -63,7 +63,7 @@ public class LoginController implements Controller {
                 if (userId == -1)
                     throw new Exception();
                 userData.setUserID(userId);
-                this.changeScene("addDevice.fxml", usernameField);
+                this.changeScene("mainView.fxml", usernameField);
             }else {
                 errorLabelPassword.setText("Käyttäjätunnus tai salasana väärin!");
             }
