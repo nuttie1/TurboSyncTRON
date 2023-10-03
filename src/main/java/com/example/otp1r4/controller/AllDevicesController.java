@@ -31,7 +31,7 @@ public class AllDevicesController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        showAllDevices();
+        //showAllDevices();
 
         try {
             allDevices = deviceDAO.getDevices(userData.getUsername());
@@ -40,7 +40,7 @@ public class AllDevicesController implements Controller, Initializable {
         }
     }
 
-    public void showAllDevices() {
+    /*public void showAllDevices() {
         GridPane pane = new GridPane();
 
         int column = 0;
@@ -91,7 +91,7 @@ public class AllDevicesController implements Controller, Initializable {
         pane.setPadding(new Insets(10));
 
         allDevicesPane.getChildren().add(pane);
-    }
+    }*/
 
 
 }

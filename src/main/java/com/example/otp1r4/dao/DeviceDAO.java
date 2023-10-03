@@ -28,7 +28,7 @@ public class DeviceDAO implements DAO{
 
         while (rs.next()) {
             String deviceId = rs.getString("DeviceID");
-            String deviceName = rs.getString("Name");
+            String deviceName = rs.getString("DeviceName");
             String deviceDesc = rs.getString("DeviceDesc");
             boolean deviceFav = rs.getBoolean("IsFavorite");
             String deviceControl = rs.getString("DeviceControl");
@@ -69,7 +69,7 @@ public class DeviceDAO implements DAO{
 
        while (rs.next()) {
            String deviceId = rs.getString("DeviceID");
-           String deviceName = rs.getString("Name");
+           String deviceName = rs.getString("DeviceName");
            String deviceDesc = rs.getString("DeviceDesc");
            boolean deviceFav = rs.getBoolean("IsFavorite");
            String deviceControl = rs.getString("DeviceControl");
