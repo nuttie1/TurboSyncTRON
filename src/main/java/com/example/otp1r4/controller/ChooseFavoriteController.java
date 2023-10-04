@@ -82,7 +82,7 @@ public class ChooseFavoriteController implements Controller, Initializable {
             alert.show();
         } else {
             for (Device device : selectedDevices) {
-                deviceDAO.addFavoriteDevices(user.getUsername(), device.getDeviceId());
+
             }
         }
     }
