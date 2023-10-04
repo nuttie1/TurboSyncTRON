@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -39,4 +41,20 @@ public interface Controller {
         window.setScene(new Scene(root));
         window.show();
     }
+
+    default void showSuccessMessage(Stage ownerStage, String title, String contentText, int seconds) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+
+        alert.initOwner(ownerStage);
+        alert.show();
+
+        Duration duration = Duration.seconds(seconds);
+        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
+        pause.setOnFinished(event -> alert.close());
+        pause.play();
+    }
+
 }
