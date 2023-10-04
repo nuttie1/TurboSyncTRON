@@ -46,7 +46,7 @@ public class LoginController implements Controller {
             isValid = false;
         }  else if (!username.matches("([A-Za-z0-9\\-\\_]+)")){
             usernameField.setText("");
-            errorLabelUsername.setText("Syötä käyttäjätunnus hyväksytyssä muodossa!");
+            errorLabelUsername.setText("Syötä käyttäjätunnus\nhyväksytyssä muodossa!");
             isValid =false;
         }
 
