@@ -73,6 +73,21 @@ public class FavoriteDeviceController implements Controller, Initializable {
                 if (time.matches("^[0-9]{4}")) {
                     deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl(time,TIME));
                     device.updateDeviceControl(updateControl(time,TIME));
+                } else {
+                    deviceTimerField.setText(splitControl()[TIME]);
+                }
+            }
+        });
+
+        deviceCommandField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                String command = deviceCommandField.getText();
+
+                if (command.matches("^[a-zA-Z ]{3,20}$")) {
+                    deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl(command,COMMAND));
+                    device.updateDeviceControl(updateControl(command,COMMAND));
+                } else {
+                    deviceCommandField.setText(splitControl()[COMMAND]);
                 }
             }
         });
@@ -134,6 +149,7 @@ public class FavoriteDeviceController implements Controller, Initializable {
         deviceCommandField.setVisible(true);
 
         deviceTimerField.setText(splitControl()[TIME]);
+        deviceCommandField.setText(splitControl()[COMMAND]);
     }
 
     public void setUpSensor() {
