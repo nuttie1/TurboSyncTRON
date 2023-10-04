@@ -20,7 +20,7 @@
          </children>
       </Pane>
       <ToggleButton fx:id="deviceToggleButton" layoutX="3.0" layoutY="124.0" maxWidth="58.0" minWidth="58.0" mnemonicParsing="false" textFill="WHITE" />
-      <TextField fx:id="deviceTimerField" disable="true" layoutX="68.0" layoutY="124.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" visible="false" />
+      <TextField fx:id="deviceTimerField" layoutX="68.0" layoutY="124.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" visible="false" />
       <TextField fx:id="deviceCommandField" layoutX="118.0" layoutY="124.0" prefHeight="25.0" prefWidth="72.0" promptText="Komento" visible="false" />
    </children>
 </AnchorPane>

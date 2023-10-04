@@ -37,6 +37,8 @@ public class FavoriteDeviceController implements Controller, Initializable {
 
     String controls;
 
+    int TYPE = 0, POWER = 1, TIME = 2, COMMAND = 3;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -54,13 +56,24 @@ public class FavoriteDeviceController implements Controller, Initializable {
             if (deviceToggleButton.isSelected()) {
                 deviceToggleButton.setText("Päällä");
                 deviceToggleButton.setStyle("-fx-background-color: green");
-                deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl("On",1));
-                device.updateDeviceControl(updateControl("On",1));
+                deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl("On",POWER));
+                device.updateDeviceControl(updateControl("On",POWER));
             }   else {
                 deviceToggleButton.setText("POIS");
                 deviceToggleButton.setStyle("-fx-background-color: red");
-                deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl("Off",1));
-                device.updateDeviceControl(updateControl("Off",1));
+                deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl("Off",POWER));
+                device.updateDeviceControl(updateControl("Off",POWER));
+            }
+        });
+
+        deviceTimerField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                String time = deviceTimerField.getText();
+
+                if (time.matches("^[0-9]{4}")) {
+                    deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl(time,TIME));
+                    device.updateDeviceControl(updateControl(time,TIME));
+                }
             }
         });
     }
@@ -79,10 +92,7 @@ public class FavoriteDeviceController implements Controller, Initializable {
     }
 
     public void setDeviceType() {
-        controls = device.getDeviceControl();
-        String[] splitControls = controls.split(";");
-
-        switch (splitControls[0]) {
+        switch (splitControl()[TYPE]) {
             case "Lighting":
                 deviceType.setText("Valaisin");
                 break;
@@ -100,15 +110,12 @@ public class FavoriteDeviceController implements Controller, Initializable {
     }
 
     public void setDeviceControl() {
-        controls = device.getDeviceControl();
-        String[] splitControls = controls.split(";");
-        System.out.println(Arrays.toString(splitControls));
-        switch (splitControls[0]) {
+        switch (splitControl()[TYPE]) {
             case "Lighting":
-                setUpLighting(splitControls);
+                setUpLighting(splitControl());
                 break;
             case "Appliance":
-                setUpAppliance(splitControls);
+                setUpAppliance(splitControl());
                 break;
             case "Sensor":
                 setUpSensor();
@@ -125,6 +132,8 @@ public class FavoriteDeviceController implements Controller, Initializable {
 
         deviceTimerField.setVisible(true);
         deviceCommandField.setVisible(true);
+
+        deviceTimerField.setText(splitControl()[TIME]);
     }
 
     public void setUpSensor() {
@@ -145,9 +154,12 @@ public class FavoriteDeviceController implements Controller, Initializable {
 
     public String updateControl(String s, int i) {
         controls = device.getDeviceControl();
-        String[] splitControls = controls.split(";");
+        return controls.replace(splitControl()[i], s);
+    }
 
-        return controls.replace(splitControls[i], s);
+    public String[] splitControl() {
+        controls = device.getDeviceControl();
+        return controls.split(";");
     }
 
 }
