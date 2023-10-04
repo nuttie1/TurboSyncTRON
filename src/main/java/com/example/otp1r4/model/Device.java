@@ -45,4 +45,12 @@ public class Device implements Model{
     public String getUnit() {
         return unit;
     }
+
+    public void updateDeviceControl(String deviceControl) {
+        this.deviceControl = deviceControl;
+    }
+
+    public void updateIsDeviceFavorite(boolean deviceFavorite) {
+        this.deviceFavorite = deviceFavorite;
+    }
 }

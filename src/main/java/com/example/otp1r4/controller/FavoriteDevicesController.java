@@ -76,7 +76,8 @@ public class FavoriteDevicesController implements Controller, Initializable {
                 }
             }
         }
-        gridPane.setHgap(20);
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10));
         favDevicesAnchorPane.getChildren().add(gridPane);
     }

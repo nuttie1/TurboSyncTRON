@@ -129,6 +129,18 @@ public class DeviceDAO implements DAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public void updateDeviceControl(int deviceID, String newControl) {
+        try {
+            String sql = "UPDATE Devices SET Devices.DeviceControl = ? WHERE Devices.DeviceID = ?";
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setString(1,newControl);
+            prepStat.setInt(2,deviceID);
+
+            prepStat.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
