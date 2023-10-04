@@ -5,23 +5,25 @@ import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.sql.SQLException;
 
 public class AddDeviceController {
 
     @FXML
-    private ComboBox<String> deviceType;
+    private ComboBox<String> deviceType, deviceSubType;
     @FXML
     private TextField deviceName, applianceTimerText, applianceCommandText, formatText, unitText;
     @FXML
     private TextArea deviceDescription;
     @FXML
-    private Label deviceDescriptionLabel, deviceLabel, nameErrorLabel, typeErrorLabel, addSucces;
+    private Label deviceDescriptionLabel, deviceLabel, nameErrorLabel, typeErrorLabel;
     @FXML
-    private Label applianceTimerLabel, applianceCommandLabel, formatLabel, unitLabel;
+    private Label deviceSubTypeLabel, applianceTimerLabel, applianceCommandLabel, formatLabel, unitLabel;
     @FXML
-    private CheckBox applianceCheckBox, lampStatus, favCheck;
+    private CheckBox applianceStartNow, washerQuickCheck, lampStatus, favCheck;
 
     private UserData userData = UserData.getInstance();
     DeviceDAO dDao = new DeviceDAO();
@@ -32,6 +34,7 @@ public class AddDeviceController {
 
     public void initialize() {
         deviceType.setItems(FXCollections.observableArrayList( "Kodinkone", "Valaisin", "Sensori"));
+        deviceSubType.setItems(FXCollections.observableArrayList("Pesukone", "Kiuas"));
         deviceDescriptionLabel.setText("Laitteen kuvaus:\n(valinnainen)");
     }
 
@@ -39,8 +42,27 @@ public class AddDeviceController {
         hideAll();
         favCheck.setVisible(true);
         if(deviceType.getValue().equals("Kodinkone")) {
-            deviceLabel.setText("Kodinkone:");
-            applianceCheckBox.setVisible(true);
+            deviceSubTypeLabel.setVisible(true);
+            deviceSubType.setVisible(true);
+        } else if(deviceType.getValue().equals("Valaisin")) {
+            deviceLabel.setText("Valaisin:");
+            lampStatus.setVisible(true);
+            deviceSubTypeLabel.setVisible(false);
+            deviceSubType.setVisible(false);
+        } else if(deviceType.getValue().equals("Sensori")) {
+            deviceLabel.setText("Sensori");
+            deviceSubTypeLabel.setVisible(false);
+            deviceSubType.setVisible(false);
+        }
+
+    }
+
+    public void subTypeChanged() {
+        hideAll();
+        if (deviceSubType.getValue().equals("Pesukone")) {
+            deviceLabel.setText("Pesukone:");
+            applianceStartNow.setVisible(true);
+            washerQuickCheck.setVisible(true);
             applianceTimerLabel.setVisible(true);
             applianceTimerText.setVisible(true);
             applianceCommandLabel.setVisible(true);
@@ -49,13 +71,16 @@ public class AddDeviceController {
             unitText.setVisible(true);
             formatLabel.setVisible(true);
             unitLabel.setVisible(true);
-        } else if(deviceType.getValue().equals("Valaisin")) {
-            deviceLabel.setText("Valaisin:");
-            lampStatus.setVisible(true);
-        } else if(deviceType.getValue().equals("Sensori")) {
-            deviceLabel.setText("Sensori");
+        } else if (deviceSubType.getValue().equals("Kiuas")) {
+            deviceLabel.setText("Kiuas:");
+            applianceStartNow.setVisible(true);
+            applianceTimerLabel.setVisible(true);
+            applianceTimerText.setVisible(true);
+            formatText.setVisible(true);
+            unitText.setVisible(true);
+            formatLabel.setVisible(true);
+            unitLabel.setVisible(true);
         }
-
     }
 
     public void addDeviceButton() throws SQLException {
@@ -85,15 +110,17 @@ public class AddDeviceController {
             deviceName.setText("");
             deviceType.setValue("Laitteen tyyppi");
             deviceDescription.setText("");
-            addSucces.setText("Laite lisätty!");
+
+            Stage stage = (Stage) deviceName.getScene().getWindow();
+            showSuccessMessage(stage);
         }
     }
 
     public void addAppliance() {
-        deviceControl = "Appliance;";
+        deviceControl = "Appliance;" + deviceSubType.getValue() + ";";
         format = formatText.getText();
         unit = unitText.getText();
-        if (applianceCheckBox.isSelected()) {
+        if (applianceStartNow.isSelected()) {
             deviceControl += "On;";
         } else {
             deviceControl += "Off;";
@@ -102,6 +129,11 @@ public class AddDeviceController {
             deviceControl += ";";
         } else {
             deviceControl += applianceTimerText.getText() + ";";
+        }
+        if (washerQuickCheck.isSelected()) {
+            deviceControl += "Quick;";
+        } else {
+            deviceControl += "Normal;";
         }
         deviceControl += applianceCommandText.getText();
     }
@@ -122,8 +154,9 @@ public class AddDeviceController {
     }
 
     public void hideAll() {
+        washerQuickCheck.setVisible(false);
         lampStatus.setVisible(false);
-        applianceCheckBox.setVisible(false);
+        applianceStartNow.setVisible(false);
         applianceTimerLabel.setVisible(false);
         applianceTimerText.setVisible(false);
         applianceCommandLabel.setVisible(false);
@@ -132,6 +165,31 @@ public class AddDeviceController {
         unitText.setVisible(false);
         formatLabel.setVisible(false);
         unitLabel.setVisible(false);
+    }
+
+    public void startNowClicked() {
+        if (applianceStartNow.isSelected()) {
+            applianceTimerLabel.setDisable(true);
+            applianceTimerText.setDisable(true);
+        } else {
+            applianceTimerLabel.setDisable(false);
+            applianceTimerText.setDisable(false);
+        }
+    }
+
+    private void showSuccessMessage(Stage ownerStage) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Laite lisätty");
+        alert.setHeaderText(null);
+        alert.setContentText("Laite lisätty onnistuneesti!");
+
+        alert.initOwner(ownerStage);
+        alert.show();
+
+        Duration duration = Duration.seconds(5);
+        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
+        pause.setOnFinished(event -> alert.close());
+        pause.play();
     }
 
 }
