@@ -71,6 +71,7 @@ public class FavoriteDeviceController implements Controller, Initializable {
         setDeviceName();
         setDeviceDesc();
         setDeviceControl();
+        setDeviceType();
     }
 
     public void setDeviceName() {
@@ -78,7 +79,20 @@ public class FavoriteDeviceController implements Controller, Initializable {
     }
 
     public void setDeviceType() {
+        controls = device.getDeviceControl();
+        String[] splitControls = controls.split(";");
 
+        switch (splitControls[0]) {
+            case "Lighting":
+                deviceType.setText("Valaisin");
+                break;
+            case "Appliance":
+                deviceType.setText("Kodinkone");
+                break;
+            case "Sensor":
+                deviceType.setText("Sensori");
+                break;
+        }
     }
 
     public void setDeviceDesc() {

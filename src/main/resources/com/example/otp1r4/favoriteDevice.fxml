@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="163.0" prefWidth="191.0" style="-fx-border-color: black; -fx-border-width: 1px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.FavoriteDeviceController">
    <children>
-      <Label fx:id="deviceName" alignment="CENTER" layoutX="4.0" layoutY="15.0" prefHeight="17.0" prefWidth="72.0" />
+      <Label fx:id="deviceName" layoutX="4.0" layoutY="15.0" prefHeight="17.0" prefWidth="72.0" />
       <Label layoutX="11.0" layoutY="44.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
-      <Label fx:id="deviceType" layoutX="72.0" layoutY="15.0" prefHeight="18.0" prefWidth="72.0" />
+      <Label fx:id="deviceType" alignment="CENTER_RIGHT" layoutX="72.0" layoutY="15.0" prefHeight="18.0" prefWidth="72.0" />
       <TextArea fx:id="deviceDesc" editable="false" layoutX="54.0" layoutY="46.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
       <Pane layoutX="154.0" layoutY="3.0" prefHeight="40.0" prefWidth="34.0">
          <children>
