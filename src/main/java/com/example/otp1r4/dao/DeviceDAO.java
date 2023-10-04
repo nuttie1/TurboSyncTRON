@@ -27,7 +27,7 @@ public class DeviceDAO implements DAO{
         ResultSet rs = prepStat.executeQuery();
 
         while (rs.next()) {
-            String deviceId = rs.getString("DeviceID");
+            int deviceId = rs.getInt("DeviceID");
             String deviceName = rs.getString("DeviceName");
             String deviceDesc = rs.getString("DeviceDesc");
             boolean deviceFav = rs.getBoolean("IsFavorite");
@@ -54,6 +54,20 @@ public class DeviceDAO implements DAO{
             e.printStackTrace();
         }
     }
+
+    public void removeFavoriteDevice (int userID, int deviceID) {
+        try {
+            String sql = "UPDATE Devices SET Devices.IsFavorite = 0 WHERE Devices.UserID = ? AND Devices.DeviceID = ?";
+
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setInt(1,userID);
+            prepStat.setInt(2,deviceID);
+
+            prepStat.executeUpdate();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
    public List<Device> getFavoriteDevices(String name) throws SQLException {
        List<Device> favDevices = new ArrayList<>();
 
@@ -68,7 +82,7 @@ public class DeviceDAO implements DAO{
        ResultSet rs = prepStat.executeQuery();
 
        while (rs.next()) {
-           String deviceId = rs.getString("DeviceID");
+           int deviceId = rs.getInt("DeviceID");
            String deviceName = rs.getString("DeviceName");
            String deviceDesc = rs.getString("DeviceDesc");
            boolean deviceFav = rs.getBoolean("IsFavorite");
@@ -117,5 +131,4 @@ public class DeviceDAO implements DAO{
         }
 
     }
-
 }

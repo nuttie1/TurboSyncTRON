@@ -1,7 +1,7 @@
 package com.example.otp1r4.model;
 
 public class Device implements Model{
-    String deviceId;
+    int deviceId;
     String deviceName;
     String deviceDesc;
     boolean deviceFavorite;
@@ -9,7 +9,7 @@ public class Device implements Model{
     String format;
     String unit;
 
-    public Device(String deviceId, String deviceName, String deviceDesc, boolean deviceFavorite, String deviceControl, String format, String unit) {
+    public Device(int deviceId, String deviceName, String deviceDesc, boolean deviceFavorite, String deviceControl, String format, String unit) {
         this.deviceId = deviceId;
         this.deviceName = deviceName;
         this.deviceDesc = deviceDesc;
@@ -22,7 +22,7 @@ public class Device implements Model{
         return deviceName;
     }
 
-    public String getDeviceId() {
+    public int getDeviceId() {
         return deviceId;
     }
 
