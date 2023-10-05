@@ -121,7 +121,9 @@ public class FavoriteDeviceController implements Controller, Initializable {
     }
 
     public void setDeviceDesc() {
-        deviceDesc.setText(device.getDeviceDesc());
+        if (!device.getDeviceDesc().isEmpty()) {
+            deviceDesc.setText(device.getDeviceDesc());
+        }
     }
 
     public void setDeviceControl() {
@@ -148,8 +150,14 @@ public class FavoriteDeviceController implements Controller, Initializable {
         deviceTimerField.setVisible(true);
         deviceCommandField.setVisible(true);
 
-        deviceTimerField.setText(splitControl()[TIME]);
-        deviceCommandField.setText(splitControl()[COMMAND]);
+        if (!splitControl()[TIME].isEmpty()) {
+            deviceTimerField.setText(splitControl()[TIME]);
+        }
+
+        if (!splitControl()[COMMAND].isEmpty()) {
+            deviceCommandField.setText(splitControl()[COMMAND]);
+        }
+
     }
 
     public void setUpSensor() {
