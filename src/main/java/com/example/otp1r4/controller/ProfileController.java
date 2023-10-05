@@ -15,7 +15,7 @@ public class ProfileController implements Controller{
     @FXML
     private TextField usernameField;
     @FXML
-    private Label usernameErrorLabel, usernameSuccessLabel;
+    private Label usernameErrorLabel;
     @FXML
     private Button saveButton, clickEditButton;
     private String oldUsername;
@@ -56,6 +56,8 @@ public class ProfileController implements Controller{
             usernameField.setDisable(true);
             saveButton.setDisable(true);
             userData.setUsername(usernameField.getText());
+            usernameErrorLabel.setText("");
+            clickEditButton.setDisable(false);
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
             showSuccessMessage(stage, "Käyttäjätunnus vaihdettu", "Käyttäjätunnus vaihdettu onnistuneesti!", 3);
