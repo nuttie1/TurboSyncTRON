@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="463.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.MainViewController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #23E2F7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.MainViewController">
    <children>
-      <TabPane fx:id="mainViewTabPane" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="540.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="mainViewTabPane" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="favoriteDevicesTab" text="Lempi laitteet">
             <content>
@@ -35,7 +35,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="profileButton" layoutX="431.0" layoutY="7.0" mnemonicParsing="false" onAction="#clickProfile" prefHeight="45.0" prefWidth="50.0">
+      <Button fx:id="profileButton" layoutX="1113.0" layoutY="21.0" mnemonicParsing="false" onAction="#clickProfile" prefHeight="45.0" prefWidth="50.0">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +44,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="logoutButton" layoutX="490.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickLogout" prefHeight="30.0" prefWidth="30.0">
+      <Button fx:id="logoutButton" layoutX="1189.0" layoutY="21.0" mnemonicParsing="false" onAction="#clickLogout" prefHeight="45.0" prefWidth="50.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -53,9 +53,19 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="82.0" layoutY="3.0" text="TurboSyncTRON">
+      <ImageView fitHeight="103.0" fitWidth="289.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/turbosynctronLogo1.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="1120.0" layoutY="68.0" text="Profiili">
          <font>
-            <Font size="36.0" />
+            <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="1179.0" layoutY="68.0" text="Kirjaudu ulos">
+         <font>
+            <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
          </font>
       </Label>
    </children>
