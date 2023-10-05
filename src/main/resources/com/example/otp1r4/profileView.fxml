@@ -9,17 +9,26 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.ProfileController">
    <children>
-      <Label layoutX="48.0" layoutY="35.0" text="Oma profiili">
+      <Label layoutX="257.0" layoutY="14.0" text="Oma profiili">
          <font>
-            <Font size="18.0" />
+            <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameField" disable="true" layoutX="121.0" layoutY="93.0" promptText="käyttäjätunnus" />
-      <Hyperlink layoutX="125.0" layoutY="363.0" onAction="#clickBack" text="Takaisin" />
-      <Label layoutX="29.0" layoutY="97.0" text="Käyttäjätunnus" />
-      <Button layoutX="99.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickEdit" text="Muokkaa tietoja" />
-      <Button fx:id="saveButton" disable="true" layoutX="120.0" layoutY="332.0" mnemonicParsing="false" onAction="#clickSave" text="Tallenna" />
-      <Label fx:id="usernameErrorLabel" layoutX="124.0" layoutY="125.0" textFill="RED" />
-      <Label fx:id="usernameSuccessLabel" layoutX="121.0" layoutY="125.0" textFill="#1aff00" />
+      <TextField fx:id="usernameField" disable="true" layoutX="278.0" layoutY="74.0" promptText="käyttäjätunnus" />
+      <Hyperlink layoutX="275.0" layoutY="363.0" onAction="#clickBack" style="-fx-underline: true;" text="Takaisin" />
+      <Label layoutX="174.0" layoutY="78.0" text="Käyttäjätunnus:">
+         <font>
+            <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
+         </font></Label>
+      <Button fx:id="clickEditButton" layoutX="239.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickEdit" style="-fx-background-color: #23E2F7;" text="Muokkaa tietoja">
+         <font>
+            <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
+         </font></Button>
+      <Button fx:id="saveButton" disable="true" layoutX="264.0" layoutY="322.0" mnemonicParsing="false" onAction="#clickSave" style="-fx-background-color: #23E2F7;" text="Tallenna">
+         <font>
+            <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
+         </font></Button>
+      <Label fx:id="usernameErrorLabel" layoutX="278.0" layoutY="102.0" prefHeight="39.0" prefWidth="149.0" textFill="RED" />
+      <Label fx:id="usernameSuccessLabel" layoutX="278.0" layoutY="113.0" textFill="#1aff00" />
    </children>
 </AnchorPane>

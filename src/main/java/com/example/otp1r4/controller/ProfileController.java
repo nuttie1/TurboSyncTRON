@@ -16,7 +16,7 @@ public class ProfileController implements Controller{
     @FXML
     private Label usernameErrorLabel, usernameSuccessLabel;
     @FXML
-    private Button saveButton;
+    private Button saveButton, clickEditButton;
     private String oldUsername;
 
     private UserData userData = UserData.getInstance();
@@ -29,6 +29,7 @@ public class ProfileController implements Controller{
     public void clickEdit() throws IOException {
         usernameField.setDisable(false);
         saveButton.setDisable(false);
+        clickEditButton.setDisable(true);
     }
 
     public void clickSave() throws IOException {
@@ -42,7 +43,7 @@ public class ProfileController implements Controller{
             usernameErrorLabel.setText("Syötä käyttäjätunnus!");
             isValid = false;
         } else if (!usernameField.getText().matches(usernamePattern)){
-            usernameErrorLabel.setText("Käyttäjätunnus ei kelpaa!");
+            usernameErrorLabel.setText("Syötä käyttäjätunnus\nhyväksytyssä muodossa!");
             isValid =false;
         } else if(dao.checkUsername(usernameField.getText())) {
             usernameErrorLabel.setText("Käyttäjätunnus varattu!");
@@ -55,6 +56,8 @@ public class ProfileController implements Controller{
             saveButton.setDisable(true);
             userData.setUsername(usernameField.getText());
             usernameSuccessLabel.setText("Käyttäjätunnus vaihdettu!");
+            clickEditButton.setDisable(false);
+            usernameErrorLabel.setText("");
         }
 
     }
