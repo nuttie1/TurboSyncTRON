@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,71 +28,67 @@ public class AllDevicesController implements Controller, Initializable {
     List<Device> allDevices = new ArrayList<>();
 
     DeviceDAO deviceDAO = new DeviceDAO();
-    UserData userData = UserData.getInstance();
+    UserData userData;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //showAllDevices();
+        userData = UserData.getInstance();;
 
-        try {
-            allDevices = deviceDAO.getDevices(userData.getUsername());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        allDevices = deviceDAO.getDevices(userData.getUsername());
+        showAllDevices();
     }
 
-    /*public void showAllDevices() {
+    public void showAllDevices() {
         GridPane pane = new GridPane();
 
-        int column = 0;
-        int row = 0;
-        for (Device device : allDevices) {
-            Label deviceName = new Label();
-            Label deviceType = new Label();
-            deviceName.setText(device.getDeviceName());
-            deviceType.setText(device.getDeviceType());
-            ImageView deviceImage = new ImageView();
-            Image image;
+        Node[] headers = new Node[] {
+                createHeaderNode("Nimi"),
+                createHeaderNode("Kuvaus"),
+                createHeaderNode("Lempi")
+        };
+        pane.addRow(0,headers);
 
-            GridPane labelPane = new GridPane();
-            labelPane.add(deviceName, 0, 0);
-            labelPane.add(deviceType, 0, 1);
+        int row = 1;
+        for (Device device : allDevices) {
+            final GridPane labelPane = getGridPane(device);
 
             labelPane.setAlignment(Pos.CENTER_LEFT);
 
-            pane.add(labelPane, column, row);
-
-            column++;
-
-            switch (device.getDeviceType()) {
-                case "kodinkone":
-                    image = new Image(String.valueOf(getClass().getResource("/images/homeAppliances.png")));
-                    deviceImage.setImage(image);
-                    break;
-                case "sensori":
-                    image = new Image(String.valueOf(getClass().getResource("/images/sensor.png")));
-                    deviceImage.setImage(image);
-                    break;
-                case "lamppu":
-                    image = new Image(String.valueOf(getClass().getResource("/images/light.png")));
-                    deviceImage.setImage(image);
-                    break;
-            }
-
-            pane.add(deviceImage, column, row);
-
-            column++;
-            if (column == 4) {
-                column = 0;
-                row++;
-            }
+            pane.add(labelPane, 0, row);
+            row++;
         }
 
         pane.setHgap(20);
         pane.setPadding(new Insets(10));
 
         allDevicesPane.getChildren().add(pane);
-    }*/
+    }
 
+    private static GridPane getGridPane(Device device) {
+        Label deviceName = new Label(device.getDeviceName());
+        Label deviceDesc = new Label(device.getDeviceDesc());
+        Label deviceFavorite = new Label();
 
+        deviceName.setPadding(new Insets(1));
+        deviceDesc.setPadding(new Insets(1));
+        deviceFavorite.setPadding(new Insets(1));
+
+        if(device.isDeviceFavorite()){
+            deviceFavorite.setText("true");
+        }else {
+            deviceFavorite.setText("false");
+        }
+
+        GridPane labelPane = new GridPane();
+        labelPane.add(deviceName, 0, 0);
+        labelPane.add(deviceDesc, 1, 0);
+        labelPane.add(deviceFavorite,2,0);
+        return labelPane;
+    }
+    private static Label createHeaderNode(String text) {
+        Label label = new Label(text);
+        label.setMaxWidth(Double.MAX_VALUE);
+        label.setStyle("-fx-border-style: solid; -fx-background-color: #62efc3;");
+        return label;
+    }
 }

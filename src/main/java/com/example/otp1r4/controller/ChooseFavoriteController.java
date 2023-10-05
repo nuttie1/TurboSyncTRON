@@ -43,27 +43,24 @@ public class ChooseFavoriteController implements Controller, Initializable {
         this.userDAO = new UserDAO();
 
         this.user = UserData.getInstance();;
-        try {
-            showDevices();
-            devicesList.setCellFactory(new Callback<ListView<Device>, ListCell<Device>>() {
-                @Override
-                public ListCell<Device> call(ListView<Device> deviceListView) {
-                    return new ListCell<Device>() {
-                        @Override
-                        protected void updateItem(Device device, boolean empty) {
-                            super.updateItem(device, empty);
-                            if (device != null && !empty) {
-                                setText(device.getDeviceName());
-                            } else {
-                                setText(null);
-                            }
+
+        showDevices();
+        devicesList.setCellFactory(new Callback<ListView<Device>, ListCell<Device>>() {
+            @Override
+            public ListCell<Device> call(ListView<Device> deviceListView) {
+                return new ListCell<Device>() {
+                    @Override
+                    protected void updateItem(Device device, boolean empty) {
+                        super.updateItem(device, empty);
+                        if (device != null && !empty) {
+                            setText(device.getDeviceName());
+                        } else {
+                            setText(null);
                         }
-                    };
-                }
-            });
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+                    }
+                };
+            }
+        });
     }
 
     public void backButtonClicked (ActionEvent event) throws IOException {
@@ -86,7 +83,7 @@ public class ChooseFavoriteController implements Controller, Initializable {
             }
         }
     }
-    public void showDevices() throws SQLException {
+    public void showDevices() {
         List<Device> devices;
         devices = deviceDAO.getDevices(user.getUsername());
 
