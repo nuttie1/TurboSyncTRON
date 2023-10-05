@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -55,9 +56,9 @@ public class ProfileController implements Controller{
             usernameField.setDisable(true);
             saveButton.setDisable(true);
             userData.setUsername(usernameField.getText());
-            usernameSuccessLabel.setText("Käyttäjätunnus vaihdettu!");
-            clickEditButton.setDisable(false);
-            usernameErrorLabel.setText("");
+
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            showSuccessMessage(stage, "Käyttäjätunnus vaihdettu", "Käyttäjätunnus vaihdettu onnistuneesti!", 3);
         }
 
     }

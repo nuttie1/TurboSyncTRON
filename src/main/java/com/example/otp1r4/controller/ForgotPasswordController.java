@@ -79,26 +79,11 @@ public class ForgotPasswordController implements Controller {
             dao.changePassword(usernameField.getText(), newPasswordField.getText());
             System.out.println("Salasana vaihdettu!");
             this.changeScene("login.fxml", usernameField);
+
             Stage stage = (Stage) submitAnswersButton.getScene().getWindow();
-            showChangePasswordSuccessMessage(stage);
+            showSuccessMessage(stage, "Salasana vaihdettu", "Salasana vaihdettu onnistuneesti!", 3);
         }
 
-    }
-
-    // TODO duplicate code; move this to MtoV interface
-    private void showChangePasswordSuccessMessage(Stage ownerStage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Salasana vaihdettu");
-        alert.setHeaderText(null);
-        alert.setContentText("Salasana vaihdettu onnistuneesti!");
-
-        alert.initOwner(ownerStage);
-        alert.show();
-
-        Duration duration = Duration.seconds(3);
-        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
-        pause.setOnFinished(event -> alert.close());
-        pause.play();
     }
 
     public void clickBack() throws IOException {

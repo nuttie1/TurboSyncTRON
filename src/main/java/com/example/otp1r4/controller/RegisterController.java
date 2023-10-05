@@ -124,22 +124,8 @@ public class RegisterController implements Controller {
             this.changeScene("mainView.fxml", submitButton);
 
             Stage stage = (Stage) submitButton.getScene().getWindow();
-            showRegistrationSuccessMessage(stage);
+            showSuccessMessage(stage, "Käyttäjä luotu", "Käyttäjä luotu onnistuneesti!", 3);
         }
     }
 
-    private void showRegistrationSuccessMessage(Stage ownerStage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Käyttäjä luotu");
-        alert.setHeaderText(null);
-        alert.setContentText("Käyttäjä luotu onnistuneesti!");
-
-        alert.initOwner(ownerStage);
-        alert.show();
-
-        Duration duration = Duration.seconds(1.5);
-        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
-        pause.setOnFinished(event -> alert.close());
-        pause.play();
-    }
 }
