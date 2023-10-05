@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
 
-<AnchorPane prefHeight="86.0" prefWidth="144.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.DeviceController">
+<AnchorPane prefHeight="163.0" prefWidth="191.0" style="-fx-border-color: black; -fx-border-width: 1px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.FavoriteDeviceController">
    <children>
-      <Label fx:id="deviceName" alignment="CENTER" layoutX="1.0" layoutY="6.0" prefHeight="17.0" prefWidth="144.0" text="Laitteen nimi" />
-      <Label layoutX="1.0" layoutY="34.0" prefHeight="18.0" prefWidth="36.0" text="Data :" />
-      <Label fx:id="deviceDataLabel" layoutX="37.0" layoutY="35.0" prefHeight="18.0" prefWidth="108.0" />
-      <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="80.0" text="Sammuta" />
+      <Label fx:id="deviceName" layoutX="4.0" layoutY="15.0" prefHeight="17.0" prefWidth="72.0" />
+      <Label layoutX="11.0" layoutY="44.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+      <Label fx:id="deviceType" alignment="CENTER_RIGHT" layoutX="72.0" layoutY="15.0" prefHeight="18.0" prefWidth="72.0" />
+      <TextArea fx:id="deviceDesc" editable="false" layoutX="54.0" layoutY="46.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
+      <Pane layoutX="154.0" layoutY="3.0" prefHeight="40.0" prefWidth="34.0">
+         <children>
+            <Polygon fx:id="isFavorite" fill="WHITE" layoutX="32.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: Yellow;" />
+         </children>
+      </Pane>
+      <ToggleButton fx:id="deviceToggleButton" layoutX="3.0" layoutY="124.0" maxWidth="58.0" minWidth="58.0" mnemonicParsing="false" textFill="WHITE" />
+      <TextField fx:id="deviceTimerField" layoutX="68.0" layoutY="124.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" visible="false" />
+      <TextField fx:id="deviceCommandField" layoutX="118.0" layoutY="124.0" prefHeight="25.0" prefWidth="72.0" promptText="Komento" visible="false" />
    </children>
 </AnchorPane>
