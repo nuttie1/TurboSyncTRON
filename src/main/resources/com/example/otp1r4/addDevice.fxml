@@ -4,50 +4,94 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.AddDeviceController">
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.AddDeviceController">
    <children>
-      <TextField fx:id="deviceName" layoutX="119.0" layoutY="53.0" prefHeight="27.0" prefWidth="186.0" promptText="Nimi" />
-      <ComboBox fx:id="deviceType" layoutX="435.0" layoutY="54.0" onAction="#typeChanged" prefWidth="150.0" promptText="Laitteen tyyppi" />
-      <TextArea fx:id="deviceDescription" layoutX="119.0" layoutY="105.0" prefHeight="69.0" prefWidth="186.0" promptText="Kuvaus" />
-      <Text layoutX="2.0" layoutY="36.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää uusi laite" textAlignment="CENTER" wrappingWidth="601.0">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Text>
-      <Text layoutX="373.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tyyppi:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Label layoutX="27.0" layoutY="56.0" text="Laitteen nimi:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button layoutX="268.0" layoutY="361.0" mnemonicParsing="false" onAction="#addDeviceButton" text="Lisää laite" />
-      <Label fx:id="deviceDescriptionLabel" layoutX="27.0" layoutY="105.0" prefHeight="44.0" prefWidth="89.0" text="Laitteen kuvaus:" />
-      <Label fx:id="deviceLabel" layoutX="119.0" layoutY="187.0" />
-      <Label fx:id="deviceSubTypeLabel" layoutX="370.0" layoutY="105.0" text="Alityyppi:" visible="false" />
-      <ComboBox fx:id="deviceSubType" layoutX="435.0" layoutY="101.0" onAction="#subTypeChanged" prefWidth="150.0" promptText="Laitteen alityyppi" visible="false" />
-      <CheckBox fx:id="lampStatus" layoutX="117.0" layoutY="214.0" mnemonicParsing="false" text="Lamppu päällä" visible="false" />
-      <CheckBox fx:id="favCheck" layoutX="116.0" layoutY="324.0" mnemonicParsing="false" text="Lisää laite suosikiksi" visible="false" />
-      <Label fx:id="nameErrorLabel" layoutX="119.0" layoutY="88.0" textFill="RED" />
-      <Label fx:id="typeErrorLabel" layoutX="434.0" layoutY="88.0" textFill="RED" />
-      <CheckBox fx:id="applianceStartNow" layoutX="117.0" layoutY="214.0" mnemonicParsing="false" onAction="#startNowClicked" text="Käynnistä nyt" visible="false" />
-      <Label fx:id="applianceTimerLabel" layoutX="116.0" layoutY="245.0" text="Ajastus:" visible="false" />
-      <TextField fx:id="applianceTimerText" layoutX="186.0" layoutY="241.0" promptText="0000" visible="false" />
-      <Label fx:id="applianceCommandLabel" layoutX="116.0" layoutY="282.0" text="Komento:" visible="false" />
-      <TextField fx:id="applianceCommandText" layoutX="186.0" layoutY="278.0" promptText="Komento" visible="false" />
-      <Label fx:id="formatLabel" layoutX="370.0" layoutY="245.0" text="Datan muoto:" visible="false" />
-      <TextField fx:id="formatText" layoutX="458.0" layoutY="241.0" prefHeight="25.0" prefWidth="89.0" promptText="Format" visible="false" />
-      <Label fx:id="unitLabel" layoutX="369.0" layoutY="282.0" text="Datan yksikkö:" visible="false" />
-      <TextField fx:id="unitText" layoutX="458.0" layoutY="278.0" prefHeight="25.0" prefWidth="89.0" promptText="Yksikkö" visible="false" />
-      <CheckBox fx:id="washerQuickCheck" layoutX="232.0" layoutY="214.0" mnemonicParsing="false" text="Pikapesu" visible="false" />
+      <StackPane>
+         <children>
+            <AnchorPane prefHeight="331.0" prefWidth="1300.0">
+               <children>
+                  <Text layoutX="338.0" layoutY="50.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää uusi laite" textAlignment="CENTER" wrappingWidth="601.0">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="343.0" layoutY="122.0" text="Laitteen nimi:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="deviceName" layoutX="453.0" layoutY="119.0" prefHeight="27.0" prefWidth="186.0" promptText="Nimi" />
+                  <Text layoutX="701.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tyyppi:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="deviceType" layoutX="761.0" layoutY="119.0" onAction="#typeChanged" prefWidth="150.0" promptText="Laitteen tyyppi" />
+                  <Label fx:id="deviceDescriptionLabel" layoutX="340.0" layoutY="172.0" prefHeight="44.0" prefWidth="89.0" text="Laitteen kuvaus:" />
+                  <TextArea fx:id="deviceDescription" layoutX="453.0" layoutY="172.0" prefHeight="69.0" prefWidth="186.0" promptText="Kuvaus" />
+                  <ComboBox fx:id="deviceSubType" layoutX="761.0" layoutY="169.0" onAction="#subTypeChanged" prefWidth="150.0" promptText="Laitteen alityyppi" />
+                  <Label fx:id="deviceSubTypeLabel" layoutX="698.0" layoutY="175.0" text="Alityyppi:" />
+                  <Label fx:id="deviceLabel" layoutX="453.0" layoutY="298.0" />
+                  <Label fx:id="nameErrorLabel" layoutX="455.0" layoutY="149.0" textFill="RED" />
+                  <Label fx:id="typeErrorLabel" layoutX="764.0" layoutY="149.0" textFill="RED" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+      <StackPane layoutY="339.0">
+         <children>
+            <AnchorPane fx:id="lightingPane" prefHeight="350.0" prefWidth="1300.0" visible="false">
+               <children>
+                  <CheckBox fx:id="lampStatus" layoutX="443.0" layoutY="39.0" mnemonicParsing="false" text="Päällä" />
+                  <RadioButton fx:id="brightness1" layoutX="443.0" layoutY="93.0" mnemonicParsing="false" text="1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="brightness" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="brightness2" layoutX="482.0" layoutY="93.0" mnemonicParsing="false" text="2" toggleGroup="$brightness" />
+                  <RadioButton fx:id="brightness3" layoutX="521.0" layoutY="93.0" mnemonicParsing="false" text="3" toggleGroup="$brightness" />
+                  <RadioButton fx:id="brightness4" layoutX="557.0" layoutY="93.0" mnemonicParsing="false" text="4" toggleGroup="$brightness" />
+                  <Label layoutX="443.0" layoutY="70.0" text="Valaisimen kirkkaus:" />
+                  <Label layoutX="444.0" layoutY="125.0" text="Värilämpötila:" />
+                  <RadioButton fx:id="colorCold" layoutX="443.0" layoutY="151.0" mnemonicParsing="false" text="Kylmä">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="color" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="colorNeutral" layoutX="510.0" layoutY="151.0" mnemonicParsing="false" text="Neutraali" toggleGroup="$color" />
+                  <RadioButton fx:id="colorWarm" layoutX="594.0" layoutY="151.0" mnemonicParsing="false" text="Lämmin" toggleGroup="$color" />
+                  <Label layoutX="442.0" layoutY="14.0" text="Valaisimen tila:" />
+                  <Label layoutX="443.0" layoutY="184.0" text="Liiketunnistin:" />
+                  <CheckBox fx:id="motionOn" layoutX="442.0" layoutY="207.0" mnemonicParsing="false" text="Päällä" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="washerPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <CheckBox fx:id="applianceStartNow" layoutX="723.0" layoutY="124.0" mnemonicParsing="false" onAction="#startNowClicked" text="Käynnistä nyt" />
+                  <Label fx:id="applianceTimerLabel" layoutX="517.0" layoutY="80.0" text="Ajastus:" />
+                  <TextField fx:id="applianceTimerText" layoutX="149.0" layoutY="112.0" promptText="0000" />
+                  <Label fx:id="applianceCommandLabel" layoutX="671.0" layoutY="80.0" text="Komento:" />
+                  <TextField fx:id="applianceCommandText" layoutX="799.0" layoutY="193.0" promptText="Komento" />
+                  <Label fx:id="formatLabel" layoutX="361.0" layoutY="97.0" text="Datan muoto:" />
+                  <TextField fx:id="formatText" layoutX="537.0" layoutY="124.0" prefHeight="25.0" prefWidth="89.0" promptText="Format" />
+                  <Label fx:id="unitLabel" layoutX="581.0" layoutY="149.0" text="Datan yksikkö:" />
+                  <TextField fx:id="unitText" layoutX="421.0" layoutY="205.0" prefHeight="25.0" prefWidth="89.0" promptText="Yksikkö" />
+                  <CheckBox fx:id="washerQuickCheck" layoutX="223.0" layoutY="157.0" mnemonicParsing="false" text="Pikapesu" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+      <CheckBox fx:id="favCheck" layoutX="439.0" layoutY="707.0" mnemonicParsing="false" text="Lisää laite suosikiksi" />
+      <Button layoutX="616.0" layoutY="752.0" mnemonicParsing="false" onAction="#addDeviceButton" text="Lisää laite" />
    </children>
 </AnchorPane>
