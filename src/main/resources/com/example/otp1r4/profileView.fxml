@@ -15,7 +15,7 @@
          </font>
       </Label>
       <TextField fx:id="usernameField" disable="true" layoutX="121.0" layoutY="93.0" promptText="käyttäjätunnus" />
-      <Hyperlink layoutX="125.0" layoutY="363.0" onAction="#clickBack" text="Takaisin" />
+      <Hyperlink fx:id="backLink" layoutX="125.0" layoutY="363.0" onAction="#clickBack" text="Takaisin" />
       <Label layoutX="29.0" layoutY="97.0" text="Käyttäjätunnus" />
       <Button layoutX="99.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickEdit" text="Muokkaa tietoja" />
       <Button fx:id="saveButton" disable="true" layoutX="120.0" layoutY="332.0" mnemonicParsing="false" onAction="#clickSave" text="Tallenna" />

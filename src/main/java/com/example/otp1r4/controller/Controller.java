@@ -19,8 +19,6 @@ import java.util.List;
  *  See VtoM Interface for view to model applications.
  */
 public interface Controller {
-    List<String> loadedWindows = new ArrayList<>();
-
     /**
      * @param nextView fxml file name ex. mainView.fxml
      * @param currentNode Scene node 'object' ex. TextField usernameField
@@ -37,19 +35,13 @@ public interface Controller {
      * @throws IOException
      */
     default void addSceneOnTop(String nextView, Node currentNode) throws IOException {
-        if (loadedWindows.contains(nextView)) {
-            return;
-        }
         Parent root = FXMLLoader.load(Main.class.getResource(nextView));
         Stage window = new Stage();
         window.initOwner(currentNode.getScene().getWindow());
 
         window.setScene(new Scene(root));
+        window.setTitle(nextView);
         window.show();
-
-        loadedWindows.add(nextView);
-
-        window.setOnCloseRequest(windowEvent -> loadedWindows.remove(nextView));
     }
 
     default void showSuccessMessage(Stage ownerStage, String title, String contentText, int seconds) {
