@@ -20,7 +20,7 @@ public class AddDeviceController {
     @FXML
     private TextArea deviceDescription;
     @FXML
-    private Label deviceDescriptionLabel, deviceLabel, nameErrorLabel, typeErrorLabel;
+    private Label deviceDescriptionLabel, deviceLabel, nameErrorLabel, typeErrorLabel, subTypeErrorLabel, sensorTypeErrorLabel;
     @FXML
     private Label deviceSubTypeLabel;
     @FXML
@@ -68,6 +68,34 @@ public class AddDeviceController {
     @FXML
     private TextField dishwasherTimerText;
 
+    // IMURI
+    @FXML
+    private AnchorPane vacuumPane;
+    @FXML
+    private RadioButton vacuumVacuum, vacuumMop;
+    @FXML
+    private CheckBox vacuumStartNow, monday, tuesday, wednesday, thursday, friday, saturday, sunday;
+    @FXML
+    private TextField vacuumActiveTime1, vacuumActiveTime2, vacuumCommand;
+
+    // SAUNA
+    @FXML
+    private AnchorPane saunaPane;
+    @FXML
+    private TextField saunaTemp, heatingTime1, heatingTime2;
+
+    // LUKKO
+    @FXML
+    private AnchorPane lockPane;
+    @FXML
+    private CheckBox lockStatus;
+
+    // KAMERA
+    @FXML
+    private AnchorPane cameraPane;
+    @FXML
+    private CheckBox cameraStatus;
+
     private UserData userData = UserData.getInstance();
     DeviceDAO dDao = new DeviceDAO();
 
@@ -86,8 +114,7 @@ public class AddDeviceController {
     }
 
     public void typeChanged() {
-        hideAll();
-        favCheck.setVisible(true);
+        hideAll(false);
         if(deviceType.getValue().equals("Laite")) {
             deviceSubTypeLabel.setVisible(true);
             deviceSubType.setVisible(true);
@@ -100,17 +127,28 @@ public class AddDeviceController {
             sensorType.setVisible(true);
             sensorPane.setVisible(true);
         }
-
     }
 
     public void subTypeChanged() {
-        hideAllSubTEMP();
+        hideAll(true);
         if (deviceSubType.getValue().equals("Pesukone")) {
             deviceLabel.setText("Pesukone:");
             washerPane.setVisible(true);
         } else if (deviceSubType.getValue().equals("Astianpesukone")) {
             deviceLabel.setText("Astianpesukone:");
             dishwasherPane.setVisible(true);
+        } else if (deviceSubType.getValue().equals("Imuri")) {
+            deviceLabel.setText("Imuri:");
+            vacuumPane.setVisible(true);
+        } else if (deviceSubType.getValue().equals("Sauna")) {
+            deviceLabel.setText("Sauna:");
+            saunaPane.setVisible(true);
+        } else if (deviceSubType.getValue().equals("Lukko")) {
+            deviceLabel.setText("Lukko:");
+            lockPane.setVisible(true);
+        } else if (deviceSubType.getValue().equals("Kamera")) {
+            deviceLabel.setText("Kamera:");
+            cameraPane.setVisible(true);
         }
     }
 
@@ -118,6 +156,8 @@ public class AddDeviceController {
         boolean isValid = true;
         nameErrorLabel.setText("");
         typeErrorLabel.setText("");
+        subTypeErrorLabel.setText("");
+        sensorTypeErrorLabel.setText("");
         if (deviceName.getText().isEmpty()) {
             nameErrorLabel.setText("Syötä laitteelle nimi!");
             isValid = false;
@@ -126,12 +166,28 @@ public class AddDeviceController {
             typeErrorLabel.setText("Valitse laitteen tyyppi!");
             isValid = false;
         }
+        if (deviceSubType.getValue() == null && deviceType.getValue().equals("Laite")) {
+            subTypeErrorLabel.setText("Valitse laitteen alityyppi!");
+            isValid = false;
+        }
+        if (sensorType.getValue() == null && deviceType.getValue().equals("Sensori")) {
+            sensorTypeErrorLabel.setText("Valitse sensorin tyyppi!");
+            isValid = false;
+        }
 
         if (deviceType.getValue().equals("Laite")) {
             if (deviceSubType.getValue().equals("Pesukone")) {
                 generateWasherControl();
             } else if (deviceSubType.getValue().equals("Astianpesukone")) {
                 generateDishwasherControl();
+            } else if (deviceSubType.getValue().equals("Imuri")) {
+                generateVacuumControl();
+            } else if (deviceSubType.getValue().equals("Sauna")) {
+                generateSaunaControl();
+            } else if (deviceSubType.getValue().equals("Lukko")) {
+                generateLockControl();
+            } else if (deviceSubType.getValue().equals("Kamera")) {
+                generateCameraControl();
             }
         } else if (deviceType.getValue().equals("Valaisin")) {
             generateLightingControl();
@@ -143,7 +199,6 @@ public class AddDeviceController {
             dDao.addDevice(deviceName.getText(), deviceDescription.getText(),
                     favCheck.isSelected(), userData.getUserID(), deviceControl, format, unit);
             deviceName.setText("");
-            deviceType.setValue("Laitteen tyyppi");
             deviceDescription.setText("");
 
             Stage stage = (Stage) deviceName.getScene().getWindow();
@@ -174,7 +229,6 @@ public class AddDeviceController {
         } else if (brightness4.isSelected()) {
             deviceControl += "4;";
         }
-
         if (colorCold.isSelected()) {
             deviceControl += "Cold;";
         } else if (colorNeutral.isSelected()) {
@@ -182,19 +236,16 @@ public class AddDeviceController {
         } else if (colorWarm.isSelected()) {
             deviceControl += "Warm;";
         }
-
         if (motionOn.isSelected()) {
             deviceControl += "On";
         } else {
             deviceControl += "Off";
         }
-
         if (lampStatus.isSelected()) {
             deviceControl += "On;";
         } else {
             deviceControl += "Off;";
         }
-
         format = "Status";
         unit = null;
     }
@@ -249,26 +300,82 @@ public class AddDeviceController {
         unit = null;
     }
 
-    public void hideAll() {
-        deviceLabel.setText("");
-        sensorPane.setVisible(false);
-        lightingPane.setVisible(false);
-        washerPane.setVisible(false);
-        dishwasherPane.setVisible(false);
-        deviceSubTypeLabel.setVisible(false);
-        deviceSubType.setVisible(false);
-        sensorTypeLabel.setVisible(false);
-        sensorType.setVisible(false);
+    public void generateVacuumControl() {
+        StringBuilder selectedCheckBoxes = new StringBuilder();
+        appendIfSelectedForVacuum(selectedCheckBoxes, monday);
+        appendIfSelectedForVacuum(selectedCheckBoxes, tuesday);
+        appendIfSelectedForVacuum(selectedCheckBoxes, wednesday);
+        appendIfSelectedForVacuum(selectedCheckBoxes, thursday);
+        appendIfSelectedForVacuum(selectedCheckBoxes, friday);
+        appendIfSelectedForVacuum(selectedCheckBoxes, saturday);
+        appendIfSelectedForVacuum(selectedCheckBoxes, sunday);
+
+        deviceControl = "Laite;" + deviceSubType.getValue() + ";";
+        if (vacuumVacuum.isSelected()) {
+            deviceControl += "Imurointi;";
+        } else if (vacuumMop.isSelected()) {
+            deviceControl += "Moppaus;";
+        }
+        if (vacuumStartNow.isSelected()) {
+            deviceControl += "On;";
+        } else {
+            deviceControl += "Off;";
+        }
+        String result = selectedCheckBoxes.toString();
+        deviceControl += result + ";" + vacuumActiveTime1.getText() + ";" + vacuumActiveTime2.getText() + ";" + vacuumCommand.getText();
+
+        format = "Laiteformat";
+        unit = null;
     }
 
-    public void hideAllSubTEMP() {
+    public void generateSaunaControl() {
+        deviceControl = "Laite;" + deviceSubType.getValue() + ";" + saunaTemp.getText() + ";" + heatingTime1.getText() + "+" + heatingTime2.getText();
+        format = "Laiteformat";
+        unit = null;
+    }
+
+    public void generateLockControl() {
+        deviceControl = "Laite;" + deviceSubType.getValue() + ";";
+        if (lockStatus.isSelected()) {
+            deviceControl += "On";
+        } else {
+            deviceControl += "Off";
+        }
+        format = "Status";
+        unit = null;
+    }
+
+    public void generateCameraControl() {
+        deviceControl = "Laite;" + deviceSubType.getValue() + ";";
+        if (cameraStatus.isSelected()) {
+            deviceControl += "On";
+        } else {
+            deviceControl += "Off";
+        }
+        format = "Status";
+        unit = null;
+    }
+
+    public void hideAll(boolean sub) {
         deviceLabel.setText("");
+        nameErrorLabel.setText("");
+        typeErrorLabel.setText("");
+        subTypeErrorLabel.setText("");
+        sensorTypeErrorLabel.setText("");
         sensorPane.setVisible(false);
         lightingPane.setVisible(false);
         washerPane.setVisible(false);
         dishwasherPane.setVisible(false);
-        sensorTypeLabel.setVisible(false);
-        sensorType.setVisible(false);
+        vacuumPane.setVisible(false);
+        saunaPane.setVisible(false);
+        lockPane.setVisible(false);
+        cameraPane.setVisible(false);
+        if (!sub) {
+            deviceSubTypeLabel.setVisible(false);
+            deviceSubType.setVisible(false);
+            sensorTypeLabel.setVisible(false);
+            sensorType.setVisible(false);
+        }
     }
 
     public void washerStartNowClicked() {
@@ -288,6 +395,15 @@ public class AddDeviceController {
         } else {
             dishwasherTimerLabel.setDisable(false);
             dishwasherTimerText.setDisable(false);
+        }
+    }
+
+    private void appendIfSelectedForVacuum(StringBuilder stringBuilder, CheckBox checkBox) {
+        if (checkBox.isSelected()) {
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append("+");
+            }
+            stringBuilder.append(checkBox.getText());
         }
     }
 

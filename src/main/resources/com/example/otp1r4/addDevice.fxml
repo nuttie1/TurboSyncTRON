@@ -45,6 +45,8 @@
                   <Label fx:id="typeErrorLabel" layoutX="764.0" layoutY="149.0" textFill="RED" />
                   <Label fx:id="sensorTypeLabel" layoutX="685.0" layoutY="173.0" text="Sensorityyppi:" visible="false" />
                   <ComboBox fx:id="sensorType" layoutX="761.0" layoutY="169.0" prefWidth="150.0" promptText="Sensorityyppi" visible="false" />
+                  <Label fx:id="subTypeErrorLabel" layoutX="764.0" layoutY="198.0" textFill="RED" />
+                  <Label fx:id="sensorTypeErrorLabel" layoutX="764.0" layoutY="198.0" textFill="RED" />
                </children>
             </AnchorPane>
          </children>
@@ -109,9 +111,54 @@
                   <TextField fx:id="dishwasherTimerText" layoutX="497.0" layoutY="154.0" promptText="0000" />
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="vacuumPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <RadioButton fx:id="vacuumVacuum" layoutX="449.0" layoutY="65.0" mnemonicParsing="false" text="Imurointi">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="vacuumMode" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <Label layoutX="449.0" layoutY="35.0" text="Ohjelma:" />
+                  <RadioButton fx:id="vacuumMop" layoutX="544.0" layoutY="65.0" mnemonicParsing="false" text="Moppaus" toggleGroup="$vacuumMode" />
+                  <CheckBox fx:id="vacuumStartNow" layoutX="449.0" layoutY="100.0" mnemonicParsing="false" text="Käynnistä nyt" />
+                  <Label layoutX="449.0" layoutY="135.0" text="Siivouspäivät:" />
+                  <CheckBox fx:id="monday" layoutX="448.0" layoutY="160.0" mnemonicParsing="false" text="MA" />
+                  <CheckBox fx:id="tuesday" layoutX="501.0" layoutY="160.0" mnemonicParsing="false" text="TI" />
+                  <CheckBox fx:id="wednesday" layoutX="544.0" layoutY="160.0" mnemonicParsing="false" text="KE" />
+                  <CheckBox fx:id="thursday" layoutX="590.0" layoutY="160.0" mnemonicParsing="false" text="TO" />
+                  <CheckBox fx:id="friday" layoutX="632.0" layoutY="160.0" mnemonicParsing="false" text="PE" />
+                  <CheckBox fx:id="saturday" layoutX="672.0" layoutY="160.0" mnemonicParsing="false" text="LA" />
+                  <CheckBox fx:id="sunday" layoutX="716.0" layoutY="160.0" mnemonicParsing="false" text="SU" />
+                  <Label layoutX="448.0" layoutY="198.0" text="Toiminta-aika 1:" />
+                  <Label layoutX="448.0" layoutY="237.0" text="Toiminta-aika 2:" />
+                  <TextField fx:id="vacuumActiveTime1" layoutX="541.0" layoutY="194.0" promptText="0000" />
+                  <TextField fx:id="vacuumActiveTime2" layoutX="541.0" layoutY="233.0" promptText="0000" />
+                  <TextField fx:id="vacuumCommand" layoutX="541.0" layoutY="271.0" promptText="Komento" />
+                  <Label layoutX="448.0" layoutY="275.0" text="Komento:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="saunaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Label layoutX="462.0" layoutY="42.0" text="Lämpötila:" />
+                  <TextField fx:id="saunaTemp" layoutX="529.0" layoutY="38.0" promptText="00" />
+                  <Label layoutX="462.0" layoutY="90.0" text="Lämmitysaika:" />
+                  <TextField fx:id="heatingTime1" layoutX="462.0" layoutY="120.0" prefHeight="25.0" prefWidth="52.0" promptText="0000" />
+                  <TextField fx:id="heatingTime2" layoutX="529.0" layoutY="120.0" prefHeight="25.0" prefWidth="52.0" promptText="0000" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="lockPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <CheckBox fx:id="lockStatus" layoutX="452.0" layoutY="66.0" mnemonicParsing="false" text="Lukittu" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="cameraPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <CheckBox fx:id="cameraStatus" layoutX="449.0" layoutY="71.0" mnemonicParsing="false" text="Kamera päällä" />
+               </children>
+            </AnchorPane>
          </children>
       </StackPane>
-      <CheckBox fx:id="favCheck" layoutX="439.0" layoutY="707.0" mnemonicParsing="false" text="Lisää laite suosikiksi" />
+      <CheckBox fx:id="favCheck" layoutX="439.0" layoutY="703.0" mnemonicParsing="false" text="Lisää laite suosikiksi" />
       <Button layoutX="616.0" layoutY="752.0" mnemonicParsing="false" onAction="#addDeviceButton" text="Lisää laite" />
    </children>
 </AnchorPane>
