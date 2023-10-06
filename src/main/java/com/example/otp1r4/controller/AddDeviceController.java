@@ -11,7 +11,7 @@ import javafx.util.Duration;
 
 import java.sql.SQLException;
 
-public class AddDeviceController {
+public class AddDeviceController implements Controller {
 
     @FXML
     private ComboBox<String> deviceType, deviceSubType;
@@ -202,7 +202,7 @@ public class AddDeviceController {
             deviceDescription.setText("");
 
             Stage stage = (Stage) deviceName.getScene().getWindow();
-            showSuccessMessage(stage);
+            showSuccessMessage(stage, "Laitteen lisäys onnistui!", "Laite lisätty onnistuneesti!", 3);
         }
     }
 
@@ -237,14 +237,14 @@ public class AddDeviceController {
             deviceControl += "Warm;";
         }
         if (motionOn.isSelected()) {
-            deviceControl += "On";
-        } else {
-            deviceControl += "Off";
-        }
-        if (lampStatus.isSelected()) {
             deviceControl += "On;";
         } else {
             deviceControl += "Off;";
+        }
+        if (lampStatus.isSelected()) {
+            deviceControl += "On";
+        } else {
+            deviceControl += "Off";
         }
         format = "Status";
         unit = null;
@@ -405,21 +405,6 @@ public class AddDeviceController {
             }
             stringBuilder.append(checkBox.getText());
         }
-    }
-
-    private void showSuccessMessage(Stage ownerStage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Laite lisätty");
-        alert.setHeaderText(null);
-        alert.setContentText("Laite lisätty onnistuneesti!");
-
-        alert.initOwner(ownerStage);
-        alert.show();
-
-        Duration duration = Duration.seconds(5);
-        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
-        pause.setOnFinished(event -> alert.close());
-        pause.play();
     }
 
 }
