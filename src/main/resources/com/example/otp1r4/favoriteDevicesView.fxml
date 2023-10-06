@@ -8,7 +8,7 @@
     <children>
         <Label layoutX="264.0" layoutY="6.0" text="Lempi laitteet" />
         <Label fx:id="favDevicesWarningLabel" alignment="CENTER" contentDisplay="TOP" layoutX="-1.0" layoutY="178.0" prefHeight="17.0" prefWidth="600.0" textFill="RED" />
-      <ScrollPane hbarPolicy="NEVER" layoutX="30.0" layoutY="27.0" prefHeight="340.0" prefWidth="469.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="30.0" layoutY="27.0" prefHeight="340.0" prefWidth="469.0" vbarPolicy="ALWAYS">
         <content>
           <AnchorPane fx:id="favDevicesAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="470.0"> </AnchorPane>
         </content>

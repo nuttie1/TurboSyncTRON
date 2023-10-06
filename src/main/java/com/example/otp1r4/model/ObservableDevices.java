@@ -36,7 +36,6 @@ public class ObservableDevices {
 
     public void updateDevice(Device device) {
         int index = observableDevices.indexOf(device);
-        System.out.println(observableDevices);
         if (index >= 0) {
             observableDevices.set(index, device);
         }

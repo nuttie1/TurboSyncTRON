@@ -6,6 +6,7 @@ import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.Device;
 import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,18 +44,28 @@ public class FavoriteDevicesController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        observableDevice.getObservableDevices().forEach(device -> {
-            device.isDeviceFavorite().addListener((observable, oldValue, newValue) -> {
-                if (newValue) {
-
-                } else {
+        observableDevice.getObservableDevices().addListener((ListChangeListener<Device>) change -> {
+            while (change.next()) {
+                if (change.wasAdded()){
                     try {
+                        System.out.println("HAHA");
                         addFavoriteDevice();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (SQLException e) {
+                    } catch (IOException | SQLException e) {
                         throw new RuntimeException(e);
                     }
+                }
+            }
+        });
+        observableDevice.getObservableDevices().forEach(device -> {
+            device.isDeviceFavorite().addListener((observable, oldValue, newValue) -> {
+                try {
+                    if (newValue) {
+                        addFavoriteDevice();
+                    } else {
+                        addFavoriteDevice();
+                    }
+                } catch (IOException | SQLException e) {
+                        throw new RuntimeException(e);
                 }
             });
         });
@@ -98,7 +109,6 @@ public class FavoriteDevicesController implements Controller, Initializable {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10));
-        System.out.println(gridPane.getChildren());
         favDevicesAnchorPane.getChildren().add(gridPane);
     }
 }

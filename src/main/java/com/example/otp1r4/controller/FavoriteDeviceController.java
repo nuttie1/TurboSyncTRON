@@ -51,7 +51,6 @@ public class FavoriteDeviceController implements Controller, Initializable {
                 //deviceDAO.removeFavoriteDevice(userData.getUserID(), device.getDeviceId());
                 device.updateIsDeviceFavorite(false);
                 observableDevices.updateDevice(device);
-                System.out.println(device + " 1");
             } else {
                 isFavorite.setFill(Color.YELLOW);
             }
@@ -63,6 +62,7 @@ public class FavoriteDeviceController implements Controller, Initializable {
                 deviceToggleButton.setStyle("-fx-background-color: green");
                 deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl("On",POWER));
                 device.updateDeviceControl(updateControl("On",POWER));
+                observableDevices.addDevice(device);
             }   else {
                 deviceToggleButton.setText("POIS");
                 deviceToggleButton.setStyle("-fx-background-color: red");
@@ -100,8 +100,6 @@ public class FavoriteDeviceController implements Controller, Initializable {
 
     public void setDevice(Device device) {
         this.device = device;
-
-        System.out.println(device + " 2");
 
         setDeviceName();
         setDeviceDesc();

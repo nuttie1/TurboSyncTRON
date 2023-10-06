@@ -1,6 +1,7 @@
 package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.DeviceDAO;
+import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -97,6 +98,7 @@ public class AddDeviceController implements Controller {
     private CheckBox cameraStatus;
 
     private UserData userData = UserData.getInstance();
+    ObservableDevices observableDevices = ObservableDevices.getInstance();
     DeviceDAO dDao = new DeviceDAO();
 
     String deviceControl = "";
@@ -201,6 +203,7 @@ public class AddDeviceController implements Controller {
             deviceName.setText("");
             deviceDescription.setText("");
 
+            observableDevices.addDevice(dDao.getDevice(deviceName.getText(), userData.getUserID()));
             Stage stage = (Stage) deviceName.getScene().getWindow();
             showSuccessMessage(stage, "Laitteen lisäys onnistui!", "Laite lisätty onnistuneesti!", 3);
         }
