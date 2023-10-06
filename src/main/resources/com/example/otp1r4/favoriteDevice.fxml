@@ -16,7 +16,7 @@
       <TextArea fx:id="deviceDesc" editable="false" layoutX="54.0" layoutY="46.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
       <Pane layoutX="154.0" layoutY="3.0" prefHeight="40.0" prefWidth="34.0">
          <children>
-            <Polygon fx:id="isFavorite" fill="WHITE" layoutX="32.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: Yellow;" />
+            <Polygon fx:id="isFavorite" fill="WHITE" layoutX="32.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
          </children>
       </Pane>
       <ToggleButton fx:id="deviceToggleButton" layoutX="3.0" layoutY="124.0" maxWidth="58.0" minWidth="58.0" mnemonicParsing="false" textFill="WHITE" />

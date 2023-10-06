@@ -4,7 +4,9 @@ import com.example.otp1r4.Main;
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.Device;
+import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,19 +21,18 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class FavoriteDevicesController implements Controller, Initializable {
     @FXML
-    Button favoriteDeviceAdd;
-    @FXML
     Label favDevicesWarningLabel;
     @FXML
     AnchorPane favDevicesAnchorPane;
-
     UserDAO userDAO;
     DeviceDAO deviceDAO;
+    ObservableDevices observableDevice = ObservableDevices.getInstance();
 
     public FavoriteDevicesController() {
         this.userDAO = new UserDAO();
@@ -42,6 +43,21 @@ public class FavoriteDevicesController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        observableDevice.getObservableDevices().forEach(device -> {
+            device.isDeviceFavorite().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+
+                } else {
+                    try {
+                        addFavoriteDevice();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        });
         try {
             addFavoriteDevice();
         } catch (IOException | SQLException e) {
@@ -49,15 +65,18 @@ public class FavoriteDevicesController implements Controller, Initializable {
         }
     }
 
-    public void clickFavoriteAdd(ActionEvent event) throws IOException {
-        this.addSceneOnTop("chooseFavoriteDevices.fxml", favoriteDeviceAdd);
-    }
-
     public void addFavoriteDevice() throws IOException, SQLException {
-        List<Device> devices = deviceDAO.getFavoriteDevices(user.getUsername());
-        FavoriteDeviceController controller;
+        favDevicesAnchorPane.getChildren().clear();
+        List<Device> devices = new ArrayList<>();
+        for (Device device : observableDevice.getObservableDevices()) {
+            if (device.isDeviceFavorite().get()) {
+                devices.add(device);
+            }
+        }
+
         GridPane gridPane = new GridPane();
 
+        FavoriteDeviceController controller;
         if (!devices.isEmpty()) {
             int column = 0;
             int row = 0;
@@ -79,6 +98,7 @@ public class FavoriteDevicesController implements Controller, Initializable {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10));
+        System.out.println(gridPane.getChildren());
         favDevicesAnchorPane.getChildren().add(gridPane);
     }
 }

@@ -2,7 +2,9 @@ package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.model.Device;
+import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -39,14 +41,17 @@ public class FavoriteDeviceController implements Controller, Initializable {
 
     int TYPE = 0, POWER = 1, TIME = 2, COMMAND = 3;
 
+    private ObservableDevices observableDevices = ObservableDevices.getInstance();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         isFavorite.setOnMouseClicked(mouseEvent -> {
             if (isFavorite.getFill().equals(Color.YELLOW)) {
                 isFavorite.setFill(Color.WHITE);
-                deviceDAO.removeFavoriteDevice(userData.getUserID(), device.getDeviceId());
+                //deviceDAO.removeFavoriteDevice(userData.getUserID(), device.getDeviceId());
                 device.updateIsDeviceFavorite(false);
+                observableDevices.updateDevice(device);
+                System.out.println(device + " 1");
             } else {
                 isFavorite.setFill(Color.YELLOW);
             }
@@ -95,6 +100,8 @@ public class FavoriteDeviceController implements Controller, Initializable {
 
     public void setDevice(Device device) {
         this.device = device;
+
+        System.out.println(device + " 2");
 
         setDeviceName();
         setDeviceDesc();
@@ -185,5 +192,4 @@ public class FavoriteDeviceController implements Controller, Initializable {
         controls = device.getDeviceControl();
         return controls.split(";");
     }
-
 }
