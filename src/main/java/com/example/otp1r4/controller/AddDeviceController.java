@@ -16,20 +16,25 @@ public class AddDeviceController {
     @FXML
     private ComboBox<String> deviceType, deviceSubType;
     @FXML
-    private TextField deviceName, applianceTimerText, applianceCommandText, formatText, unitText;
+    private TextField deviceName;
     @FXML
     private TextArea deviceDescription;
     @FXML
     private Label deviceDescriptionLabel, deviceLabel, nameErrorLabel, typeErrorLabel;
     @FXML
-    private Label deviceSubTypeLabel, applianceTimerLabel, applianceCommandLabel, formatLabel, unitLabel;
+    private Label deviceSubTypeLabel;
     @FXML
-    private CheckBox applianceStartNow, washerQuickCheck, favCheck;
-    @FXML
-    private AnchorPane washerPane;
+    private CheckBox favCheck;
 
     // SENSORI
-
+    @FXML
+    private AnchorPane sensorPane;
+    @FXML
+    private Label sensorTypeLabel;
+    @FXML
+    private ComboBox<String> sensorType;
+    @FXML
+    private  CheckBox sensorStatus;
 
     // VALAISIN
     @FXML
@@ -37,11 +42,31 @@ public class AddDeviceController {
     @FXML
     private CheckBox lampStatus, motionOn;
     @FXML
-    ToggleGroup brightness, color;
-    @FXML
     private RadioButton brightness1, brightness2, brightness3, brightness4, colorCold, colorNeutral, colorWarm;
 
-    // LAITE
+    // PESUKONE
+    @FXML
+    private AnchorPane washerPane;
+    @FXML
+    private ComboBox<String> washerMode, washerTemp, washerSpin;
+    @FXML
+    private CheckBox washerStartNow, washerQuick, washerExtra;
+    @FXML
+    private Label washerTimerLabel;
+    @FXML
+    private TextField washerTimerText;
+
+    // ASTIANPESUKONE
+    @FXML
+    private AnchorPane dishwasherPane;
+    @FXML
+    private RadioButton radioEco, radioQuick, radioEff;
+    @FXML
+    private CheckBox dishwasherStartNow;
+    @FXML
+    private Label dishwasherTimerLabel;
+    @FXML
+    private TextField dishwasherTimerText;
 
     private UserData userData = UserData.getInstance();
     DeviceDAO dDao = new DeviceDAO();
@@ -51,9 +76,13 @@ public class AddDeviceController {
     String unit = "";
 
     public void initialize() {
+        deviceDescriptionLabel.setText("Laitteen kuvaus:\n(valinnainen)");
         deviceType.setItems(FXCollections.observableArrayList( "Laite", "Valaisin", "Sensori"));
         deviceSubType.setItems(FXCollections.observableArrayList("Pesukone", "Astianpesukone", "Imuri", "Sauna", "Lukko", "Kamera"));
-        deviceDescriptionLabel.setText("Laitteen kuvaus:\n(valinnainen)");
+        sensorType.setItems(FXCollections.observableArrayList("Lämpötila", "Ilmankosteus", "CO2", "Liike"));
+        washerMode.setItems(FXCollections.observableArrayList("Puuvilla", "Hienopesu", "Sport"));
+        washerTemp.setItems(FXCollections.observableArrayList("30", "40", "60", "90"));
+        washerSpin.setItems(FXCollections.observableArrayList("0", "600", "800", "1000", "1200"));
     }
 
     public void typeChanged() {
@@ -67,35 +96,21 @@ public class AddDeviceController {
             lightingPane.setVisible(true);
         } else if(deviceType.getValue().equals("Sensori")) {
             deviceLabel.setText("Sensori");
-            deviceSubTypeLabel.setVisible(false);
-            deviceSubType.setVisible(false);
+            sensorTypeLabel.setVisible(true);
+            sensorType.setVisible(true);
+            sensorPane.setVisible(true);
         }
 
     }
 
     public void subTypeChanged() {
-        hideAll();
+        hideAllSubTEMP();
         if (deviceSubType.getValue().equals("Pesukone")) {
             deviceLabel.setText("Pesukone:");
-            applianceStartNow.setVisible(true);
-            washerQuickCheck.setVisible(true);
-            applianceTimerLabel.setVisible(true);
-            applianceTimerText.setVisible(true);
-            applianceCommandLabel.setVisible(true);
-            applianceCommandText.setVisible(true);
-            formatText.setVisible(true);
-            unitText.setVisible(true);
-            formatLabel.setVisible(true);
-            unitLabel.setVisible(true);
-        } else if (deviceSubType.getValue().equals("Kiuas")) {
-            deviceLabel.setText("Kiuas:");
-            applianceStartNow.setVisible(true);
-            applianceTimerLabel.setVisible(true);
-            applianceTimerText.setVisible(true);
-            formatText.setVisible(true);
-            unitText.setVisible(true);
-            formatLabel.setVisible(true);
-            unitLabel.setVisible(true);
+            washerPane.setVisible(true);
+        } else if (deviceSubType.getValue().equals("Astianpesukone")) {
+            deviceLabel.setText("Astianpesukone:");
+            dishwasherPane.setVisible(true);
         }
     }
 
@@ -114,7 +129,9 @@ public class AddDeviceController {
 
         if (deviceType.getValue().equals("Laite")) {
             if (deviceSubType.getValue().equals("Pesukone")) {
-                addAppliance();
+                generateWasherControl();
+            } else if (deviceSubType.getValue().equals("Astianpesukone")) {
+                generateDishwasherControl();
             }
         } else if (deviceType.getValue().equals("Valaisin")) {
             generateLightingControl();
@@ -134,61 +151,36 @@ public class AddDeviceController {
         }
     }
 
-    public void addAppliance() {
-        deviceControl = "Appliance;" + deviceSubType.getValue() + ";";
-        format = formatText.getText();
-        unit = unitText.getText();
-        if (applianceStartNow.isSelected()) {
-            deviceControl += "On;";
-        } else {
-            deviceControl += "Off;";
-        }
-        if (applianceTimerText.getText().isEmpty()) {
-            deviceControl += ";";
-        } else {
-            deviceControl += applianceTimerText.getText() + ";";
-        }
-        if (washerQuickCheck.isSelected()) {
-            deviceControl += "Quick;";
-        } else {
-            deviceControl += "Normal;";
-        }
-        deviceControl += applianceCommandText.getText();
-    }
-
-    public void generateLightingControl() {
-        deviceControl = "Lighting;";
-        if (lampStatus.isSelected()) {
+    public void generateSensorControl() {
+        deviceControl = "Sensor;";
+        deviceControl += sensorType.getValue() + ";";
+        if (sensorStatus.isSelected()) {
             deviceControl += "On";
         } else {
             deviceControl += "Off";
         }
+        format = "Sensoriformat";
+        unit = null;
+    }
 
-        switch (brightness.getSelectedToggle().toString()) {
-            case "brightness1":
-                deviceControl += "1;";
-                break;
-            case "brightness2":
-                deviceControl += "2;";
-                break;
-            case "brightness3":
-                deviceControl += "3;";
-                break;
-            case "brightness4":
-                deviceControl += "4;";
-                break;
+    public void generateLightingControl() {
+        deviceControl = "Lighting;";
+        if (brightness1.isSelected()) {
+            deviceControl += "1;";
+        } else if (brightness2.isSelected()) {
+            deviceControl += "2;";
+        } else if (brightness3.isSelected()) {
+            deviceControl += "3;";
+        } else if (brightness4.isSelected()) {
+            deviceControl += "4;";
         }
 
-        switch (color.getSelectedToggle().toString()) {
-            case "colorCold":
-                deviceControl += "Cold;";
-                break;
-            case "colorNeutral":
-                deviceControl += "Neutral;";
-                break;
-            case "colorWarm":
-                deviceControl += "Warm;";
-                break;
+        if (colorCold.isSelected()) {
+            deviceControl += "Cold;";
+        } else if (colorNeutral.isSelected()) {
+            deviceControl += "Neutral;";
+        } else if (colorWarm.isSelected()) {
+            deviceControl += "Warm;";
         }
 
         if (motionOn.isSelected()) {
@@ -197,37 +189,105 @@ public class AddDeviceController {
             deviceControl += "Off";
         }
 
+        if (lampStatus.isSelected()) {
+            deviceControl += "On;";
+        } else {
+            deviceControl += "Off;";
+        }
+
         format = "Status";
         unit = null;
     }
 
-    public void generateSensorControl() {
-        deviceControl = "Sensor";
+    public void generateWasherControl() {
+        deviceControl = "Laite;" + deviceSubType.getValue() + ";";
+        deviceControl += washerMode.getValue() + ";" + washerTemp.getValue() + ";" + washerSpin.getValue() + ";";
+        if (washerExtra.isSelected()) {
+            deviceControl += "On;";
+        } else {
+            deviceControl += "Off;";
+        }
+        if (washerQuick.isSelected()) {
+            deviceControl += "On;";
+        } else {
+            deviceControl += "Off;";
+        }
+        if (washerStartNow.isSelected()) {
+            deviceControl += "On;";
+        } else {
+            deviceControl += "Off;";
+        }
+        if (washerTimerText.getText().isEmpty()) {
+            deviceControl += "-1";
+        } else {
+            deviceControl += washerTimerText.getText();
+        }
+        format = "Laiteformat";
+        unit = null;
+    }
+
+    public void generateDishwasherControl() {
+        deviceControl = "Laite;" + deviceSubType.getValue() + ";";
+        if (radioEco.isSelected()) {
+            deviceControl += "Eko;";
+        } else if (radioQuick.isSelected()) {
+            deviceControl += "Pika;";
+        } else if (radioEff.isSelected()) {
+            deviceControl += "Teho;";
+        }
+        if (dishwasherStartNow.isSelected()) {
+            deviceControl += "On;";
+        } else {
+            deviceControl += "Off;";
+        }
+        if (dishwasherTimerText.getText().isEmpty()) {
+            deviceControl += "-1";
+        } else {
+            deviceControl += dishwasherTimerText.getText();
+        }
+        format = "Laiteformat";
+        unit = null;
     }
 
     public void hideAll() {
+        deviceLabel.setText("");
+        sensorPane.setVisible(false);
         lightingPane.setVisible(false);
-        washerQuickCheck.setVisible(false);
-        applianceStartNow.setVisible(false);
-        applianceTimerLabel.setVisible(false);
-        applianceTimerText.setVisible(false);
-        applianceCommandLabel.setVisible(false);
-        applianceCommandText.setVisible(false);
-        formatText.setVisible(false);
-        unitText.setVisible(false);
-        formatLabel.setVisible(false);
-        unitLabel.setVisible(false);
+        washerPane.setVisible(false);
+        dishwasherPane.setVisible(false);
         deviceSubTypeLabel.setVisible(false);
         deviceSubType.setVisible(false);
+        sensorTypeLabel.setVisible(false);
+        sensorType.setVisible(false);
     }
 
-    public void startNowClicked() {
-        if (applianceStartNow.isSelected()) {
-            applianceTimerLabel.setDisable(true);
-            applianceTimerText.setDisable(true);
+    public void hideAllSubTEMP() {
+        deviceLabel.setText("");
+        sensorPane.setVisible(false);
+        lightingPane.setVisible(false);
+        washerPane.setVisible(false);
+        dishwasherPane.setVisible(false);
+        sensorTypeLabel.setVisible(false);
+        sensorType.setVisible(false);
+    }
+
+    public void washerStartNowClicked() {
+        if (washerStartNow.isSelected()) {
+            washerTimerLabel.setDisable(true);
+            washerTimerText.setDisable(true);
         } else {
-            applianceTimerLabel.setDisable(false);
-            applianceTimerText.setDisable(false);
+            washerTimerLabel.setDisable(false);
+            washerTimerText.setDisable(false);
+        }
+    }
+
+    public void dishwasherStartNowClicked() {
+        if (dishwasherStartNow.isSelected()) {
+            dishwasherTimerLabel.setDisable(true);
+            dishwasherTimerText.setDisable(true);
+        } else {
+            dishwasherTimerLabel.setDisable(false);
+            dishwasherTimerText.setDisable(false);
         }
     }
 

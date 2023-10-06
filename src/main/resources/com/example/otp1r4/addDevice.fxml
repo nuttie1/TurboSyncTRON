@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.AddDeviceController">
    <children>
       <StackPane>
@@ -39,17 +38,24 @@
                   <ComboBox fx:id="deviceType" layoutX="761.0" layoutY="119.0" onAction="#typeChanged" prefWidth="150.0" promptText="Laitteen tyyppi" />
                   <Label fx:id="deviceDescriptionLabel" layoutX="340.0" layoutY="172.0" prefHeight="44.0" prefWidth="89.0" text="Laitteen kuvaus:" />
                   <TextArea fx:id="deviceDescription" layoutX="453.0" layoutY="172.0" prefHeight="69.0" prefWidth="186.0" promptText="Kuvaus" />
-                  <ComboBox fx:id="deviceSubType" layoutX="761.0" layoutY="169.0" onAction="#subTypeChanged" prefWidth="150.0" promptText="Laitteen alityyppi" />
-                  <Label fx:id="deviceSubTypeLabel" layoutX="698.0" layoutY="175.0" text="Alityyppi:" />
+                  <ComboBox fx:id="deviceSubType" layoutX="761.0" layoutY="169.0" onAction="#subTypeChanged" prefWidth="150.0" promptText="Laitetyyppi" visible="false" />
+                  <Label fx:id="deviceSubTypeLabel" layoutX="693.0" layoutY="173.0" text="Laitetyyppi:" visible="false" />
                   <Label fx:id="deviceLabel" layoutX="453.0" layoutY="298.0" />
                   <Label fx:id="nameErrorLabel" layoutX="455.0" layoutY="149.0" textFill="RED" />
                   <Label fx:id="typeErrorLabel" layoutX="764.0" layoutY="149.0" textFill="RED" />
+                  <Label fx:id="sensorTypeLabel" layoutX="685.0" layoutY="173.0" text="Sensorityyppi:" visible="false" />
+                  <ComboBox fx:id="sensorType" layoutX="761.0" layoutY="169.0" prefWidth="150.0" promptText="Sensorityyppi" visible="false" />
                </children>
             </AnchorPane>
          </children>
       </StackPane>
       <StackPane layoutY="339.0">
          <children>
+            <AnchorPane fx:id="sensorPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <CheckBox fx:id="sensorStatus" layoutX="443.0" layoutY="38.0" mnemonicParsing="false" text="Päällä" />
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="lightingPane" prefHeight="350.0" prefWidth="1300.0" visible="false">
                <children>
                   <CheckBox fx:id="lampStatus" layoutX="443.0" layoutY="39.0" mnemonicParsing="false" text="Päällä" />
@@ -77,16 +83,30 @@
             </AnchorPane>
             <AnchorPane fx:id="washerPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
-                  <CheckBox fx:id="applianceStartNow" layoutX="723.0" layoutY="124.0" mnemonicParsing="false" onAction="#startNowClicked" text="Käynnistä nyt" />
-                  <Label fx:id="applianceTimerLabel" layoutX="517.0" layoutY="80.0" text="Ajastus:" />
-                  <TextField fx:id="applianceTimerText" layoutX="149.0" layoutY="112.0" promptText="0000" />
-                  <Label fx:id="applianceCommandLabel" layoutX="671.0" layoutY="80.0" text="Komento:" />
-                  <TextField fx:id="applianceCommandText" layoutX="799.0" layoutY="193.0" promptText="Komento" />
-                  <Label fx:id="formatLabel" layoutX="361.0" layoutY="97.0" text="Datan muoto:" />
-                  <TextField fx:id="formatText" layoutX="537.0" layoutY="124.0" prefHeight="25.0" prefWidth="89.0" promptText="Format" />
-                  <Label fx:id="unitLabel" layoutX="581.0" layoutY="149.0" text="Datan yksikkö:" />
-                  <TextField fx:id="unitText" layoutX="421.0" layoutY="205.0" prefHeight="25.0" prefWidth="89.0" promptText="Yksikkö" />
-                  <CheckBox fx:id="washerQuickCheck" layoutX="223.0" layoutY="157.0" mnemonicParsing="false" text="Pikapesu" />
+                  <CheckBox fx:id="washerStartNow" layoutX="438.0" layoutY="235.0" mnemonicParsing="false" onAction="#washerStartNowClicked" text="Käynnistä nyt" />
+                  <Label fx:id="washerTimerLabel" layoutX="440.0" layoutY="274.0" text="Ajastus:" />
+                  <TextField fx:id="washerTimerText" layoutX="489.0" layoutY="270.0" promptText="0000" />
+                  <CheckBox fx:id="washerQuick" layoutX="437.0" layoutY="202.0" mnemonicParsing="false" text="Pikapesu" />
+                  <ComboBox fx:id="washerMode" layoutX="437.0" layoutY="40.0" prefWidth="150.0" promptText="Pesuohjelma" />
+                  <ComboBox fx:id="washerTemp" layoutX="437.0" layoutY="79.0" prefWidth="150.0" promptText="Lämpötila" />
+                  <ComboBox fx:id="washerSpin" layoutX="437.0" layoutY="118.0" prefWidth="150.0" promptText="Linkous" />
+                  <Label layoutX="440.0" layoutY="158.0" />
+                  <CheckBox fx:id="washerExtra" layoutX="437.0" layoutY="167.0" mnemonicParsing="false" text="Lisähuuhtelu" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="dishwasherPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <RadioButton fx:id="radioEco" layoutX="448.0" layoutY="72.0" mnemonicParsing="false" text="Eko">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="dishWasherMode" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioQuick" layoutX="505.0" layoutY="72.0" mnemonicParsing="false" text="Pika" toggleGroup="$dishWasherMode" />
+                  <RadioButton fx:id="radioEff" layoutX="566.0" layoutY="72.0" mnemonicParsing="false" text="Teho" toggleGroup="$dishWasherMode" />
+                  <Label layoutX="448.0" layoutY="40.0" text="Pesuohjelma:" />
+                  <CheckBox fx:id="dishwasherStartNow" layoutX="448.0" layoutY="116.0" mnemonicParsing="false" onAction="#dishwasherStartNowClicked" text="Käynnistä nyt" />
+                  <Label fx:id="dishwasherTimerLabel" layoutX="448.0" layoutY="158.0" text="Ajastus:" />
+                  <TextField fx:id="dishwasherTimerText" layoutX="497.0" layoutY="154.0" promptText="0000" />
                </children>
             </AnchorPane>
          </children>
