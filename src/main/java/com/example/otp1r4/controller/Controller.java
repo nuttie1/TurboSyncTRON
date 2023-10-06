@@ -28,6 +28,7 @@ public interface Controller {
         Parent root = FXMLLoader.load(Main.class.getResource(nextView));
         Stage window = (Stage) currentNode.getScene().getWindow();
         window.setScene(new Scene(root));
+        window.centerOnScreen();
     }
     /**
      * @param nextView fxml file name ex. mainView.fxml
