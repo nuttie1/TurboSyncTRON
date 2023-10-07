@@ -214,8 +214,19 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += "Off";
         }
-        format = "Sensoriformat";
-        unit = null;
+        if (sensorType.getValue().equals("Lämpötila")) {
+            format = "Lämpötila";
+            unit = "°C";
+        } else if (sensorType.getValue().equals("Ilmankosteus")) {
+            format = "Ilmankosteus";
+            unit = "%";
+        } else if (sensorType.getValue().equals("CO2")) {
+            format = "CO2-pitoisuus";
+            unit = "ppm";
+        } else if (sensorType.getValue().equals("Liike")) {
+            format = "Liike";
+            unit = null;
+        }
     }
 
     public void generateLightingControl() {
@@ -246,7 +257,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += "Off";
         }
-        format = "Status";
+        format = "Päällä/pois";
         unit = null;
     }
 
@@ -273,7 +284,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += washerTimerText.getText();
         }
-        format = "Laiteformat";
+        format = "Toiminto";
         unit = null;
     }
 
@@ -296,7 +307,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += dishwasherTimerText.getText();
         }
-        format = "Laiteformat";
+        format = "Toiminto";
         unit = null;
     }
 
@@ -324,14 +335,14 @@ public class AddDeviceController implements Controller {
         String result = selectedCheckBoxes.toString();
         deviceControl += result + ";" + vacuumActiveTime1.getText() + ";" + vacuumActiveTime2.getText() + ";" + vacuumCommand.getText();
 
-        format = "Laiteformat";
+        format = "Toiminto";
         unit = null;
     }
 
     public void generateSaunaControl() {
         deviceControl = "Laite;" + deviceSubType.getValue() + ";" + saunaTemp.getText() + ";" + heatingTime1.getText() + "+" + heatingTime2.getText();
-        format = "Laiteformat";
-        unit = null;
+        format = "Lämpötila";
+        unit = "°C";
     }
 
     public void generateLockControl() {
@@ -341,7 +352,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += "Off";
         }
-        format = "Status";
+        format = "Lukitus";
         unit = null;
     }
 
@@ -352,7 +363,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += "Off";
         }
-        format = "Status";
+        format = "Tallennus";
         unit = null;
     }
 
