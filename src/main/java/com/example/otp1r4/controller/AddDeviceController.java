@@ -208,7 +208,7 @@ public class AddDeviceController implements Controller {
     }
 
     public void generateSensorControl() {
-        deviceControl = "Sensor;";
+        deviceControl = "Sensori;";
         deviceControl += sensorType.getValue() + ";";
         if (sensorStatus.isSelected()) {
             deviceControl += "On";
@@ -231,7 +231,7 @@ public class AddDeviceController implements Controller {
     }
 
     public void generateLightingControl() {
-        deviceControl = "Lighting;";
+        deviceControl = "Valaisin;";
         if (brightness1.isSelected()) {
             deviceControl += "1";
         } else if (brightness2.isSelected()) {
@@ -243,11 +243,11 @@ public class AddDeviceController implements Controller {
         }
         deviceControl += ";";
         if (colorCold.isSelected()) {
-            deviceControl += "Cold";
+            deviceControl += "Kylmä";
         } else if (colorNeutral.isSelected()) {
-            deviceControl += "Neutral";
+            deviceControl += "Neutraali";
         } else if (colorWarm.isSelected()) {
-            deviceControl += "Warm";
+            deviceControl += "Lämmin";
         }
         deviceControl += ";";
         if (motionOn.isSelected()) {
