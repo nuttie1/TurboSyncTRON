@@ -15,7 +15,7 @@
          </font>
       </Label>
       <TextField fx:id="usernameField" disable="true" layoutX="278.0" layoutY="74.0" promptText="käyttäjätunnus" />
-      <Hyperlink layoutX="275.0" layoutY="363.0" onAction="#clickBack" style="-fx-underline: true;" text="Takaisin" />
+      <Hyperlink fx:id="backLink" layoutX="275.0" layoutY="363.0" onAction="#clickBack" style="-fx-underline: true;" text="Takaisin" />
       <Label layoutX="174.0" layoutY="78.0" text="Käyttäjätunnus:">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />

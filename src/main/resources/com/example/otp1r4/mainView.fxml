@@ -15,7 +15,7 @@
         <tabs>
           <Tab fx:id="favoriteDevicesTab" text="Lempi laitteet">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="1300.0" />
             </content>
           </Tab>
           <Tab fx:id="allDevicesTab" text="Kaikki laitteet">
