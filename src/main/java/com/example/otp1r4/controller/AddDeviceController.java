@@ -76,7 +76,7 @@ public class AddDeviceController implements Controller {
     @FXML
     private CheckBox vacuumStartNow, monday, tuesday, wednesday, thursday, friday, saturday, sunday;
     @FXML
-    private TextField vacuumActiveTime1, vacuumActiveTime2, vacuumCommand;
+    private TextField vacuumActiveTime1, vacuumActiveTime2, vacuumActiveTime3, vacuumActiveTime4, vacuumCommand;
 
     // SAUNA
     @FXML
@@ -200,6 +200,7 @@ public class AddDeviceController implements Controller {
                     favCheck.isSelected(), userData.getUserID(), deviceControl, format, unit);
             deviceName.setText("");
             deviceDescription.setText("");
+            hideAll(false);
 
             Stage stage = (Stage) deviceName.getScene().getWindow();
             showSuccessMessage(stage, "Laitteen lisäys onnistui!", "Laite lisätty onnistuneesti!", 3);
@@ -232,21 +233,23 @@ public class AddDeviceController implements Controller {
     public void generateLightingControl() {
         deviceControl = "Lighting;";
         if (brightness1.isSelected()) {
-            deviceControl += "1;";
+            deviceControl += "1";
         } else if (brightness2.isSelected()) {
-            deviceControl += "2;";
+            deviceControl += "2";
         } else if (brightness3.isSelected()) {
-            deviceControl += "3;";
+            deviceControl += "3";
         } else if (brightness4.isSelected()) {
-            deviceControl += "4;";
+            deviceControl += "4";
         }
+        deviceControl += ";";
         if (colorCold.isSelected()) {
-            deviceControl += "Cold;";
+            deviceControl += "Cold";
         } else if (colorNeutral.isSelected()) {
-            deviceControl += "Neutral;";
+            deviceControl += "Neutral";
         } else if (colorWarm.isSelected()) {
-            deviceControl += "Warm;";
+            deviceControl += "Warm";
         }
+        deviceControl += ";";
         if (motionOn.isSelected()) {
             deviceControl += "On;";
         } else {
@@ -291,12 +294,13 @@ public class AddDeviceController implements Controller {
     public void generateDishwasherControl() {
         deviceControl = "Laite;" + deviceSubType.getValue() + ";";
         if (radioEco.isSelected()) {
-            deviceControl += "Eko;";
+            deviceControl += "Eko";
         } else if (radioQuick.isSelected()) {
-            deviceControl += "Pika;";
+            deviceControl += "Pika";
         } else if (radioEff.isSelected()) {
-            deviceControl += "Teho;";
+            deviceControl += "Teho";
         }
+        deviceControl += ";";
         if (dishwasherStartNow.isSelected()) {
             deviceControl += "On;";
         } else {
@@ -323,24 +327,26 @@ public class AddDeviceController implements Controller {
 
         deviceControl = "Laite;" + deviceSubType.getValue() + ";";
         if (vacuumVacuum.isSelected()) {
-            deviceControl += "Imurointi;";
+            deviceControl += "Imurointi";
         } else if (vacuumMop.isSelected()) {
-            deviceControl += "Moppaus;";
+            deviceControl += "Moppaus";
         }
+        deviceControl += ";";
         if (vacuumStartNow.isSelected()) {
             deviceControl += "On;";
         } else {
             deviceControl += "Off;";
         }
         String result = selectedCheckBoxes.toString();
-        deviceControl += result + ";" + vacuumActiveTime1.getText() + ";" + vacuumActiveTime2.getText() + ";" + vacuumCommand.getText();
+        deviceControl += result + ";" + vacuumActiveTime1.getText() + "-" + vacuumActiveTime2.getText() + ";"
+                + vacuumActiveTime3.getText() + "-" + vacuumActiveTime4.getText() + ";" + vacuumCommand.getText();
 
         format = "Toiminto";
         unit = null;
     }
 
     public void generateSaunaControl() {
-        deviceControl = "Laite;" + deviceSubType.getValue() + ";" + saunaTemp.getText() + ";" + heatingTime1.getText() + "+" + heatingTime2.getText();
+        deviceControl = "Laite;" + deviceSubType.getValue() + ";" + saunaTemp.getText() + ";" + heatingTime1.getText() + "-" + heatingTime2.getText();
         format = "Lämpötila";
         unit = "°C";
     }
