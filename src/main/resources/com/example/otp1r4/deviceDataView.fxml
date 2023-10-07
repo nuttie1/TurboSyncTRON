@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="chartAnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.DataDisplayController">
+   <children>
+      <ComboBox fx:id="comboBox" layoutX="14.0" layoutY="14.0" onAction="#onComboboxChanged" prefWidth="150.0" promptText="Valitse laite" />
+      <AnchorPane fx:id="anchorForChart" layoutY="45.0" prefHeight="486.0" prefWidth="1300.0">
+         <children>
+            <LineChart fx:id="numberLineChart" alternativeColumnFillVisible="true" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="486.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <xAxis>
+                <CategoryAxis animated="false" endMargin="0.0" side="BOTTOM" startMargin="0.0" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <BarChart fx:id="barChart" layoutX="85.0" layoutY="43.0" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="467.0" prefWidth="1300.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <ScrollPane fx:id="applianceDataView" prefHeight="467.0" prefWidth="1300.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <content>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="1288.0" />
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <ScrollPane fx:id="arbView" layoutX="14.0" layoutY="542.0" prefHeight="252.0" prefWidth="1275.0">
+        <content>
+          <AnchorPane layoutX="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="1272.0" />
+        </content>
+      </ScrollPane>
+      <Label layoutX="20.0" layoutY="515.0" text="Viestit">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

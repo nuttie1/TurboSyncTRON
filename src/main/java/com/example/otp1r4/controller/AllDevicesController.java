@@ -39,13 +39,9 @@ public class AllDevicesController implements Controller, Initializable {
     }
 
     public void showAllDevices() {
-        GridPane pane = new GridPane();
 
-        Node[] headers = new Node[] {
-                createHeaderNode("Nimi"),
-                createHeaderNode("Kuvaus"),
-                createHeaderNode("Lempi")
-        };
+
+
         pane.addRow(0,headers);
 
         int row = 1;

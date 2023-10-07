@@ -54,7 +54,7 @@ public class FavoriteDevicesController implements Controller, Initializable {
     }
 
     public void addFavoriteDevice() throws IOException, SQLException {
-        List<Device> devices = deviceDAO.getFavoriteDevices(user.getUsername());
+        List<Device> devices = deviceDAO.getFavoriteDevices(user.getUserID());
         FavoriteDeviceController controller;
         GridPane gridPane = new GridPane();
 

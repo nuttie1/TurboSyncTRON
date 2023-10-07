@@ -1,5 +1,10 @@
 package com.example.otp1r4.model;
 
+import com.example.otp1r4.dao.DataDAO;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+
 public class Device implements Model{
     int deviceId;
     String deviceName;
@@ -8,6 +13,13 @@ public class Device implements Model{
     String deviceControl;
     String format;
     String unit;
+    ArrayList<DeviceData> deviceDataList = new ArrayList<>();
+    public class DeviceData
+    {
+        public Timestamp timeStamp;
+        public String devData;
+        public String dataArb;
+    };
 
     public Device(int deviceId, String deviceName, String deviceDesc, boolean deviceFavorite, String deviceControl, String format, String unit) {
         this.deviceId = deviceId;
@@ -52,5 +64,29 @@ public class Device implements Model{
 
     public void updateIsDeviceFavorite(boolean deviceFavorite) {
         this.deviceFavorite = deviceFavorite;
+    }
+
+    /** get devices data values
+     *
+     * @param amount how many rows of data is gotten
+     * @return DeviceData struct
+     */
+    public ArrayList<DeviceData> getDeviceDataList(int amount) {
+        DataDAO dataDAO = new DataDAO();
+        dataDAO.getDeviceData(this,amount);
+        return deviceDataList;
+    }
+    public void setDeviceData(Timestamp timeStamp,String data, String dataArb){
+        DeviceData dData = new DeviceData();
+        dData.timeStamp = timeStamp;
+        dData.dataArb = dataArb;
+        dData.devData = data;
+
+        deviceDataList.add(dData);
+    }
+
+    @Override
+    public String toString() {
+        return getDeviceName();
     }
 }

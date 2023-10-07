@@ -76,7 +76,7 @@ public class AddDeviceController implements Controller {
     @FXML
     private CheckBox vacuumStartNow, monday, tuesday, wednesday, thursday, friday, saturday, sunday;
     @FXML
-    private TextField vacuumActiveTime1, vacuumActiveTime2, vacuumCommand;
+    private TextField vacuumActiveTime1, vacuumActiveTime2, vacuumActiveTime3, vacuumActiveTime4, vacuumCommand;
 
     // SAUNA
     @FXML
@@ -200,6 +200,7 @@ public class AddDeviceController implements Controller {
                     favCheck.isSelected(), userData.getUserID(), deviceControl, format, unit);
             deviceName.setText("");
             deviceDescription.setText("");
+            hideAll(false);
 
             Stage stage = (Stage) deviceName.getScene().getWindow();
             showSuccessMessage(stage, "Laitteen lisäys onnistui!", "Laite lisätty onnistuneesti!", 3);
@@ -207,35 +208,48 @@ public class AddDeviceController implements Controller {
     }
 
     public void generateSensorControl() {
-        deviceControl = "Sensor;";
+        deviceControl = "Sensori;";
         deviceControl += sensorType.getValue() + ";";
         if (sensorStatus.isSelected()) {
             deviceControl += "On";
         } else {
             deviceControl += "Off";
         }
-        format = "Sensoriformat";
-        unit = null;
+        if (sensorType.getValue().equals("Lämpötila")) {
+            format = "Lämpötila";
+            unit = "°C";
+        } else if (sensorType.getValue().equals("Ilmankosteus")) {
+            format = "Ilmankosteus";
+            unit = "%";
+        } else if (sensorType.getValue().equals("CO2")) {
+            format = "CO2-pitoisuus";
+            unit = "ppm";
+        } else if (sensorType.getValue().equals("Liike")) {
+            format = "Liike";
+            unit = null;
+        }
     }
 
     public void generateLightingControl() {
-        deviceControl = "Lighting;";
+        deviceControl = "Valaisin;";
         if (brightness1.isSelected()) {
-            deviceControl += "1;";
+            deviceControl += "1";
         } else if (brightness2.isSelected()) {
-            deviceControl += "2;";
+            deviceControl += "2";
         } else if (brightness3.isSelected()) {
-            deviceControl += "3;";
+            deviceControl += "3";
         } else if (brightness4.isSelected()) {
-            deviceControl += "4;";
+            deviceControl += "4";
         }
+        deviceControl += ";";
         if (colorCold.isSelected()) {
-            deviceControl += "Cold;";
+            deviceControl += "Kylmä";
         } else if (colorNeutral.isSelected()) {
-            deviceControl += "Neutral;";
+            deviceControl += "Neutraali";
         } else if (colorWarm.isSelected()) {
-            deviceControl += "Warm;";
+            deviceControl += "Lämmin";
         }
+        deviceControl += ";";
         if (motionOn.isSelected()) {
             deviceControl += "On;";
         } else {
@@ -246,7 +260,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += "Off";
         }
-        format = "Status";
+        format = "Kirkkaus";
         unit = null;
     }
 
@@ -273,19 +287,20 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += washerTimerText.getText();
         }
-        format = "Laiteformat";
+        format = "Toiminto";
         unit = null;
     }
 
     public void generateDishwasherControl() {
         deviceControl = "Laite;" + deviceSubType.getValue() + ";";
         if (radioEco.isSelected()) {
-            deviceControl += "Eko;";
+            deviceControl += "Eko";
         } else if (radioQuick.isSelected()) {
-            deviceControl += "Pika;";
+            deviceControl += "Pika";
         } else if (radioEff.isSelected()) {
-            deviceControl += "Teho;";
+            deviceControl += "Teho";
         }
+        deviceControl += ";";
         if (dishwasherStartNow.isSelected()) {
             deviceControl += "On;";
         } else {
@@ -296,7 +311,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += dishwasherTimerText.getText();
         }
-        format = "Laiteformat";
+        format = "Toiminto";
         unit = null;
     }
 
@@ -312,26 +327,28 @@ public class AddDeviceController implements Controller {
 
         deviceControl = "Laite;" + deviceSubType.getValue() + ";";
         if (vacuumVacuum.isSelected()) {
-            deviceControl += "Imurointi;";
+            deviceControl += "Imurointi";
         } else if (vacuumMop.isSelected()) {
-            deviceControl += "Moppaus;";
+            deviceControl += "Moppaus";
         }
+        deviceControl += ";";
         if (vacuumStartNow.isSelected()) {
             deviceControl += "On;";
         } else {
             deviceControl += "Off;";
         }
         String result = selectedCheckBoxes.toString();
-        deviceControl += result + ";" + vacuumActiveTime1.getText() + ";" + vacuumActiveTime2.getText() + ";" + vacuumCommand.getText();
+        deviceControl += result + ";" + vacuumActiveTime1.getText() + "-" + vacuumActiveTime2.getText() + ";"
+                + vacuumActiveTime3.getText() + "-" + vacuumActiveTime4.getText() + ";" + vacuumCommand.getText();
 
-        format = "Laiteformat";
+        format = "Toiminto";
         unit = null;
     }
 
     public void generateSaunaControl() {
-        deviceControl = "Laite;" + deviceSubType.getValue() + ";" + saunaTemp.getText() + ";" + heatingTime1.getText() + "+" + heatingTime2.getText();
-        format = "Laiteformat";
-        unit = null;
+        deviceControl = "Laite;" + deviceSubType.getValue() + ";" + saunaTemp.getText() + ";" + heatingTime1.getText() + "-" + heatingTime2.getText();
+        format = "Lämpötila";
+        unit = "°C";
     }
 
     public void generateLockControl() {
@@ -341,7 +358,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += "Off";
         }
-        format = "Status";
+        format = "Lukitus";
         unit = null;
     }
 
@@ -352,7 +369,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += "Off";
         }
-        format = "Status";
+        format = "Tallennus";
         unit = null;
     }
 
