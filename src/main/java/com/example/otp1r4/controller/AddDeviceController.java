@@ -260,7 +260,7 @@ public class AddDeviceController implements Controller {
         } else {
             deviceControl += "Off";
         }
-        format = "Päällä/pois";
+        format = "Kirkkaus";
         unit = null;
     }
 
