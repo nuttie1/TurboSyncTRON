@@ -14,9 +14,9 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="190.0" prefWidth="474.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.FavoriteDeviceController">
+<AnchorPane prefHeight="190.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.FavoriteDeviceController">
    <children>
-      <AnchorPane layoutX="86.0" layoutY="19.0" prefHeight="150.0" prefWidth="296.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-background-color: #ededed;">
+      <AnchorPane layoutX="15.0" layoutY="19.0" prefHeight="150.0" prefWidth="296.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-background-color: #ededed;">
          <children>
             <AnchorPane fx:id="deviceLight" layoutX="3.0" layoutY="3.0" minHeight="150.0" minWidth="300.0" prefHeight="150.0" prefWidth="300.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

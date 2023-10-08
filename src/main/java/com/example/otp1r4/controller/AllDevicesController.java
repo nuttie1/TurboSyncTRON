@@ -29,6 +29,9 @@ public class AllDevicesController implements Controller, Initializable {
     @FXML
     AnchorPane allDevicesPane;
 
+    @FXML
+    GridPane grid;
+
     List<Device> allDevices = new ArrayList<>();
 
 
@@ -82,19 +85,6 @@ public class AllDevicesController implements Controller, Initializable {
     }
 
     public void showAllDevices() {
-        final GridPane grid = new GridPane();
-        grid.setPadding(new Insets(20));
-        grid.setHgap(10);
-        grid.setVgap(10);
-
-        Label headerName = new Label("Nimi");
-        Label headerDesc = new Label("Kuvaus");
-
-        headerName.setStyle("-fx-font-size: 25px;-fx-border-style: solid;-fx-border-color: #A3E1C9FF;");
-        headerDesc.setStyle("-fx-font-size: 25px;-fx-border-style: solid;-fx-border-color: #A3E1C9FF;");
-
-        grid.add(headerName,0,0);
-        grid.add(headerDesc,1,0);
 
         for (int i = 0; i<allDevices.size();i++) {
             Device device = allDevices.get(i);
@@ -102,18 +92,15 @@ public class AllDevicesController implements Controller, Initializable {
             Label deviceName = new Label(device.getDeviceName());
             Label deviceDesc = new Label(device.getDeviceDesc());
 
-
-            deviceName.setStyle("-fx-font-size: 25px;-fx-border-style: solid;-fx-border-color: #646464;");
-            deviceDesc.setStyle("-fx-font-size: 25px;-fx-border-style: solid;-fx-border-color: #646464;");
+            deviceName.setStyle("-fx-font-size: 15px;");
+            deviceDesc.setStyle("-fx-font-size: 15px;");
 
             grid.add(deviceName, 0, i+1);
             grid.add(deviceDesc, 1, i+1);
             grid.add(createStar(device),2,i+1);
-
         }
-
-        allDevicesPane.getChildren().add(grid);
     }
+
     private Polygon createStar(Device device){
         double[] points = {-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0};
         Polygon starPolygon = new Polygon(points);
