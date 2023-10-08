@@ -125,13 +125,13 @@ public class FavoriteDeviceController implements Controller {
                             dataToDatabase(timer, vacuumDO2);
                         }
                         if (field == saunaTimer1) {
-                            String[] times = splitControl()[saunaTIME].split("\\+");
+                            String[] times = splitControl()[saunaTIME].split("-");
                             times[0] = field.getText();
                             String timer = times[0] + "+" + times[1];
                             dataToDatabase(timer, saunaTIME);
                         }
                         if (field == saunaTimer2) {
-                            String[] times = splitControl()[saunaTIME].split("\\+");
+                            String[] times = splitControl()[saunaTIME].split("-");
                             times[1] = field.getText();
                             String timer = times[0] + "+" + times[1];
                             dataToDatabase(timer, saunaTIME);
@@ -561,7 +561,7 @@ public class FavoriteDeviceController implements Controller {
                     saunaTemp.setText("0");
                 }
                 if (!controls[saunaTIME].isEmpty()) {
-                    String[] time = controls[saunaTIME].split("\\+");
+                    String[] time = controls[saunaTIME].split("-");
                     saunaTimer1.setText(time[0]);
                     saunaTimer2.setText(time[1]);
                 }
