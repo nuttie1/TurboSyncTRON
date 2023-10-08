@@ -99,7 +99,7 @@ public class FavoriteDevicesController implements Controller, Initializable {
                 favoriteDevicesGridPane.add(deviceNode, column, row);
 
                 column++;
-                if (column == 4) {
+                if (column == 3) {
                     favoriteDevicesGridPane.getRowConstraints().add(new RowConstraints());
                     row++;
                     column = 0;
