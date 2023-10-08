@@ -2,15 +2,16 @@ package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.model.Device;
+import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class DataDisplayController implements Controller {
     private ArrayList<Device.DeviceData> dataList;
     private Device selectedDevice;
 
+    private ObservableDevices observableDevices = ObservableDevices.getInstance();
+
     enum chartMode {
         LIGHTING,
         SENSOR,
@@ -42,12 +45,29 @@ public class DataDisplayController implements Controller {
     public void initialize() {
         createCombobox();
         onComboboxChanged();
+        observableDevices.getObservableDevices().addListener((ListChangeListener<Device>) change -> {
+            while (change.next()) {
+                if (change.wasAdded()){
+                    System.out.println("HMM");
+                    getFavoriteDevices();
+                }
+            }
+        });
     }
     private void createCombobox(){
-        deviceList = deviceDao.getFavoriteDevices(userData.getUserID());
+        getFavoriteDevices();
 
-        comboBox.setItems(FXCollections.observableArrayList(deviceList));
         comboBox.getSelectionModel().selectFirst();
+    }
+
+    private void getFavoriteDevices() {
+        deviceList = new ArrayList<>();
+        for (Device device : observableDevices.getObservableDevices()) {
+            if (device.isDeviceFavorite().get()) {
+                deviceList.add(device);
+            }
+        }
+        comboBox.setItems(FXCollections.observableArrayList(deviceList));
     }
 
     public void onComboboxChanged(){
