@@ -32,9 +32,9 @@ public class AllDevicesController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userData = UserData.getInstance();;
+        userData = UserData.getInstance();
 
-        allDevices = deviceDAO.getDevices(userData.getUsername());
+        allDevices = deviceDAO.getDevices(userData.getUserID());
         showAllDevices();
     }
 

@@ -1,5 +1,8 @@
 package com.example.otp1r4.model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 import com.example.otp1r4.dao.DataDAO;
 
 import java.sql.Timestamp;
@@ -9,7 +12,7 @@ public class Device implements Model{
     int deviceId;
     String deviceName;
     String deviceDesc;
-    boolean deviceFavorite;
+    BooleanProperty deviceFavorite = new SimpleBooleanProperty();
     String deviceControl;
     String format;
     String unit;
@@ -25,7 +28,7 @@ public class Device implements Model{
         this.deviceId = deviceId;
         this.deviceName = deviceName;
         this.deviceDesc = deviceDesc;
-        this.deviceFavorite = deviceFavorite;
+        this.deviceFavorite.set(deviceFavorite);
         this.deviceControl = deviceControl;
         this.format = format;
         this.unit = unit;
@@ -42,7 +45,7 @@ public class Device implements Model{
         return deviceDesc;
     }
 
-    public boolean isDeviceFavorite() {
+    public BooleanProperty isDeviceFavorite() {
         return deviceFavorite;
     }
 
@@ -63,7 +66,7 @@ public class Device implements Model{
     }
 
     public void updateIsDeviceFavorite(boolean deviceFavorite) {
-        this.deviceFavorite = deviceFavorite;
+        this.deviceFavorite.set(deviceFavorite);
     }
 
     /** get devices data values
