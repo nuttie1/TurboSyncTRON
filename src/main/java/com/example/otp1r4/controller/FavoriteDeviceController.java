@@ -439,13 +439,13 @@ public class FavoriteDeviceController implements Controller {
         mvmntSensor.setSelected(controls[lightSENSOR].equals("On"));
 
         switch (controls[lightTEMP]) {
-            case "Cold":
+            case "Kylmä":
                 lightColorTemp1.setSelected(true);
                 break;
-            case "Neutral":
+            case "Neutraali":
                 lightColorTemp2.setSelected(true);
                 break;
-            case "Warm":
+            case "Lämmin":
                 lightColorTemp3.setSelected(true);
                 break;
         }
