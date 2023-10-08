@@ -13,7 +13,6 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="190.0" prefWidth="474.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.FavoriteDeviceController">
    <children>
       <AnchorPane layoutX="86.0" layoutY="19.0" prefHeight="150.0" prefWidth="296.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-background-color: #ededed;">
@@ -25,7 +24,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="5.0" layoutY="19.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+                  <Label layoutX="5.0" layoutY="23.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
                   <Label fx:id="deviceType1" alignment="CENTER_RIGHT" layoutX="122.0" layoutY="3.0" prefHeight="20.0" prefWidth="52.0" text="Valaisin">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
@@ -66,19 +65,19 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="5.0" layoutY="19.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+                  <Label layoutX="5.0" layoutY="23.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
                   <Label fx:id="deviceType" alignment="CENTER_RIGHT" layoutX="127.0" layoutY="4.0" prefHeight="19.0" prefWidth="47.0" text="Sensori">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="deviceDesc2" editable="false" layoutX="5.0" layoutY="41.0" prefHeight="100.0" prefWidth="117.0" wrapText="true" />
+                  <TextArea fx:id="deviceDesc2" editable="false" layoutX="5.0" layoutY="41.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
                   <Pane layoutX="264.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                      <children>
                         <Polygon fx:id="isFavorite1" fill="WHITE" layoutX="35.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
                      </children>
                   </Pane>
-                  <Label fx:id="sensorType" layoutX="133.0" layoutY="58.0" prefHeight="17.0" prefWidth="156.0">
+                  <Label fx:id="sensorType" layoutX="133.0" layoutY="42.0" prefHeight="17.0" prefWidth="156.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -92,13 +91,13 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="5.0" layoutY="36.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+                  <Label layoutX="5.0" layoutY="22.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
                   <Label fx:id="deviceType2" layoutX="118.0" layoutY="5.0" prefHeight="19.0" prefWidth="64.0" text="Pesukone">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="deviceDesc1" editable="false" layoutX="5.0" layoutY="54.0" prefHeight="50.0" prefWidth="64.0" wrapText="true" />
+                  <TextArea fx:id="deviceDesc1" editable="false" layoutX="5.0" layoutY="40.0" prefHeight="50.0" prefWidth="64.0" wrapText="true" />
                   <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                      <children>
                         <Polygon fx:id="isFavorite2" fill="WHITE" layoutX="29.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
@@ -107,10 +106,11 @@
                   <ComboBox fx:id="washingProgram" layoutX="73.0" layoutY="45.0" prefHeight="25.0" prefWidth="117.0" promptText="Pesuohjelma" />
                   <ComboBox fx:id="washingTemp" layoutX="73.0" layoutY="79.0" prefHeight="25.0" prefWidth="117.0" promptText="Lämpötila" />
                   <ComboBox fx:id="washingSpeed" layoutX="73.0" layoutY="113.0" prefHeight="25.0" prefWidth="117.0" promptText="Linkous" />
-                  <TextField fx:id="washingTimer" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <TextField fx:id="washingTimer" layoutX="6.0" layoutY="114.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
                   <CheckBox fx:id="extraWash" layoutX="198.0" layoutY="83.0" mnemonicParsing="false" text="Lisähuuhtelu" />
                   <CheckBox fx:id="quickWash" layoutX="198.0" layoutY="49.0" mnemonicParsing="false" text="Pikapesu" />
                   <CheckBox fx:id="washNow" layoutX="198.0" layoutY="117.0" mnemonicParsing="false" text="Käynnistä nyt" />
+                  <Label layoutX="6.0" layoutY="96.0" text="Ajastus:" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="deviceDishwasher" layoutX="23.0" layoutY="23.0" minHeight="150.0" minWidth="300.0" prefHeight="190.0" prefWidth="340.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -120,20 +120,20 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="5.0" layoutY="39.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+                  <Label layoutX="5.0" layoutY="22.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
                   <Label fx:id="deviceType3" layoutX="118.0" layoutY="4.0" prefHeight="19.0" prefWidth="64.0" text="Tiskikone">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="deviceDesc3" editable="false" layoutX="6.0" layoutY="58.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
+                  <TextArea fx:id="deviceDesc3" editable="false" layoutX="6.0" layoutY="40.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
                   <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                      <children>
                         <Polygon fx:id="isFavorite3" fill="WHITE" layoutX="29.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
                      </children>
                   </Pane>
-                  <TextField fx:id="dishWashTimer" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
-                  <CheckBox fx:id="dishWashNow" layoutX="122.0" layoutY="117.0" mnemonicParsing="false" text="Käynnistä nyt" />
+                  <TextField fx:id="dishWashTimer" layoutX="6.0" layoutY="114.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <CheckBox fx:id="dishWashNow" layoutX="133.0" layoutY="115.0" mnemonicParsing="false" text="Käynnistä nyt" />
                   <Label layoutX="133.0" layoutY="58.0" text="Pesuohjelma:" />
                   <RadioButton fx:id="dishProgram1" layoutX="133.0" layoutY="83.0" mnemonicParsing="false" text="Eko">
                      <toggleGroup>
@@ -142,22 +142,23 @@
                   </RadioButton>
                   <RadioButton fx:id="dishProgram2" layoutX="182.0" layoutY="83.0" mnemonicParsing="false" text="Pika" toggleGroup="$disherProgram" />
                   <RadioButton fx:id="dishProgram3" layoutX="232.0" layoutY="83.0" mnemonicParsing="false" text="Teho" toggleGroup="$disherProgram" />
+                  <Label layoutX="7.0" layoutY="93.0" text="Ajastus:" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="deviceVacuum" layoutX="33.0" layoutY="33.0" minHeight="150.0" minWidth="300.0" prefHeight="225.0" prefWidth="375.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="deviceVacuum" layoutX="33.0" layoutY="33.0" minHeight="150.0" minWidth="300.0" prefHeight="225.0" prefWidth="375.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="deviceName4" layoutX="5.0" layoutY="6.0" prefHeight="17.0" prefWidth="117.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="21.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+                  <Label layoutX="6.0" layoutY="21.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
                   <Label fx:id="deviceType4" layoutX="130.0" layoutY="2.0" prefHeight="19.0" prefWidth="40.0" text="Imuri">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="deviceDesc4" editable="false" layoutX="11.0" layoutY="37.0" prefHeight="38.0" prefWidth="106.0" wrapText="true" />
+                  <TextArea fx:id="deviceDesc4" editable="false" layoutX="6.0" layoutY="37.0" prefHeight="38.0" prefWidth="106.0" wrapText="true" />
                   <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                      <children>
                         <Polygon fx:id="isFavorite4" fill="WHITE" layoutX="29.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
@@ -185,8 +186,8 @@
                   <RadioButton fx:id="vacuumProgram" layoutX="224.0" layoutY="53.0" mnemonicParsing="false" text="Imurointi" toggleGroup="$vacuumPrograms" />
                   <TextField fx:id="vacuumTimer3" layoutX="55.0" layoutY="117.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
                   <TextField fx:id="vacuumTimer4" layoutX="108.0" layoutY="118.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
-                  <Label layoutX="234.0" layoutY="88.0" text="Komento:" />
-                  <TextField fx:id="vacuumCommand" layoutX="234.0" layoutY="102.0" prefHeight="25.0" prefWidth="52.0" />
+                  <Label layoutX="228.0" layoutY="87.0" text="Komento:" />
+                  <TextField fx:id="vacuumCommand" layoutX="228.0" layoutY="102.0" prefHeight="25.0" prefWidth="58.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="deviceSauna" layoutX="43.0" layoutY="43.0" minHeight="150.0" minWidth="300.0" prefHeight="270.0" prefWidth="420.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -196,23 +197,23 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="65.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+                  <Label layoutX="9.0" layoutY="22.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
                   <Label fx:id="deviceType41" layoutX="127.0" layoutY="4.0" prefHeight="19.0" prefWidth="43.0" text="Sauna">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="deviceDesc5" editable="false" layoutX="11.0" layoutY="90.0" prefHeight="50.0" prefWidth="106.0" wrapText="true" />
+                  <TextArea fx:id="deviceDesc5" editable="false" layoutX="9.0" layoutY="40.0" prefHeight="50.0" prefWidth="106.0" wrapText="true" />
                   <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                      <children>
                         <Polygon fx:id="isFavorite5" fill="WHITE" layoutX="29.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
                      </children>
                   </Pane>
-                  <TextField fx:id="saunaTimer1" layoutX="127.0" layoutY="106.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
-                  <Label layoutX="127.0" layoutY="83.0" text="Lämmitysaika:" />
-                  <TextField fx:id="saunaTimer2" layoutX="176.0" layoutY="106.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
-                  <Label layoutX="230.0" layoutY="83.0" text="Lämpötila:" />
-                  <TextField fx:id="saunaTemp" layoutX="230.0" layoutY="107.0" prefHeight="25.0" prefWidth="34.0" promptText="000" />
+                  <TextField fx:id="saunaTimer1" layoutX="125.0" layoutY="64.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <Label layoutX="125.0" layoutY="41.0" text="Lämmitysaika:" />
+                  <TextField fx:id="saunaTimer2" layoutX="174.0" layoutY="64.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <Label layoutX="126.0" layoutY="110.0" text="Lämpötila:" />
+                  <TextField fx:id="saunaTemp" layoutX="191.0" layoutY="106.0" prefHeight="25.0" prefWidth="34.0" promptText="000" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="deviceLock" layoutX="53.0" layoutY="53.0" minHeight="150.0" minWidth="300.0" prefHeight="325.0" prefWidth="475.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -222,19 +223,19 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="65.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+                  <Label layoutX="5.0" layoutY="25.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
                   <Label fx:id="deviceType411" layoutX="129.0" layoutY="4.0" prefHeight="19.0" prefWidth="42.0" text="Lukko">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="deviceDesc6" editable="false" layoutX="11.0" layoutY="90.0" prefHeight="50.0" prefWidth="106.0" wrapText="true" />
+                  <TextArea fx:id="deviceDesc6" editable="false" layoutX="5.0" layoutY="43.0" prefHeight="50.0" prefWidth="106.0" wrapText="true" />
                   <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                      <children>
                         <Polygon fx:id="isFavorite6" fill="WHITE" layoutX="29.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
                      </children>
                   </Pane>
-                  <CheckBox fx:id="lockLocked" layoutX="153.0" layoutY="107.0" mnemonicParsing="false" text="Lukitse" />
+                  <CheckBox fx:id="lockLocked" layoutX="142.0" layoutY="43.0" mnemonicParsing="false" text="Lukitse" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="deviceCamera" layoutX="63.0" layoutY="63.0" minHeight="150.0" minWidth="300.0" prefHeight="390.0" prefWidth="540.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -244,19 +245,19 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="65.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
+                  <Label layoutX="7.0" layoutY="26.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
                   <Label fx:id="deviceType4111" layoutX="123.0" layoutY="4.0" prefHeight="19.0" prefWidth="55.0" text="Kamera">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="deviceDesc7" editable="false" layoutX="11.0" layoutY="90.0" prefHeight="50.0" prefWidth="106.0" wrapText="true" />
+                  <TextArea fx:id="deviceDesc7" editable="false" layoutX="7.0" layoutY="44.0" prefHeight="50.0" prefWidth="106.0" wrapText="true" />
                   <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                      <children>
                         <Polygon fx:id="isFavorite7" fill="WHITE" layoutX="29.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
                      </children>
                   </Pane>
-                  <CheckBox fx:id="cameraOn" layoutX="153.0" layoutY="107.0" mnemonicParsing="false" text="Kamera päällä" />
+                  <CheckBox fx:id="cameraOn" layoutX="139.0" layoutY="44.0" mnemonicParsing="false" text="Kamera päällä" />
                </children>
             </AnchorPane>
          </children>

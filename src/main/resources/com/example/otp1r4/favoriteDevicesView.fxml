@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="747.0" prefWidth="1300.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.FavoriteDevicesController">
     <children>
-        <Label layoutX="588.0" layoutY="23.0" text="Lempi laitteet">
+        <Label layoutX="588.0" layoutY="13.0" text="Lempi laitteet">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="24.0" />
          </font></Label>

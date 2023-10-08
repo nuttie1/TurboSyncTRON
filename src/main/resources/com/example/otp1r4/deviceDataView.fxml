@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="chartAnchorPane" prefHeight="747.0" prefWidth="1300.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.DataDisplayController">
    <children>
-      <ComboBox fx:id="comboBox" layoutX="22.0" layoutY="14.0" onAction="#onComboboxChanged" prefWidth="150.0" promptText="Valitse laite" />
+      <ComboBox fx:id="comboBox" layoutX="21.0" layoutY="13.0" onAction="#onComboboxChanged" prefWidth="150.0" promptText="Valitse laite" />
       <AnchorPane fx:id="anchorForChart" layoutY="45.0" prefHeight="486.0" prefWidth="1300.0">
          <children>
             <LineChart fx:id="numberLineChart" alternativeColumnFillVisible="true" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="486.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -31,14 +31,14 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <ScrollPane fx:id="applianceDataView" layoutX="17.0" prefHeight="467.0" prefWidth="1269.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane fx:id="applianceDataView" layoutX="19.0" prefHeight="467.0" prefWidth="1267.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
               <content>
                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="1270.0" />
               </content>
             </ScrollPane>
          </children>
       </AnchorPane>
-      <ScrollPane fx:id="arbView" layoutX="28.0" layoutY="542.0" prefHeight="197.0" prefWidth="1261.0">
+      <ScrollPane fx:id="arbView" layoutX="16.0" layoutY="542.0" prefHeight="197.0" prefWidth="1273.0">
         <content>
           <AnchorPane layoutX="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="1269.0" />
         </content>
@@ -48,7 +48,7 @@
             <Font name="Tw Cen MT Condensed Extra Bold" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="605.0" layoutY="11.0" text="Laite data">
+      <Label layoutX="605.0" layoutY="11.0" text="Laitedata">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="24.0" />
          </font>

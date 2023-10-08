@@ -20,7 +20,7 @@
          <children>
             <AnchorPane prefHeight="307.0" prefWidth="1300.0">
                <children>
-                  <Text layoutX="350.0" layoutY="46.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää uusi laite" textAlignment="CENTER" wrappingWidth="601.0">
+                  <Text layoutX="350.0" layoutY="33.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää uusi laite" textAlignment="CENTER" wrappingWidth="601.0">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="24.0" />
                      </font>
