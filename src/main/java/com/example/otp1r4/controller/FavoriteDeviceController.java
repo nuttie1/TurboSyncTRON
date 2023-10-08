@@ -397,11 +397,11 @@ public class FavoriteDeviceController implements Controller {
                         deviceCamera.setDisable(false);
                         break;
                 }
-            }
-            case "Sensori" -> {
+
+        case "Sensori":
                 deviceSensor.setVisible(true);
                 deviceSensor.setDisable(false);
-            }
+            break;
         }
     }
 
