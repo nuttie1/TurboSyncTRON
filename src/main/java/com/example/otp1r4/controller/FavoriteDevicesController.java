@@ -43,8 +43,6 @@ public class FavoriteDevicesController implements Controller, Initializable {
         this.deviceDAO = new DeviceDAO();
     }
 
-    UserData user = UserData.getInstance();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         observableDevice.getObservableDevices().addListener((ListChangeListener<Device>) change -> {
