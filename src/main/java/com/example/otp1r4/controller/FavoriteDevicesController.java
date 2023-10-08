@@ -106,7 +106,6 @@ public class FavoriteDevicesController implements Controller, Initializable {
                 }
 
                 if (row >= 4) {
-                    System.out.println();
                     favDevicesAnchorPane.setPrefHeight(favDevicesAnchorPane.getPrefHeight() + 50.0);
                 }
             }

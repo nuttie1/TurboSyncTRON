@@ -200,16 +200,18 @@ public class FavoriteDeviceController implements Controller {
                 });
             }
 
-
             for (CheckBox box : vacuumDays) {
                 box.setOnAction(event -> {
-                    String[] week = new String[7];
+                    StringBuilder selectedCheckBoxes = new StringBuilder();
+                    appendIfSelectedForVacuum(selectedCheckBoxes, vacuumDay1);
+                    appendIfSelectedForVacuum(selectedCheckBoxes, vacuumDay2);
+                    appendIfSelectedForVacuum(selectedCheckBoxes, vacuumDay3);
+                    appendIfSelectedForVacuum(selectedCheckBoxes, vacuumDay4);
+                    appendIfSelectedForVacuum(selectedCheckBoxes, vacuumDay5);
+                    appendIfSelectedForVacuum(selectedCheckBoxes, vacuumDay6);
+                    appendIfSelectedForVacuum(selectedCheckBoxes, vacuumDay7);
 
-                    String[] days = splitControl()[vacuumDAY].split("\\+");
-
-                    if (box.isSelected()) {
-
-                    }
+                    dataToDatabase(selectedCheckBoxes.toString(), vacuumDAY);
                 });
             }
 
@@ -598,5 +600,14 @@ public class FavoriteDeviceController implements Controller {
     public String[] splitControl() {
         controls = device.getDeviceControl();
         return controls.split(";");
+    }
+
+    private void appendIfSelectedForVacuum(StringBuilder stringBuilder, CheckBox checkBox) {
+        if (checkBox.isSelected()) {
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append("+");
+            }
+            stringBuilder.append(checkBox.getText());
+        }
     }
 }
