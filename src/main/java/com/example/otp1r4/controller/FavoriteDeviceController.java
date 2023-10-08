@@ -200,6 +200,7 @@ public class FavoriteDeviceController implements Controller {
                 });
             }
 
+
             for (CheckBox box : vacuumDays) {
                 box.setOnAction(event -> {
                     StringBuilder selectedCheckBoxes = new StringBuilder();
@@ -399,11 +400,11 @@ public class FavoriteDeviceController implements Controller {
                         deviceCamera.setDisable(false);
                         break;
                 }
-
-        case "Sensori":
+                break;
+            case "Sensori":
                 deviceSensor.setVisible(true);
                 deviceSensor.setDisable(false);
-            break;
+                break;
         }
     }
 
