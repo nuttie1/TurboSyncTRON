@@ -7,13 +7,8 @@
 # documentation.
 
 name: Java CI with Maven
-
-on:
-  push:
-    branches: [ "junit-tests" ]
-  pull_request:
-    branches: [ "junit-tests" ]
-
+on: [workflow_dispatch]
+ 
 jobs:
   build:
 
