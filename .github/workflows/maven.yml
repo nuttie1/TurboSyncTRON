@@ -27,6 +27,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Increase memory for Maven
+      env:
+        MAVEN_OPTS: -Xmx2g # Adjust this value as needed
+      run: mvn clean install
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
