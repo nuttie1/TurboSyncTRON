@@ -48,7 +48,6 @@ public class DataDisplayController implements Controller {
         observableDevices.getObservableDevices().addListener((ListChangeListener<Device>) change -> {
             while (change.next()) {
                 if (change.wasAdded()){
-                    System.out.println("HMM");
                     getFavoriteDevices();
                 }
             }
@@ -56,8 +55,6 @@ public class DataDisplayController implements Controller {
     }
     private void createCombobox(){
         getFavoriteDevices();
-
-        comboBox.getSelectionModel().selectFirst();
     }
 
     private void getFavoriteDevices() {
@@ -68,6 +65,7 @@ public class DataDisplayController implements Controller {
             }
         }
         comboBox.setItems(FXCollections.observableArrayList(deviceList));
+        comboBox.getSelectionModel().selectFirst();
     }
 
     public void onComboboxChanged(){
@@ -187,7 +185,6 @@ public class DataDisplayController implements Controller {
         }
 
         numberLineChart.getData().add(series);
-
     }
     private void modifyArbView(){
         arbView.setContent(new GridPane());
