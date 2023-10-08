@@ -1,7 +1,12 @@
 package com.example.otp1r4.controller;
 
 
+import com.example.otp1r4.Main;
+import com.example.otp1r4.dao.DeviceDAO;
+import com.example.otp1r4.model.Device;
 import com.example.otp1r4.model.UserData;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +19,8 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainViewController implements Controller, Initializable {
@@ -36,14 +43,13 @@ public class MainViewController implements Controller, Initializable {
         try {
             Node tab1Content = tab1Loader.load();
             Node tab2Content = tab2Loader.load();
-            //Node tab3Content = tab3Loader.load();
+            Node tab3Content = tab3Loader.load();
             Node tab4Content = tab4Loader.load();
 
             favoriteDevicesTab.setContent(tab1Content);
             allDevicesTab.setContent(tab2Content);
-            //deviceDataTab.setContent(tab3Content);
+            deviceDataTab.setContent(tab3Content);
             addDevicesTab.setContent(tab4Content);
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
