@@ -16,13 +16,14 @@ public class ProfileController implements Controller{
     @FXML
     private TextField usernameField;
     @FXML
-    private Label usernameErrorLabel, usernameSuccessLabel;
+    private Label usernameErrorLabel;
     @FXML
-    private Button saveButton;
+    private Button saveButton, clickEditButton;
     @FXML
     private Hyperlink backLink;
 
     private String oldUsername;
+    
     private UserData userData = UserData.getInstance();
 
     public void initialize() {
@@ -33,6 +34,7 @@ public class ProfileController implements Controller{
     public void clickEdit() throws IOException {
         usernameField.setDisable(false);
         saveButton.setDisable(false);
+        clickEditButton.setDisable(true);
     }
 
     public void clickSave() throws IOException {
@@ -46,7 +48,7 @@ public class ProfileController implements Controller{
             usernameErrorLabel.setText("Syötä käyttäjätunnus!");
             isValid = false;
         } else if (!usernameField.getText().matches(usernamePattern)){
-            usernameErrorLabel.setText("Käyttäjätunnus ei kelpaa!");
+            usernameErrorLabel.setText("Syötä käyttäjätunnus\nhyväksytyssä muodossa!");
             isValid =false;
         } else if(dao.checkUsername(usernameField.getText())) {
             usernameErrorLabel.setText("Käyttäjätunnus varattu!");
@@ -58,6 +60,8 @@ public class ProfileController implements Controller{
             usernameField.setDisable(true);
             saveButton.setDisable(true);
             userData.setUsername(usernameField.getText());
+            usernameErrorLabel.setText("");
+            clickEditButton.setDisable(false);
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
             showSuccessMessage(stage, "Käyttäjätunnus vaihdettu", "Käyttäjätunnus vaihdettu onnistuneesti!", 3);

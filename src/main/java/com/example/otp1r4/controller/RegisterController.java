@@ -14,35 +14,16 @@ import java.sql.SQLException;
 
 public class RegisterController implements Controller {
     @FXML
-    Button backButton;
-    @FXML
     Button submitButton;
     @FXML
-    TextField usernameField;
+    TextField usernameField, questionOneField, questionTwoField, questionThreeField;
     @FXML
     PasswordField passwordField;
     @FXML
-    TextField questionOneField;
+    TextField answerOneField, answerTwoField, answerThreeField;
     @FXML
-    TextField questionTwoField;
-    @FXML
-    TextField questionThreeField;
-    @FXML
-    TextField answerOneField;
-    @FXML
-    TextField answerTwoField;
-    @FXML
-    TextField answerThreeField;
-    @FXML
-    Label usernameErrorLabel;
-    @FXML
-    Label passwordErrorLabel;
-    @FXML
-    Label errorLabelQandA1;
-    @FXML
-    Label errorLabelQandA2;
-    @FXML
-    Label errorLabelQandA3;
+    Label usernameErrorLabel, passwordErrorLabel, errorLabelQandA1, errorLabelQandA2, errorLabelQandA3;
+
     UserDAO dao;
     UserData userData = UserData.getInstance();
 

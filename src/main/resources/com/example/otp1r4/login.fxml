@@ -5,18 +5,49 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.LoginController">
-   <children>
-      <Label layoutX="131.0" layoutY="154.0" text="Käyttäjänimi" />
-      <Label layoutX="141.0" layoutY="207.0" text="Salasana" />
-      <TextField fx:id="usernameField" layoutX="224.0" layoutY="150.0" />
-      <PasswordField fx:id="passwordField" layoutX="224.0" layoutY="203.0" />
-      <Button layoutX="251.0" layoutY="265.0" mnemonicParsing="false" onAction="#clickLogin" text="Kirjaudu sisään" />
-      <Hyperlink fx:id="signUpLink" layoutX="264.0" layoutY="310.0" onAction="#clickSignup" text="Luo käyttäjä" />
-      <Hyperlink fx:id="forgotPasswordLink" layoutX="236.0" layoutY="345.0" onAction="#clickForgotPassword" text="Unohditko salasanasi?" />
-      <Label fx:id="errorLabelUsername" layoutX="228.0" layoutY="182.0" prefHeight="17.0" prefWidth="282.0" textFill="RED" />
-      <Label fx:id="errorLabelPassword" layoutX="228.0" layoutY="235.0" prefHeight="17.0" prefWidth="299.0" textFill="RED" />
-   </children>
-</AnchorPane>
+<BorderPane fx:id="borderPane" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.LoginController">
+   <right>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="268.0" layoutY="128.0" text="Käyttäjänimi">
+               <font>
+                  <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="282.0" layoutY="195.0" text="Salasana">
+               <font>
+                  <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField" layoutX="378.0" layoutY="126.0" />
+            <PasswordField fx:id="passwordField" layoutX="378.0" layoutY="193.0" />
+            <Button layoutX="390.0" layoutY="259.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="37.0" prefWidth="125.0" style="-fx-background-color: #23E2F7;" text="Kirjaudu sisään">
+               <font>
+                  <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="signUpLink" layoutX="418.0" layoutY="317.0" onAction="#clickSignup" style="-fx-underline: true;" text="Luo käyttäjä" />
+            <Hyperlink fx:id="forgotPasswordLink" layoutX="390.0" layoutY="349.0" onAction="#clickForgotPassword" style="-fx-underline: true;" text="Unohditko salasanasi?" />
+            <Label fx:id="errorLabelUsername" layoutX="378.0" layoutY="154.0" prefHeight="34.0" prefWidth="186.0" textFill="RED" />
+            <Label fx:id="errorLabelPassword" layoutX="378.0" layoutY="227.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
+            <Line endX="20.0" endY="377.0" layoutX="228.0" layoutY="23.0" startX="20.0" startY="-23.0" />
+            <AnchorPane layoutX="-1.0" layoutY="-5.0" prefHeight="406.0" prefWidth="249.0" style="-fx-background-color: #23E2F7;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/turbosynctronLogo1.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
