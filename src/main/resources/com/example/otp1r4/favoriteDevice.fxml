@@ -10,6 +10,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
@@ -145,7 +146,7 @@
                   <Label layoutX="7.0" layoutY="93.0" text="Ajastus:" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="deviceVacuum" layoutX="33.0" layoutY="33.0" minHeight="150.0" minWidth="300.0" prefHeight="225.0" prefWidth="375.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="deviceVacuum" layoutX="33.0" layoutY="33.0" minHeight="150.0" minWidth="300.0" prefHeight="225.0" prefWidth="375.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="deviceName4" layoutX="5.0" layoutY="6.0" prefHeight="17.0" prefWidth="117.0">
                      <font>
@@ -164,7 +165,7 @@
                         <Polygon fx:id="isFavorite4" fill="WHITE" layoutX="29.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
                      </children>
                   </Pane>
-                  <TextField fx:id="vacuumTimer1" layoutX="55.0" layoutY="85.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <TextField fx:id="vacuumTimer1" layoutX="52.0" layoutY="87.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
                   <CheckBox fx:id="vacuumNow" layoutX="204.0" layoutY="128.0" mnemonicParsing="false" text="Käynnistä nyt" />
                   <Label layoutX="226.0" layoutY="36.0" text="Ohjelma:" />
                   <RadioButton fx:id="vacuumProgram1" layoutX="224.0" layoutY="70.0" mnemonicParsing="false" text="Moppaus">
@@ -180,14 +181,16 @@
                   <CheckBox fx:id="vacuumDay5" layoutX="161.0" layoutY="99.0" mnemonicParsing="false" text="PE" />
                   <CheckBox fx:id="vacuumDay4" layoutX="161.0" layoutY="84.0" mnemonicParsing="false" text="TO" />
                   <CheckBox fx:id="vacuumDay3" layoutX="161.0" layoutY="68.0" mnemonicParsing="false" text="KE" />
-                  <Label layoutX="7.0" layoutY="74.0" prefHeight="38.0" prefWidth="48.0" text="Toiminta-aika 1:" wrapText="true" />
-                  <Label layoutX="5.0" layoutY="111.0" prefHeight="40.0" prefWidth="47.0" text="Toiminta-aika 2:" wrapText="true" />
-                  <TextField fx:id="vacuumTimer2" layoutX="108.0" layoutY="85.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <Label layoutX="5.0" layoutY="72.0" prefHeight="38.0" prefWidth="48.0" text="Toiminta-aika 1:" wrapText="true" />
+                  <Label layoutX="3.0" layoutY="109.0" prefHeight="40.0" prefWidth="47.0" text="Toiminta-aika 2:" wrapText="true" />
+                  <TextField fx:id="vacuumTimer2" layoutX="111.0" layoutY="87.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
                   <RadioButton fx:id="vacuumProgram" layoutX="224.0" layoutY="53.0" mnemonicParsing="false" text="Imurointi" toggleGroup="$vacuumPrograms" />
-                  <TextField fx:id="vacuumTimer3" layoutX="55.0" layoutY="117.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
-                  <TextField fx:id="vacuumTimer4" layoutX="108.0" layoutY="118.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <TextField fx:id="vacuumTimer3" layoutX="52.0" layoutY="120.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <TextField fx:id="vacuumTimer4" layoutX="111.0" layoutY="120.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
                   <Label layoutX="228.0" layoutY="87.0" text="Komento:" />
                   <TextField fx:id="vacuumCommand" layoutX="228.0" layoutY="102.0" prefHeight="25.0" prefWidth="58.0" />
+                  <Line endX="-90.0" layoutX="198.0" layoutY="99.0" startX="-100.0" />
+                  <Line endX="-91.0" layoutX="199.0" layoutY="132.0" startX="-100.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="deviceSauna" layoutX="43.0" layoutY="43.0" minHeight="150.0" minWidth="300.0" prefHeight="270.0" prefWidth="420.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -211,9 +214,10 @@
                   </Pane>
                   <TextField fx:id="saunaTimer1" layoutX="125.0" layoutY="64.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
                   <Label layoutX="125.0" layoutY="41.0" text="Lämmitysaika:" />
-                  <TextField fx:id="saunaTimer2" layoutX="174.0" layoutY="64.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
+                  <TextField fx:id="saunaTimer2" layoutX="187.0" layoutY="64.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
                   <Label layoutX="126.0" layoutY="110.0" text="Lämpötila:" />
                   <TextField fx:id="saunaTemp" layoutX="191.0" layoutY="106.0" prefHeight="25.0" prefWidth="34.0" promptText="000" />
+                  <Line endX="-87.0" layoutX="271.0" layoutY="76.0" startX="-100.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="deviceLock" layoutX="53.0" layoutY="53.0" minHeight="150.0" minWidth="300.0" prefHeight="325.0" prefWidth="475.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
