@@ -171,6 +171,7 @@ public class DataDisplayController implements Controller {
     }
     private void modifyArbView(){
         arbView.setContent(new GridPane());
+
         if(dataList.isEmpty()){
             return;
         }

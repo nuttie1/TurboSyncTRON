@@ -41,13 +41,13 @@ public class DeviceDAO implements DAO{
 
         return deviceList;
     }
-    public void addFavoriteDevices (String userID, String deviceID) {
+    public void addFavoriteDevices (int userID, int deviceID) {
         try {
             String sql = "UPDATE Devices SET Devices.IsFavorite = 1 WHERE Devices.UserID = ? AND Devices.DeviceID = ?";
 
             prepStat = conn.prepareStatement(sql);
-            prepStat.setString(1,userID);
-            prepStat.setString(2,deviceID);
+            prepStat.setInt(1,userID);
+            prepStat.setInt(2,deviceID);
 
             prepStat.executeUpdate();
         }   catch (SQLException e) {
