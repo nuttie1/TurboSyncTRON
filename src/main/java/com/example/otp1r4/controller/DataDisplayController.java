@@ -52,7 +52,12 @@ public class DataDisplayController implements Controller {
 
     public void onComboboxChanged(){
         selectedDevice = (Device) comboBox.getValue();
-
+        if(selectedDevice == null){
+            applianceDataView.setVisible(false);
+            numberLineChart.setVisible(false);
+            barChart.setVisible(false);
+            return;
+        }
         switch (parseControl()) {
             case LIGHTING -> {
                 dataList = selectedDevice.getDeviceDataList(20);
@@ -66,12 +71,21 @@ public class DataDisplayController implements Controller {
                 dataList = selectedDevice.getDeviceDataList(75);
                 modifyApplianceGrid();
             }
+            case NONE -> {
+                applianceDataView.setVisible(false);
+                numberLineChart.setVisible(false);
+                barChart.setVisible(false);
+                return;
+            }
         }
         modifyArbView();
     }
 
     private chartMode parseControl(){
-        String[] split = selectedDevice.getDeviceControl().split(";");
+        String cntrl = selectedDevice.getDeviceControl();
+        if(cntrl == null) return chartMode.NONE;
+
+        String[] split = cntrl.split(";");
         return switch (split[0]) {
             case "Valaisin" -> chartMode.LIGHTING;
             case "Sensori" -> chartMode.SENSOR;
