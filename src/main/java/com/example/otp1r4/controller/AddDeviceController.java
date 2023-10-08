@@ -1,6 +1,7 @@
 package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.DeviceDAO;
+import com.example.otp1r4.model.Device;
 import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class AddDeviceController implements Controller {
 
@@ -204,7 +206,9 @@ public class AddDeviceController implements Controller {
             deviceDescription.setText("");
             hideAll(false);
 
-            observableDevices.addDevice(dDao.getDevice(deviceName.getText(), userData.getUserID()));
+            List<Device> deviceList = dDao.getDevices(userData.getUsername());
+            int last = deviceList.size() -1;
+            observableDevices.addDevice(deviceList.get(last));
             Stage stage = (Stage) deviceName.getScene().getWindow();
             showSuccessMessage(stage, "Laitteen lisäys onnistui!", "Laite lisätty onnistuneesti!", 3);
         }

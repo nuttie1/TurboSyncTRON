@@ -173,4 +173,22 @@ public class DeviceDAO implements DAO{
             throw new RuntimeException(e);
         }
     }
+
+    public String getControl (int deviceID) {
+        try {
+            String sql = "SELECT Devices.DeviceControl FROM Devices WHERE Devices.DeviceID = ?";
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setInt(1, deviceID);
+
+            ResultSet resultSet = prepStat.executeQuery();
+
+            if (resultSet.next()) {
+                String control = resultSet.getString("DeviceControl");
+                return control;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

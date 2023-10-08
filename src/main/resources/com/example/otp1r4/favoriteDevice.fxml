@@ -15,11 +15,17 @@
 
 <AnchorPane prefHeight="150.0" prefWidth="296.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 5px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.FavoriteDeviceController">
    <children>
-      <AnchorPane fx:id="deviceLight" disable="true" layoutX="3.0" layoutY="3.0" minHeight="150.0" minWidth="300.0" prefHeight="150.0" prefWidth="300.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="deviceLight" layoutX="3.0" layoutY="3.0" minHeight="150.0" minWidth="300.0" prefHeight="150.0" prefWidth="300.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="deviceName1" layoutX="5.0" layoutY="6.0" prefHeight="17.0" prefWidth="117.0" />
+            <Label fx:id="deviceName1" layoutX="5.0" layoutY="6.0" prefHeight="17.0" prefWidth="117.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <Label layoutX="5.0" layoutY="19.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
-            <Label fx:id="deviceType1" alignment="CENTER_RIGHT" layoutX="153.0" layoutY="5.0" prefHeight="18.0" prefWidth="106.0" text="Valaisin" />
+            <Label fx:id="deviceType1" alignment="CENTER_RIGHT" layoutX="153.0" layoutY="5.0" prefHeight="18.0" prefWidth="106.0" text="Valaisin">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <TextArea fx:id="deviceDesc" editable="false" layoutX="5.0" layoutY="41.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
             <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                <children>
@@ -48,7 +54,7 @@
             <Label layoutX="134.0" layoutY="83.0" text="Liiketunnistin:" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="deviceSensor" disable="true" layoutX="13.0" layoutY="13.0" minHeight="150.0" minWidth="300.0" prefHeight="165.0" prefWidth="315.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="deviceSensor" layoutX="13.0" layoutY="13.0" minHeight="150.0" minWidth="300.0" prefHeight="165.0" prefWidth="279.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="deviceName" layoutX="5.0" layoutY="6.0" prefHeight="17.0" prefWidth="117.0">
                <font>
@@ -59,13 +65,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextArea fx:id="deviceDesc2" editable="false" layoutX="5.0" layoutY="41.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
+            <TextArea fx:id="deviceDesc2" editable="false" layoutX="5.0" layoutY="41.0" prefHeight="100.0" prefWidth="117.0" wrapText="true" />
             <Pane layoutX="264.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                <children>
                   <Polygon fx:id="isFavorite1" fill="WHITE" layoutX="35.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
                </children>
             </Pane>
-            <ToggleButton fx:id="deviceToggleButton1" layoutX="8.0" layoutY="117.0" maxWidth="58.0" minWidth="58.0" mnemonicParsing="false" textFill="WHITE" />
             <Label fx:id="sensorType" layoutX="133.0" layoutY="58.0" prefHeight="17.0" prefWidth="156.0">
                <font>
                   <Font size="14.0" />
@@ -79,7 +84,10 @@
                   <Font size="14.0" />
                </font></Label>
             <Label layoutX="5.0" layoutY="36.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
-            <Label fx:id="deviceType2" layoutX="153.0" layoutY="5.0" prefHeight="18.0" prefWidth="106.0" text="Pesukone" />
+            <Label fx:id="deviceType2" layoutX="153.0" layoutY="5.0" prefHeight="18.0" prefWidth="106.0" text="Pesukone">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <TextArea fx:id="deviceDesc1" editable="false" layoutX="5.0" layoutY="54.0" prefHeight="50.0" prefWidth="64.0" wrapText="true" />
             <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                <children>
@@ -102,7 +110,10 @@
                   <Font size="14.0" />
                </font></Label>
             <Label layoutX="5.0" layoutY="39.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
-            <Label fx:id="deviceType3" layoutX="153.0" layoutY="5.0" prefHeight="18.0" prefWidth="106.0" text="Tiskikone" />
+            <Label fx:id="deviceType3" layoutX="153.0" layoutY="5.0" prefHeight="18.0" prefWidth="106.0" text="Tiskikone">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <TextArea fx:id="deviceDesc3" editable="false" layoutX="6.0" layoutY="58.0" prefHeight="50.0" prefWidth="117.0" wrapText="true" />
             <Pane layoutX="269.0" layoutY="-1.0" prefHeight="40.0" prefWidth="34.0">
                <children>
@@ -161,10 +172,10 @@
             <TextField fx:id="vacuumTimer3" layoutX="55.0" layoutY="117.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
             <TextField fx:id="vacuumTimer4" layoutX="108.0" layoutY="118.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
             <Label layoutX="234.0" layoutY="88.0" text="Komento:" />
-            <TextField fx:id="vacuumCommand" layoutX="234.0" layoutY="102.0" prefHeight="25.0" prefWidth="52.0" visible="false" />
+            <TextField fx:id="vacuumCommand" layoutX="234.0" layoutY="102.0" prefHeight="25.0" prefWidth="52.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="deviceSauna" layoutX="43.0" layoutY="43.0" minHeight="150.0" minWidth="300.0" prefHeight="270.0" prefWidth="420.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="deviceSauna" layoutX="43.0" layoutY="43.0" minHeight="150.0" minWidth="300.0" prefHeight="270.0" prefWidth="420.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="deviceName5" layoutX="5.0" layoutY="6.0" prefHeight="17.0" prefWidth="117.0">
                <font>

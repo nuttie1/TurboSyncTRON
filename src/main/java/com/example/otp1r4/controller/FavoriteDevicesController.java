@@ -52,6 +52,9 @@ public class FavoriteDevicesController implements Controller, Initializable {
                 if (change.wasAdded()){
                     try {
                         addFavoriteDevice();
+                        for (Device device : observableDevice.getObservableDevices()) {
+                            System.out.println(device.getDeviceName());
+                        }
                     } catch (IOException | SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -88,7 +91,6 @@ public class FavoriteDevicesController implements Controller, Initializable {
         }
         FavoriteDeviceController controller;
         Parent deviceNode;
-
 
         int column = 0;
         int row = 0;

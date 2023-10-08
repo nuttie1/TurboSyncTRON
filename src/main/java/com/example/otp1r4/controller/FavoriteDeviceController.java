@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -17,7 +18,9 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class FavoriteDeviceController implements Controller {
@@ -28,22 +31,30 @@ public class FavoriteDeviceController implements Controller {
     @FXML
     TextArea deviceDesc, deviceDesc1, deviceDesc2, deviceDesc3, deviceDesc4, deviceDesc5, deviceDesc6, deviceDesc7;
     @FXML
-    ToggleButton deviceToggleButton, deviceToggleButton1;
+    ToggleButton deviceToggleButton;
     @FXML
     TextField washingTimer, dishWashTimer, vacuumTimer1, vacuumTimer2, vacuumTimer3, vacuumTimer4, vacuumCommand, saunaTimer1, saunaTimer2, saunaTemp;
-
     @FXML
     RadioButton lightBrightness1, lightBrightness2, lightBrightness3, lightBrightness4, vacuumProgram1, vacuumProgram;
     @FXML
     RadioButton lightColorTemp1, lightColorTemp2, lightColorTemp3, dishProgram1, dishProgram2, dishProgram3;
     @FXML
     CheckBox mvmntSensor, quickWash, extraWash, washNow, dishWashNow, vacuumNow, vacuumDay1, vacuumDay2, vacuumDay3, vacuumDay4, vacuumDay5, vacuumDay6, vacuumDay7, lockLocked, cameraOn;
-
     @FXML
     AnchorPane deviceLight, deviceSensor, deviceWasher, deviceDishwasher, deviceVacuum, deviceSauna, deviceLock, deviceCamera;
     @FXML
     ComboBox<String> washingProgram, washingTemp, washingSpeed;
 
+    Shape[] isFavoriteShapes;
+    TextField[] timerFields;
+    RadioButton[] lightBrightnessButtons;
+    RadioButton[] lightTempButtons;
+    RadioButton[] dishWasherButtons;
+    ComboBox<String>[] washerComboBoxes;
+    CheckBox[] washerCheckBoxes;
+    CheckBox[] vacuumDays;
+    RadioButton[] vacuumPrograms;
+    TextArea[] deviceDescs;
 
     Device device;
     private UserData userData = UserData.getInstance();
@@ -51,9 +62,9 @@ public class FavoriteDeviceController implements Controller {
 
     String controls;
 
-    final int TYPE = 0, POWER = 1, SUBTYPE = 1;
+    final int TYPE = 0, SUBTYPE = 1;
     final int lightBRIGHT = 1, lightTEMP = 2, lightSENSOR = 3, lightPOWER = 4;
-    final int sensorTYPE = 1, sensorPOWER = 2;
+    final int sensorTYPE = 1;
     final int washerPROG = 2, washerTEMP = 3, washerSPEED = 4, washerEXTRA = 5, washerQUICK = 6, washerNOW = 7, washerTIMER = 8;
     final int dishPROG = 2, dishNOW = 3, dishTIMER = 4;
     final int vacuumPROG = 2, vacuumNOW = 3, vacuumDAY = 4, vacuumDO1 = 5, vacuumDO2 = 6, vacuumCMD = 7;
@@ -63,44 +74,260 @@ public class FavoriteDeviceController implements Controller {
 
     private ObservableDevices observableDevices = ObservableDevices.getInstance();
 
-
     public void initialize() {
+        initializeArrays();
+
+        for (Shape isFavoriteNode : isFavoriteShapes) {
+            isFavoriteNode.setOnMouseClicked(mouseEvent -> {
+                if (isFavoriteNode.getFill().equals(Color.YELLOW)) {
+                    isFavoriteNode.setFill(Color.WHITE);
+                    //deviceDAO.removeFavoriteDevice(userData.getUserID(), device.getDeviceId());
+                    device.updateIsDeviceFavorite(false);
+                    observableDevices.updateDevice(device);
+                }
+            });
+        }
+
+        for (TextField field : timerFields) {
+            field.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                String old = "";
+                if (!newValue) {
+                    String time = field.getText();
+                    if (time.matches("^[0-9]{4}")) {
+                        if (field == washingTimer) {
+                            dataToDatabase(time, washerTIMER);
+                        }
+                        if (field == dishWashTimer) {
+                            dataToDatabase(time, dishTIMER);
+                        }
+                        if (field == vacuumTimer1) {
+                            String[] times = splitControl()[vacuumDO1].split("-");
+                            times[0] = field.getText();
+                            String timer = times[0] + "-" + times[1];
+                            dataToDatabase(timer, vacuumDO1);
+                        }
+                        if (field == vacuumTimer2) {
+                            String[] times = splitControl()[vacuumDO1].split("-");
+                            times[1] = field.getText();
+                            String timer = times[0] + "-" + times[1];
+                            dataToDatabase(timer, vacuumDO1);
+                        }
+                        if (field == vacuumTimer3) {
+                            String[] times = splitControl()[vacuumDO2].split("-");
+                            times[0] = field.getText();
+                            String timer = times[0] + "-" + times[1];
+                            dataToDatabase(timer, vacuumDO2);
+                        }
+                        if (field == vacuumTimer4) {
+                            String[] times = splitControl()[vacuumDO2].split("-");
+                            times[1] = field.getText();
+                            String timer = times[0] + "-" + times[1];
+                            dataToDatabase(timer, vacuumDO2);
+                        }
+                        if (field == saunaTimer1) {
+                            String[] times = splitControl()[saunaTIME].split("\\+");
+                            times[0] = field.getText();
+                            String timer = times[0] + "+" + times[1];
+                            dataToDatabase(timer, saunaTIME);
+                        }
+                        if (field == saunaTimer2) {
+                            String[] times = splitControl()[saunaTIME].split("\\+");
+                            times[1] = field.getText();
+                            String timer = times[0] + "+" + times[1];
+                            dataToDatabase(timer, saunaTIME);
+                        }
+                    } else {
+                        field.setText(old);
+                    }
+                }
+            });
+
+            for (RadioButton button: lightBrightnessButtons) {
+                button.setOnAction(event -> {
+                    dataToDatabase(button.getText(), lightBRIGHT);
+                });
+            }
+
+            for (RadioButton button: lightTempButtons) {
+                button.setOnAction(event -> {
+                    dataToDatabase(button.getText(), lightTEMP);
+                });
+            }
+
+            for (RadioButton button: dishWasherButtons) {
+                button.setOnAction(event -> {
+                    dataToDatabase(button.getText(), dishPROG);
+                });
+            }
+
+            for (ComboBox<String> box : washerComboBoxes) {
+                box.setOnAction(event -> {
+                    if (box == washingProgram) {
+                        dataToDatabase(box.getValue(), washerPROG);
+                    }
+                    if (box == washingTemp) {
+                        dataToDatabase(box.getValue(), washerTEMP);
+                    }
+                    if (box == washingSpeed) {
+                        dataToDatabase(box.getValue(), washerSPEED);
+                    }
+                });
+            }
+
+            for (CheckBox box : washerCheckBoxes) {
+                box.setOnAction(event -> {
+                    if (box == quickWash) {
+                        if (box.isSelected()) {
+                            dataToDatabase("On", washerQUICK);
+                        }   else {
+                            dataToDatabase("Off", washerQUICK);
+                        }
+                    }
+                    if (box == extraWash) {
+                        if (box.isSelected()) {
+                            dataToDatabase("On", washerEXTRA);
+                        }   else {
+                            dataToDatabase("Off", washerEXTRA);
+                        }
+                    }
+                    if (box == washNow) {
+                        if (box.isSelected()) {
+                            dataToDatabase("On", washerNOW);
+                        }   else {
+                            dataToDatabase("Off", washerNOW);
+                        }
+                    }
+                });
+            }
+
+
+            for (CheckBox box : vacuumDays) {
+                box.setOnAction(event -> {
+                    String[] week = new String[7];
+
+                    String[] days = splitControl()[vacuumDAY].split("\\+");
+
+                    if (box.isSelected()) {
+
+                    }
+                });
+            }
+
+            saunaTemp.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue) {
+                    String time = saunaTemp.getText();
+                    if (time.matches("^[0-9]{1,3}")) {
+                        dataToDatabase(time, saunaTEMP);
+                    } else {
+                        saunaTemp.setText(splitControl()[saunaTEMP]);
+                    }
+                }
+            });
+        }
+
+        deviceToggleButton.setOnAction(event -> {
+            if (deviceToggleButton.isSelected()) {
+                deviceToggleButton.setText("Päällä");
+                deviceToggleButton.setStyle("-fx-background-color: green");
+                dataToDatabase("On", lightPOWER);
+            }   else {
+                deviceToggleButton.setText("POIS");
+                deviceToggleButton.setStyle("-fx-background-color: red");
+                dataToDatabase("Off", lightPOWER);
+            }
+        });
+
+        vacuumCommand.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                String command = vacuumCommand.getText();
+                if (command.matches("^[a-zA-Z ]{3,20}$")) {
+                    dataToDatabase(command, vacuumCMD);
+                } else {
+                    vacuumCommand.setText(splitControl()[vacuumCMD]);
+                }
+            }
+        });
+
+        dishWashNow.setOnAction(event -> {
+            if (dishWashNow.isSelected()) {
+                dataToDatabase("On", dishNOW);
+            } else {
+                dataToDatabase("Off", dishNOW);
+            }
+        });
+
+        lockLocked.setOnAction(event -> {
+            if (lockLocked.isSelected()) {
+                dataToDatabase("On", LOCK);
+            } else {
+                dataToDatabase("Off", LOCK);
+            }
+        });
+
+        cameraOn.setOnAction(event -> {
+            if (cameraOn.isSelected()) {
+                dataToDatabase("On", CAMERA);
+            } else {
+                dataToDatabase("Off", CAMERA);
+            }
+        });
+
+        mvmntSensor.setOnAction(event -> {
+            if (mvmntSensor.isSelected()) {
+                dataToDatabase("On", lightSENSOR);
+            } else {
+                dataToDatabase("Off", lightSENSOR);
+            }
+        });
+
+        vacuumNow.setOnAction(event -> {
+            if (vacuumNow.isSelected()) {
+                dataToDatabase("On", vacuumNOW);
+            } else {
+                dataToDatabase("Off", vacuumNOW);
+            }
+        });
+
+        for (RadioButton button : vacuumPrograms) {
+            button.setOnAction(event -> {
+                if (button == vacuumProgram) {
+                    dataToDatabase("Imurointi", vacuumPROG);
+                }
+                else {
+                    dataToDatabase("Moppaus", vacuumPROG);
+                }
+            });
+        }
+    }
+
+    public void dataToDatabase(String data, int where) {
+        deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl(data, where));
+        device.updateDeviceControl(updateControl(data, where));
+    }
+
+    public void initializeArrays() {
         washingProgram.setItems(FXCollections.observableArrayList("Puuvilla", "Hienopesu", "Sport"));
         washingTemp.setItems(FXCollections.observableArrayList("30", "40", "60", "90"));
         washingSpeed.setItems(FXCollections.observableArrayList("0", "600", "800", "1000", "1200"));
 
-
-
-        isFavorite.setOnMouseClicked(mouseEvent -> {
-            if (isFavorite.getFill().equals(Color.YELLOW)) {
-                isFavorite.setFill(Color.WHITE);
-                //deviceDAO.removeFavoriteDevice(userData.getUserID(), device.getDeviceId());
-                device.updateIsDeviceFavorite(false);
-                observableDevices.updateDevice(device);
-            } else {
-                isFavorite.setFill(Color.YELLOW);
-            }
-        });
-
-        deviceToggleButton.setOnMouseClicked(mouseEvent -> {
-            if (deviceToggleButton.isSelected()) {
-                deviceToggleButton.setText("Päällä");
-                deviceToggleButton.setStyle("-fx-background-color: green");
-                deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl("On",POWER));
-                device.updateDeviceControl(updateControl("On",POWER));
-                observableDevices.addDevice(device);
-            }   else {
-                deviceToggleButton.setText("POIS");
-                deviceToggleButton.setStyle("-fx-background-color: red");
-                deviceDAO.updateDeviceControl(device.getDeviceId(), updateControl("Off",POWER));
-                device.updateDeviceControl(updateControl("Off",POWER));
-            }
-        });
+        isFavoriteShapes = new Shape[]{isFavorite, isFavorite1, isFavorite2, isFavorite3, isFavorite4, isFavorite5, isFavorite6, isFavorite7};
+        timerFields = new TextField[]{washingTimer, dishWashTimer, vacuumTimer1, vacuumTimer2, vacuumTimer3, vacuumTimer4, saunaTimer1, saunaTimer2};
+        lightBrightnessButtons = new RadioButton[]{lightBrightness1, lightBrightness2, lightBrightness3, lightBrightness4};
+        lightTempButtons = new RadioButton[]{lightColorTemp1, lightColorTemp2, lightColorTemp3};
+        dishWasherButtons = new RadioButton[]{dishProgram1, dishProgram2, dishProgram3};
+        washerComboBoxes = new ComboBox[]{washingProgram, washingTemp, washingSpeed};
+        washerCheckBoxes = new CheckBox[]{quickWash, extraWash, washNow};
+        vacuumDays = new CheckBox[]{vacuumDay1, vacuumDay2, vacuumDay3, vacuumDay4, vacuumDay5, vacuumDay6, vacuumDay7};
+        deviceDescs = new TextArea[]{deviceDesc, deviceDesc1, deviceDesc2, deviceDesc3, deviceDesc4, deviceDesc5, deviceDesc6, deviceDesc7};
+        vacuumPrograms = new RadioButton[]{vacuumProgram, vacuumProgram1};
     }
 
     public void setDevice(Device device) {
         this.device = device;
+        setUp();
+    }
 
+    public void setUp() {
         setDeviceType();
         setDeviceName();
         setDeviceDesc();
@@ -111,13 +338,16 @@ public class FavoriteDeviceController implements Controller {
         deviceName.setText(device.getDeviceName());
         deviceName1.setText(device.getDeviceName());
         deviceName2.setText(device.getDeviceName());
+        deviceName3.setText(device.getDeviceName());
+        deviceName4.setText(device.getDeviceName());
+        deviceName5.setText(device.getDeviceName());
+        deviceName6.setText(device.getDeviceName());
+        deviceName7.setText(device.getDeviceName());
     }
 
     public void setDeviceType() {
-        // Assuming splitControl() returns an array and TYPE and SUBTYPE are constants or variables representing indices
         String[] control = splitControl();
 
-        // First, set all controls to be invisible and disabled
         deviceLight.setVisible(false);
         deviceLight.setDisable(true);
         deviceWasher.setVisible(false);
@@ -136,7 +366,7 @@ public class FavoriteDeviceController implements Controller {
         deviceSensor.setDisable(true);
 
         switch (control[TYPE]) {
-            case "Lighting":
+            case "Valaisin":
                 deviceLight.setVisible(true);
                 deviceLight.setDisable(false);
                 break;
@@ -168,7 +398,7 @@ public class FavoriteDeviceController implements Controller {
                         break;
                 }
                 break;
-            case "Sensor":
+            case "Sensori":
                 deviceSensor.setVisible(true);
                 deviceSensor.setDisable(false);
                 break;
@@ -176,17 +406,17 @@ public class FavoriteDeviceController implements Controller {
     }
 
     public void setDeviceDesc() {
-        if (!device.getDeviceDesc().isEmpty()) {
-            deviceDesc.setText(device.getDeviceDesc());
+        for (TextArea area : deviceDescs) {
+            area.setText(device.getDeviceDesc());
         }
     }
 
     public void setDeviceControl() {
         switch (splitControl()[TYPE]) {
-            case "Lighting":
+            case "Valaisin":
                 setUpLighting(splitControl());
                 break;
-            case "Sensor":
+            case "Sensori":
                 setUpSensor(splitControl());
                 break;
             case "Laite":
@@ -196,7 +426,15 @@ public class FavoriteDeviceController implements Controller {
     }
 
     public void setUpLighting(String[] controls) {
-        setUpButton(controls, controls[TYPE]);
+        if (controls[lightPOWER].equals("On")) {
+            deviceToggleButton.setSelected(true);
+            deviceToggleButton.setText("Päällä");
+            deviceToggleButton.setStyle("-fx-background-color: green");
+        }   else {
+            deviceToggleButton.setSelected(false);
+            deviceToggleButton.setText("POIS");
+            deviceToggleButton.setStyle("-fx-background-color: red");
+        }
 
         mvmntSensor.setSelected(controls[lightSENSOR].equals("On"));
 
@@ -300,12 +538,14 @@ public class FavoriteDeviceController implements Controller {
                     }
                 }
                 if (!controls[vacuumDO1].equals("-1")) {
-                    vacuumTimer1.setText(controls[vacuumDO1]);
-                    //vacuumTimer2.setText(time[1]);
+                    String[] time = controls[vacuumDO1].split("-");
+                    vacuumTimer1.setText(time[0]);
+                    vacuumTimer2.setText(time[1]);
                 }
                 if (!controls[vacuumDO2].equals("-1")) {
-                    vacuumTimer3.setText(controls[vacuumDO2]);
-                    //vacuumTimer4.setText(time[1]);
+                    String[] time = controls[vacuumDO2].split("-");
+                    vacuumTimer3.setText(time[0]);
+                    vacuumTimer4.setText(time[1]);
                 }
                 if (!controls[vacuumCMD].isEmpty()) {
                     vacuumCommand.setText(controls[vacuumCMD]);
@@ -340,39 +580,19 @@ public class FavoriteDeviceController implements Controller {
     }
 
     public void setUpSensor(String[] controls) {
-        setUpButton(controls, controls[TYPE]);
         sensorType.setText(controls[sensorTYPE]);
-
-    }
-
-    public void setUpButton(String[] controls, String type) {
-        if (type.equals("Lighting")) {
-            if (controls[lightPOWER].equals("On")) {
-                deviceToggleButton.setSelected(true);
-                deviceToggleButton.setText("Päällä");
-                deviceToggleButton.setStyle("-fx-background-color: green");
-            }   else {
-                deviceToggleButton.setSelected(false);
-                deviceToggleButton.setText("POIS");
-                deviceToggleButton.setStyle("-fx-background-color: red");
-            }
-        }
-        if (type.equals("Sensor")) {
-            if (controls[sensorPOWER].equals("On")) {
-                deviceToggleButton.setSelected(true);
-                deviceToggleButton.setText("Päällä");
-                deviceToggleButton.setStyle("-fx-background-color: green");
-            }   else {
-                deviceToggleButton.setSelected(false);
-                deviceToggleButton.setText("POIS");
-                deviceToggleButton.setStyle("-fx-background-color: red");
-            }
-        }
     }
 
     public String updateControl(String s, int i) {
         controls = device.getDeviceControl();
-        return controls.replace(splitControl()[i], s);
+        String[] splitControls = splitControl();
+        if (i >= 0 && i < splitControls.length) {
+            splitControls[i] = s;
+            String updatedControls = String.join(";", splitControls);
+            return updatedControls;
+        } else {
+            return controls;
+        }
     }
 
     public String[] splitControl() {
