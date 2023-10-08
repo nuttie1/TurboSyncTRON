@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObservableDevices {
+public class ObservableDevices implements Model{
     private static ObservableDevices instance;
     private ObservableList<Device> observableDevices;
 
