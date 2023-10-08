@@ -34,13 +34,11 @@ jobs:
           maven-
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-  tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Tests
-        run: mvn test
-      - name: Debug
-        run: |
-          ls -R
-          echo $PWD
+      run: mvn -B package --file pom.xml  
+    - name: Run Tests
+      run: mvn test
+    - name: Debug
+      run: |
+         ls -R
+         echo $PWD
+    
