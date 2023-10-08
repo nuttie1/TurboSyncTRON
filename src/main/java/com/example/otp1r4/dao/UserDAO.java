@@ -236,6 +236,16 @@ public class UserDAO implements DAO {
 
     public int getUserID (String name) throws SQLException {
         String sql = "SELECT UserID FROM users WHERE Name = ?";
+        prepStat = conn.prepareStatement(sql);
+        prepStat.setString(1, name);
+
+        ResultSet rs = prepStat.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("UserID");
+        }
+        return 0;
+    }
+
     /** Remove user from database. Used for testing.
      *
      * @param name
@@ -251,18 +261,18 @@ public class UserDAO implements DAO {
 
     public boolean checkUser (String name) {
         String sql = "SELECT * FROM users WHERE Name = ?";
-
-        if (resultSet.next()) {
-            return resultSet.getInt("UserID");
-        try (PreparedStatement prepStat = conn.prepareStatement(sql)) {
-            prepStat.setString(1,name);
-
+        try {
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setString(1, name);
             ResultSet rs = prepStat.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
+            if (rs.next()) {
+                return true;
+            }
+
+        }catch (SQLException e){
             throw new RuntimeException(e);
         }
-
-        return -1;
+        return false;
     }
+
 }
