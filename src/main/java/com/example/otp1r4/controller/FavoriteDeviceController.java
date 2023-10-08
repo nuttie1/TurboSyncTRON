@@ -81,7 +81,7 @@ public class FavoriteDeviceController implements Controller {
             isFavoriteNode.setOnMouseClicked(mouseEvent -> {
                 if (isFavoriteNode.getFill().equals(Color.YELLOW)) {
                     isFavoriteNode.setFill(Color.WHITE);
-                    //deviceDAO.removeFavoriteDevice(userData.getUserID(), device.getDeviceId());
+                    deviceDAO.removeFavoriteDevice(userData.getUserID(), device.getDeviceId());
                     device.updateIsDeviceFavorite(false);
                     observableDevices.updateDevice(device);
                 }
