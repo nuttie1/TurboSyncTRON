@@ -1,6 +1,7 @@
 package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.UserDAO;
+import com.example.otp1r4.model.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RegisterController implements Controller {
     @FXML
@@ -16,32 +18,34 @@ public class RegisterController implements Controller {
     @FXML
     Button submitButton;
     @FXML
-    public TextField usernameField;
+    TextField usernameField;
     @FXML
-    public PasswordField passwordField;
+    PasswordField passwordField;
     @FXML
-    public TextField questionOneField;
+    TextField questionOneField;
     @FXML
-    public TextField questionTwoField;
+    TextField questionTwoField;
     @FXML
-    public TextField questionThreeField;
+    TextField questionThreeField;
     @FXML
-    public TextField answerOneField;
+    TextField answerOneField;
     @FXML
-    public TextField answerTwoField;
+    TextField answerTwoField;
     @FXML
-    public TextField answerThreeField;
+    TextField answerThreeField;
     @FXML
-    public Label usernameErrorLabel;
+    Label usernameErrorLabel;
     @FXML
-    public Label passwordErrorLabel;
+    Label passwordErrorLabel;
     @FXML
-    public Label errorLabelQandA1;
+    Label errorLabelQandA1;
     @FXML
-    public Label errorLabelQandA2;
+    Label errorLabelQandA2;
     @FXML
-    public Label errorLabelQandA3;
+    Label errorLabelQandA3;
     UserDAO dao;
+    UserData userData = UserData.getInstance();
+
     public RegisterController() {
         this.dao = new UserDAO();
     }
@@ -50,7 +54,7 @@ public class RegisterController implements Controller {
         this.changeScene("login.fxml", (Node) event.getTarget());
     }
 
-    public void submitButtonOnAction(ActionEvent event) throws IOException {
+    public void submitButtonOnAction(ActionEvent event) throws Exception {
         boolean isValid = true;
 
         String username = usernameField.getText();
@@ -131,26 +135,16 @@ public class RegisterController implements Controller {
         }
         if (isValid) {
             dao.addUser(username, password, questionOne, questionTwo, questionThree, answerOne, answerTwo, answerThree);
-
+            userData.setUsername(username);
+            int userId = dao.getUserID(username);
+            if (userId == -1)
+                throw new Exception();
+            userData.setUserID(userId);
             this.changeScene("mainView.fxml", submitButton);
 
             Stage stage = (Stage) submitButton.getScene().getWindow();
-            showRegistrationSuccessMessage(stage);
+            showSuccessMessage(stage, "Käyttäjä luotu", "Käyttäjä luotu onnistuneesti!", 3);
         }
     }
 
-    public void showRegistrationSuccessMessage(Stage ownerStage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Käyttäjä luotu");
-        alert.setHeaderText(null);
-        alert.setContentText("Käyttäjä luotu onnistuneesti!");
-
-        alert.initOwner(ownerStage);
-        alert.show();
-
-        Duration duration = Duration.seconds(1.5);
-        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
-        pause.setOnFinished(event -> alert.close());
-        pause.play();
-    }
 }

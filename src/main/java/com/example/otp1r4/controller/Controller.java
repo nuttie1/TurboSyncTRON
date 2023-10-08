@@ -5,9 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /** {@code @Brief} Interface for controllers - model to view.
  *  Methods that are needed for in model to view order.
@@ -15,7 +19,6 @@ import java.io.IOException;
  *  See VtoM Interface for view to model applications.
  */
 public interface Controller {
-
     /**
      * @param nextView fxml file name ex. mainView.fxml
      * @param currentNode Scene node 'object' ex. TextField usernameField
@@ -25,6 +28,7 @@ public interface Controller {
         Parent root = FXMLLoader.load(Main.class.getResource(nextView));
         Stage window = (Stage) currentNode.getScene().getWindow();
         window.setScene(new Scene(root));
+        window.centerOnScreen();
     }
     /**
      * @param nextView fxml file name ex. mainView.fxml
@@ -37,6 +41,23 @@ public interface Controller {
         window.initOwner(currentNode.getScene().getWindow());
 
         window.setScene(new Scene(root));
+        window.setTitle(nextView);
         window.show();
     }
+
+    default void showSuccessMessage(Stage ownerStage, String title, String contentText, int seconds) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+
+        alert.initOwner(ownerStage);
+        alert.show();
+
+        Duration duration = Duration.seconds(seconds);
+        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(duration);
+        pause.setOnFinished(event -> alert.close());
+        pause.play();
+    }
+
 }

@@ -234,6 +234,8 @@ public class UserDAO implements DAO {
         return question;
     }
 
+    public int getUserID (String name) throws SQLException {
+        String sql = "SELECT UserID FROM users WHERE Name = ?";
     /** Remove user from database. Used for testing.
      *
      * @param name
@@ -250,6 +252,8 @@ public class UserDAO implements DAO {
     public boolean checkUser (String name) {
         String sql = "SELECT * FROM users WHERE Name = ?";
 
+        if (resultSet.next()) {
+            return resultSet.getInt("UserID");
         try (PreparedStatement prepStat = conn.prepareStatement(sql)) {
             prepStat.setString(1,name);
 
@@ -258,5 +262,7 @@ public class UserDAO implements DAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        return -1;
     }
 }

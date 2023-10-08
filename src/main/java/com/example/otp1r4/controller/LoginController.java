@@ -1,6 +1,8 @@
 package com.example.otp1r4.controller;
 
+import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.dao.UserDAO;
+import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,6 +61,12 @@ public class LoginController implements Controller {
             if(dao.authenticate(username,password)){
                 UserData userData = UserData.getInstance();
                 userData.setUsername(username);
+                int userId = dao.getUserID(username);
+                if (userId == -1)
+                    throw new Exception();
+                userData.setUserID(userId);
+                DeviceDAO deviceDAO = new DeviceDAO();
+                ObservableDevices.getInstance().setObservableList(deviceDAO.getDevices(username));
                 this.changeScene("mainView.fxml", usernameField);
             }else {
                 errorLabelPassword.setText("Käyttäjätunnus tai salasana väärin!");

@@ -4,8 +4,10 @@ import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.UserData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -17,8 +19,10 @@ public class ProfileController implements Controller{
     private Label usernameErrorLabel, usernameSuccessLabel;
     @FXML
     private Button saveButton;
-    private String oldUsername;
+    @FXML
+    private Hyperlink backLink;
 
+    private String oldUsername;
     private UserData userData = UserData.getInstance();
 
     public void initialize() {
@@ -53,13 +57,17 @@ public class ProfileController implements Controller{
             dao.changeUsername(usernameField.getText(), oldUsername);
             usernameField.setDisable(true);
             saveButton.setDisable(true);
-            usernameSuccessLabel.setText("Käyttäjätunnus vaihdettu!");
+            userData.setUsername(usernameField.getText());
+
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            showSuccessMessage(stage, "Käyttäjätunnus vaihdettu", "Käyttäjätunnus vaihdettu onnistuneesti!", 3);
         }
 
     }
 
-    public void clickBack() throws IOException {
-        this.changeScene("mainView.fxml", usernameField);
+    public void clickBack() {
+        Stage stage = (Stage) backLink.getScene().getWindow();
+        stage.close();
     }
 
 }
