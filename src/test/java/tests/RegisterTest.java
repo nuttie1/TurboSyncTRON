@@ -76,9 +76,11 @@ public class RegisterTest extends ApplicationTest {
     }
     @Test
     public void qaIllegalInputOne() {
-        clickOn("#questionOneField").write("!#%%&!");
+        clickOn("#questionOneField").write("!!VÄÄRÄ!!");
 
-        clickOn("#answerOneField").write("!#%%&!");
+        clickOn("#answerOneField").write("!!VÄÄRÄ!!");
+
+        clickOn("#submitButton");
 
         Label label = lookup("#errorLabelQandA1").query();
 
