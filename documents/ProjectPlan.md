@@ -126,6 +126,22 @@ Asiakas seuraa projektia Sprint-kokousten yhteydessä.
 Tuote ei ole kaupallinen, eikä täten ole sääntelyn piirissä.  
 Projekti toteutetaan noudattaen tietoturvan ja ohjelmistokehityksen parhaita käytäntöjä.
 
+---
+## Käytetyt kirjastot
+- Maven Surefire Plugin (Version: 3.1.2)
+- JavaFX Controls (Version: 17.0.2)
+- JavaFX FXML (Version: 17.0.2)
+- JavaFX Web (Version: 17.0.8)
+- ControlsFX (Version: 11.1.2)
+- FormsFX Core (Version: 11.5.0)
+- ValidatorFX (Version: 0.4.0)
+- BootstrapFX Core (Version: 0.4.0)
+- JUnit Jupiter API (Version: 5.9.1)
+- JUnit Jupiter Engine (Version: 5.9.1)
+- TestFX JUnit5 (Version: 4.0.17)
+- MariaDB Java Client (Version: 3.1.4)
+- SLF4J NOP (Version: 2.0.9)
+
 
 
 
