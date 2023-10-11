@@ -1,0 +1,70 @@
+
+
+Laitteiden tuottama data
+
+Kaikki data on merkkijonomuodossa (varchar).
+Hakasulkeet rajaavat yhden tietokannasta haetun data-arvon, eli nimetyn kentän sisällön. Yhdessä kentässä/solussa on siis yksi data (yksien hakasulkeiden sisältö).
+Hakasulkeet eivät ole osa dataa. Hakasulkeiden sisällä on esimerkki niiden paikalle kuuluvasta datasta. Vrt. Username: [myUserName]
+
+Laitetyyppi, alityyppi
+Data: [esimerkkidata], [esimerkkidata], ...
+DataArb: Datan tyyppi. [esimerkkidata], ...
+
+Sensori (huom. neljä eri tyyppiä, jotka eivät ole varsinaisia "alityyppejä" vaan kontrolleilla määriteltyjä ominaisuuksia)
+Data (Lämpötila): [10.1], [-3.3], [42.0], [6.9]
+Data (Ilmankosteus): [000], [012], [075], [100]
+Data (CO2): [0000], [0098], [0365], [1298]
+Data (Läsnäolotunnistin): [0], [1]
+DataArb: Ihmisen luettavissa. Esim. [Varoitus: Korkea hiilidioksidipitoisuus], [Hälytys: Liikettä keittiössä]
+	Datan selitykset/yksiköt:
+		Lämpötila: C-asteissa
+		Ilmankosteus: prosenteissa
+		CO2: ppm (parts per million)
+		Läsnäolo: boolean
+
+Valaisin
+Data: [0], [1]
+DataArb: Ihmisen luettavissa. Esim. [Error: Hardware failure in device b134c]
+	Datan selitykset/yksiköt:
+		boolean, päällä(1)/pois(0)
+
+Laite, Pesukone
+Data: [0], [1;"ohjelmanNimi, ohjelmanVaihe"]
+DataArb: Ihmisen luettavissa. Esim. [Ohjelma valmis], [Ajastettu käynnistys: Hienopesu], [Muistutus: Pura pyykit koneesta]
+	Datan selitykset/yksiköt
+		boolean, päällä/pois
+		päällä -tapauksessa lisäksi ";"-merkillä erotettu merkkijono käynnissäolevasta toiminnosta (jonka simulaattori tuottaa)
+
+Laite, Astianpesukone
+Data: [0], [1;"ohjelmanNimi, ohjelmanVaihe"]
+DataArb: Ihmisen luettavissa. Esim. [Ohjelma valmis], [Ajastettu käynnistys: Eko], [Virhe: Pesuaine loppu]
+	Datan selitykset/yksiköt
+		boolean, päällä/pois
+		päällä -tapauksessa lisäksi ";"-merkillä erotettu merkkijono käynnissäolevasta toiminnosta (jonka simulaattori tuottaa)
+		
+Laite, Imuri
+Data: [0], [1;"toiminnonNimi";"sijainti"]
+DataArb: Ihmisen luettavissa. Esim. [Virhe: Jumissa], [Huolto: Vaihda harja]
+	Datan selitykset/yksiköt
+		boolean, toiminnassa/ei toiminnassa
+		toiminnassa -tapauksessa lisäksi ";"-merkillä erotetut merkkijonot käynnissäolevasta toiminnosta ja imurin sijainnista (jotka simulaattori tuottaa, esim. imurointi;olohuone tai moppaus;eteiskäytävä)
+		
+Laite, Sauna(Kiuas)
+Data: [0], [1;23], [1;90], [1;110]
+DataArb: Ihmisen luettavissa. Esim. [Automaattinen sammutus]
+	Datan selitykset/yksiköt
+		boolean, päällä/pois
+		päällä -tapauksessa lisäksi ";"-merkillä erotettu lämpötila
+		
+Laite, Lukko
+Data: [0;1], [1;1]
+DataArb: Ihmisen luettavissa. Esim. [Ajastettu lukitus], [Ilmoitus: Ovi avattu], [Virhe: Ei voida lukita. Ovi ei ole suljettu]
+	Datan selitykset/yksiköt
+		boolean, lukitsematon(0)/lukittu(1) ja ";" -merkillä erotettu boolean, avoin(0)/suljetttu(1) (Avoin/suljettu siis tarkoittaa esim. oven asentoa)
+		
+Laite, Kamera
+Data: [0], [1;(TBD)]
+DataArb: Ihmisen luettavissa. Esim. [Huomio: Tallennustilan täyttöaste 90%]
+	Datan selitykset/yksiköt
+		boolean, päällä(1)/pois(0)
+		päällä -tapauksessa lisäksi ";"-merkillä erotettu merkkijono (TBD) esitettävän kuvan hakemiseksi data-näkymään. Tätä merkkijonoa ei esitetä käyttäjälle. Kuvaa ei esitetä suosikit-näkymässä.

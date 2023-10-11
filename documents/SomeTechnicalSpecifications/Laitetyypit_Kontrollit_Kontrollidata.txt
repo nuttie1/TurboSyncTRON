@@ -1,0 +1,62 @@
+
+Laitetyypit, kontrollit ja kontrollidata
+
+Nämä voidaan implementoida kokonaan tai osittain jos ei riitä aika. Lisääkin on keksittävissä.
+Teksti- ja numerosyötteiden rajoittaminen ei täysin pakollista.
+Hakasulkeet eivät ole osa dataa. Hakasulkujen sisällä on niiden paikalle kuuluvan datan selitys. Vrt. Username: [myUserName]
+
+Huom. sisennyksen merkitys tässä dokumentissa:
+Laitetyyppi, alityyppi
+	Asetettavan kontrollin nimi: käyttöliittymäkomponentti ja syötteet
+		DeviceControl -sisältö
+		 
+
+Sensori
+	Sensorityyppi: dropdown-lista jossa vaihtoehdot Lämpötila, Ilmankosteus, CO2, Läsnäolotunnistin
+	Päällä/Pois: checkbox
+		Sensori;["sensorityyppi"];[enabled/disabled]
+		
+Valaisin
+	Kirkkaus: neljä tai viisi radio buttonia joilla label 1, 2, 3, ...
+	Värilämpötila: dropdown tai radio buttonit "Kylmä", "Neutraali", "Lämmin"
+	Liiketunnistin: checkbox
+	Päällä/Pois: checkbox
+		Valaisin;[1-5];["värilämpötila"];[enabled/disabled];[enabled/disabled]
+		
+Laite (ent. Appliance), Pesukone
+	Pesuohjelma: dropdown jossa vaihtoehdot Puuvilla, Hienopesu, Sport
+	Lämpötila: dropdown jossa vaihtoehdot 30, 40, 60, 90
+	Linkous: dropdown jossa vaihtoehdot 0, 600, 800, 1000, 1200
+	Lisähuuhtelu: checkbox
+	Ajansäästö: checkbox
+	Käynnistä nyt: checkbox
+	Aloitusaika: tekstikenttä (johon kelpaa) neljä numeroa
+		Laite;Pesukone;["Pesuohjelma"];[30...90];[0...1200];[enabled/disabled];[enabled/disabled];[enabled/disabled];[0123]
+	
+Laite, Astianpesukone
+	Pesuohjelma: radio buttonit Eko, Pika, Teho
+	Käynnistä nyt: checkbox
+	Aloitusaika: tekstikenttä (johon kelpaa) neljä numeroa
+		Laite;Astianpesukone;["Pesuohjelma"];[enabled/disabled];[0123]
+	
+Laite, Imuri
+	Ohjelma: checkboxit Imurointi, Moppaus
+	Aloita nyt: checkbox
+	Siivouspäivät: seitsemän checkboxia labeleilla MA, TI, KE, ...
+	Toiminta-aika 1: kaksi tekstikenttää (joihin kelpaa) neljä numeroa
+	Toiminta-aika 2: kaksi tekstikenttää (joihin kelpaa) neljä numeroa
+	Komento: tekstikenttä
+		Laite;Imuri;["Ohjelma"];[enabled/disabled];["PV"+"PV"+...];[1234+1234];[1234+1234];["komento string"]
+		
+Laite, Sauna
+	Lämpötila: tekstikenttä (johon kelpaa) kaksi ja kolme numeroa
+	Lämmitysaika: kaksi tekstikenttää (joihin kelpaa) neljä numeroa
+		Laite;Sauna;[12/123];[1234+1234]
+		
+Laite, Lukko
+	Lukitse: checkbox
+		Laite;Lukko;[enabled/disabled]
+		
+Laite, Kamera
+	On/Off: checkbox
+		Laite;Kamera;[enabled/disabled]
