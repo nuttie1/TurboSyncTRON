@@ -2,6 +2,7 @@ package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.UserData;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -23,12 +24,18 @@ public class RegisterController implements Controller {
     TextField answerOneField, answerTwoField, answerThreeField;
     @FXML
     Label usernameErrorLabel, passwordErrorLabel, errorLabelQandA1, errorLabelQandA2, errorLabelQandA3;
+    @FXML
+    ComboBox languageBox;
 
     UserDAO dao;
     UserData userData = UserData.getInstance();
 
     public RegisterController() {
         this.dao = new UserDAO();
+    }
+
+    public void initialize() {
+        languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人"));
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
@@ -126,6 +133,10 @@ public class RegisterController implements Controller {
             Stage stage = (Stage) submitButton.getScene().getWindow();
             showSuccessMessage(stage, "Käyttäjä luotu", "Käyttäjä luotu onnistuneesti!", 3);
         }
+    }
+
+    public void languageChanged() {
+        // TODO: implement
     }
 
 }

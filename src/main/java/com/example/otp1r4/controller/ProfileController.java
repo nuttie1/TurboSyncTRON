@@ -2,16 +2,14 @@ package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.UserData;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ProfileController implements Controller{
+public class ProfileController implements Controller {
 
     @FXML
     private TextField usernameField;
@@ -21,6 +19,8 @@ public class ProfileController implements Controller{
     private Button saveButton, clickEditButton;
     @FXML
     private Hyperlink backLink;
+    @FXML
+    private ComboBox languageBox;
 
     private String oldUsername;
     
@@ -29,10 +29,12 @@ public class ProfileController implements Controller{
     public void initialize() {
         usernameField.setText(userData.getUsername());
         oldUsername = userData.getUsername();
+        languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人"));
     }
 
     public void clickEdit() throws IOException {
         usernameField.setDisable(false);
+        languageBox.setDisable(false);
         saveButton.setDisable(false);
         clickEditButton.setDisable(true);
     }
@@ -72,6 +74,10 @@ public class ProfileController implements Controller{
     public void clickBack() {
         Stage stage = (Stage) backLink.getScene().getWindow();
         stage.close();
+    }
+
+    public void languageChanged() {
+        // TODO: implement
     }
 
 }

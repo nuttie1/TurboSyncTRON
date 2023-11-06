@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -8,8 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="400.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.example.otp1r4.controller.RegisterController">
-    <Button fx:id="submitButton" layoutX="149.0" layoutY="307.0" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #23E2F7;" text="Rekistöröidy">
+<AnchorPane minHeight="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.RegisterController">
+    <Button fx:id="submitButton" layoutX="149.0" layoutY="306.0" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #23E2F7;" text="Rekistöröidy">
       <font>
          <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
       </font></Button>
@@ -19,16 +20,16 @@
       <TextField fx:id="answerTwoField" layoutX="378.0" layoutY="213.0" prefHeight="25.0" prefWidth="173.0" promptText="Vastaus" />
       <TextField fx:id="questionThreeField" layoutX="378.0" layoutY="271.0" prefHeight="25.0" prefWidth="173.0" promptText="Kysymys" />
       <TextField fx:id="answerThreeField" layoutX="377.0" layoutY="305.0" prefHeight="25.0" prefWidth="173.0" promptText="Vastaus" />
-     <Label layoutX="54.0" layoutY="133.0" text="Käyttänimi:">
+     <Label layoutX="41.0" layoutY="97.0" text="Käyttänimi:">
       <font>
          <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
       </font></Label>
-     <TextField fx:id="usernameField" layoutX="145.0" layoutY="129.0" maxWidth="200.0" promptText="Käyttäjänimi" />
-     <Label layoutX="60.0" layoutY="201.0" text="Salasana:">
+     <TextField fx:id="usernameField" layoutX="132.0" layoutY="93.0" maxWidth="200.0" promptText="Käyttäjänimi" />
+     <Label layoutX="47.0" layoutY="165.0" text="Salasana:">
       <font>
          <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
       </font></Label>
-     <PasswordField fx:id="passwordField" layoutX="145.0" layoutY="198.0" maxWidth="200.0" promptText="Salasana" />
+     <PasswordField fx:id="passwordField" layoutX="132.0" layoutY="162.0" maxWidth="200.0" promptText="Salasana" />
      <Label layoutX="372.0" layoutY="66.0" text="Salasanan palautuskysymykset:">
          <font>
              <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
@@ -58,8 +59,8 @@
       <font>
          <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
       </font></Label>
-     <Label fx:id="usernameErrorLabel" layoutX="145.0" layoutY="156.0" prefHeight="38.0" prefWidth="149.0" textFill="#fc0000" />
-     <Label fx:id="passwordErrorLabel" layoutX="148.0" layoutY="228.0" prefHeight="20.0" prefWidth="149.0" textFill="RED" />
+     <Label fx:id="usernameErrorLabel" layoutX="132.0" layoutY="120.0" prefHeight="38.0" prefWidth="149.0" textFill="#fc0000" />
+     <Label fx:id="passwordErrorLabel" layoutX="135.0" layoutY="192.0" prefHeight="20.0" prefWidth="149.0" textFill="RED" />
    <Label fx:id="errorLabelQandA1" layoutX="377.0" layoutY="154.0" prefHeight="20.0" prefWidth="173.0" textFill="RED" />
    <Label fx:id="errorLabelQandA2" layoutX="378.0" layoutY="243.0" prefHeight="20.0" prefWidth="173.0" textFill="RED" />
    <Label fx:id="errorLabelQandA3" layoutX="378.0" layoutY="335.0" prefHeight="20.0" prefWidth="173.0" textFill="RED" />
@@ -69,4 +70,10 @@
          <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
       </font>
    </Label>
+   <Label layoutX="60.0" layoutY="218.0" text="Kieli:">
+      <font>
+         <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="languageBox" layoutX="132.0" layoutY="214.0" onAction="#languageChanged" prefWidth="150.0" promptText="Suomi" />
 </AnchorPane>
