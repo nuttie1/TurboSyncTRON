@@ -47,32 +47,34 @@ public class UserDAO implements DAO {
      *
      * @param name
      * @param password
+     * @param language
      * @param securityQuestion1
      * @param securityQuestion2
      * @param securityQuestion3
      */
-    public void addUser(String name, String password, String securityQuestion1, String securityQuestion2, String securityQuestion3, String securityAnswer1, String securityAnswer2, String securityAnswer3){
+    public void addUser(String name, String language, String password, String securityQuestion1, String securityQuestion2, String securityQuestion3, String securityAnswer1, String securityAnswer2, String securityAnswer3){
         byte[] salt = salt();
         byte[] hashedPassword = hashString(password,salt);
         try {
             /// TODO: Refractor this mess. Use loops and lists. Easy clean up.
-            String sql = "INSERT INTO `users`(`Name`, `Password`,`salt`, `Security1`, `Security2`, `Security3`, `SecurityA1`,`SecASalt1`, `SecurityA2`,`SecASalt2`, `SecurityA3`,`SecASalt3`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `users`(`Name`, `language`, `Password`,`salt`, `Security1`, `Security2`, `Security3`, `SecurityA1`,`SecASalt1`, `SecurityA2`,`SecASalt2`, `SecurityA3`,`SecASalt3`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             prepStat = conn.prepareStatement(sql);
             prepStat.setString(1,name);
-            prepStat.setBytes(2,hashedPassword);
-            prepStat.setBytes(3,salt);
-            prepStat.setString(4,securityQuestion1);
-            prepStat.setString(5,securityQuestion2);
-            prepStat.setString(6,securityQuestion3);
+            prepStat.setString(2,language);
+            prepStat.setBytes(3,hashedPassword);
+            prepStat.setBytes(4,salt);
+            prepStat.setString(5,securityQuestion1);
+            prepStat.setString(6,securityQuestion2);
+            prepStat.setString(7,securityQuestion3);
             salt = salt();
-            prepStat.setBytes(7, hashString(securityAnswer1,salt));
-            prepStat.setBytes(8,salt);
+            prepStat.setBytes(8, hashString(securityAnswer1,salt));
+            prepStat.setBytes(9,salt);
             salt = salt();
-            prepStat.setBytes(9, hashString(securityAnswer2,salt));
-            prepStat.setBytes(10,salt);
+            prepStat.setBytes(10, hashString(securityAnswer2,salt));
+            prepStat.setBytes(11,salt);
             salt = salt();
-            prepStat.setBytes(11, hashString(securityAnswer3,salt));
-            prepStat.setBytes(12,salt);
+            prepStat.setBytes(12, hashString(securityAnswer3,salt));
+            prepStat.setBytes(13,salt);
 
             prepStat.executeUpdate();
 
@@ -181,6 +183,19 @@ public class UserDAO implements DAO {
         }
     }
 
+    public void changeLanguage(String language, String username) {
+        try {
+            String sql = "UPDATE users SET language = ? WHERE Name = ?";
+            prepStat = conn.prepareStatement(sql);
+            prepStat.setString(1, language);
+            prepStat.setString(2, username);
+
+            prepStat.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void changePassword(String name, String password){
         byte[] salt = salt();
         byte[] hashedPassword = hashString(password,salt);
@@ -248,4 +263,20 @@ public class UserDAO implements DAO {
 
         return -1;
     }
+
+    public String getLanguage(String name) throws SQLException {
+        String sql = "SELECT language FROM users WHERE Name = ?";
+
+        prepStat = conn.prepareStatement(sql);
+        prepStat.setString(1, name);
+
+        ResultSet resultSet = prepStat.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getString("language");
+        }
+
+        return null;
+    }
+
 }

@@ -48,6 +48,16 @@ public class RegisterController implements Controller {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        String languageFromBox = languageBox.getValue().toString();
+        String language = "Finnish";
+        if(languageFromBox.equals("Suomi")){
+            language = "Finnish";
+        } else if (languageFromBox.equals("English")){
+            language = "English";
+        } else if (languageFromBox.equals("中国人")){
+            language = "Chinese";
+        }
+
         String questionOne = questionOneField.getText();
         String questionTwo = questionTwoField.getText();
         String questionThree = questionThreeField.getText();
@@ -122,7 +132,7 @@ public class RegisterController implements Controller {
             errorLabelQandA3.setText("");
         }
         if (isValid) {
-            dao.addUser(username, password, questionOne, questionTwo, questionThree, answerOne, answerTwo, answerThree);
+            dao.addUser(username, language, password, questionOne, questionTwo, questionThree, answerOne, answerTwo, answerThree);
             userData.setUsername(username);
             int userId = dao.getUserID(username);
             if (userId == -1)
