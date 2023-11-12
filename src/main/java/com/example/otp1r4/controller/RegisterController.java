@@ -4,6 +4,7 @@ import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -25,12 +26,18 @@ public class RegisterController implements Controller {
     TextField answerOneField, answerTwoField, answerThreeField;
     @FXML
     Label usernameErrorLabel, passwordErrorLabel, errorLabelQandA1, errorLabelQandA2, errorLabelQandA3;
+    @FXML
+    ComboBox languageBox;
 
     UserDAO dao;
     UserData userData = UserData.getInstance();
 
     public RegisterController() {
         this.dao = new UserDAO();
+    }
+
+    public void initialize() {
+        languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人"));
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
@@ -42,6 +49,16 @@ public class RegisterController implements Controller {
 
         String username = usernameField.getText();
         String password = passwordField.getText();
+
+        String languageFromBox = languageBox.getValue().toString();
+        String language = "Finnish";
+        if(languageFromBox.equals("Suomi")){
+            language = "Finnish";
+        } else if (languageFromBox.equals("English")){
+            language = "English";
+        } else if (languageFromBox.equals("中国人")){
+            language = "Chinese";
+        }
 
         String questionOne = questionOneField.getText();
         String questionTwo = questionTwoField.getText();
@@ -117,7 +134,7 @@ public class RegisterController implements Controller {
             errorLabelQandA3.setText("");
         }
         if (isValid) {
-            dao.addUser(username, password, questionOne, questionTwo, questionThree, answerOne, answerTwo, answerThree);
+            dao.addUser(username, language, password, questionOne, questionTwo, questionThree, answerOne, answerTwo, answerThree);
             userData.setUsername(username);
             int userId = dao.getUserID(username);
             if (userId == -1)
@@ -131,6 +148,10 @@ public class RegisterController implements Controller {
             Stage stage = (Stage) submitButton.getScene().getWindow();
             showSuccessMessage(stage, "Käyttäjä luotu", "Käyttäjä luotu onnistuneesti!", 3);
         }
+    }
+
+    public void languageChanged() {
+        // TODO: implement
     }
 
 }
