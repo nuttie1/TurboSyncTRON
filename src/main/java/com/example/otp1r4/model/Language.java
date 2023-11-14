@@ -10,6 +10,10 @@ public class Language {
         bundle = ResourceBundle.getBundle("TextResources", locale);
     }
 
+    public static Locale getLocale() {
+        return bundle.getLocale();
+    }
+
     public static String getString(String key) {
         return bundle.getString(key);
     }

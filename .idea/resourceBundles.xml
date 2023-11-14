@@ -4,12 +4,22 @@
     <file url="file://$PROJECT_DIR$/lang_en.properties" />
     <file url="file://$PROJECT_DIR$/lang_fi.properties" />
     <file url="file://$PROJECT_DIR$/lang_se.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/TextResources_en_US.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/TextResources_fi.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/TextResources_mv.properties" />
     <custom-resource-bundle>
       <file value="file://$PROJECT_DIR$/lang_cn.properties" />
       <file value="file://$PROJECT_DIR$/lang_en.properties" />
       <file value="file://$PROJECT_DIR$/lang_fi.properties" />
       <file value="file://$PROJECT_DIR$/lang_se.properties" />
       <base-name>lang</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/TextResources_en_US.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/TextResources_fi.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/TextResources_mv.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/TextResources_zh_CN.properties" />
+      <base-name>TextResources</base-name>
     </custom-resource-bundle>
   </component>
 </project>

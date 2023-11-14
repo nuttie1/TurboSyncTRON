@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -13,16 +13,16 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.LoginController">
+<BorderPane fx:id="borderPane" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.LoginController">
    <right>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="usernameLabel" layoutX="268.0" layoutY="128.0" text="%usernameLabel">
+            <Label fx:id="usernameLabel" layoutX="268.0" layoutY="125.0" minHeight="28.0" minWidth="142.0" text="%usernameLabel">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="passwordLabel" layoutX="282.0" layoutY="195.0" text="%passwordLabel">
+            <Label fx:id="passwordLabel" layoutX="269.0" layoutY="192.0" minHeight="28.0" minWidth="142.0" text="%passwordLabel">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
@@ -48,7 +48,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <ChoiceBox fx:id="languageChoiceBox" layoutX="440.0" layoutY="14.0" prefWidth="150.0" />
+            <ComboBox fx:id="languageBox" layoutX="435.0" layoutY="14.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </right>
