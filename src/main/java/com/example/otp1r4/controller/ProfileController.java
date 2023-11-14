@@ -33,7 +33,7 @@ public class ProfileController implements Controller {
         usernameField.setText(userData.getUsername());
         oldUsername = userData.getUsername();
         languageBox.setValue(dao.getLanguage(userData.getUsername()));
-        languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人"));
+        languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人", "ދިވެހި"));
     }
 
     public void clickEdit() throws IOException {
@@ -71,6 +71,8 @@ public class ProfileController implements Controller {
             language = "English";
         } else if (languageFromBox.equals("中国人")){
             language = "Chinese";
+        } else if (languageFromBox.equals("ދިވެހި")){
+            language = "Divehi";
         }
 
         if(isValid) {

@@ -37,7 +37,7 @@ public class RegisterController implements Controller {
     }
 
     public void initialize() {
-        languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人"));
+        languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人", "ދިވެހި"));
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
@@ -58,6 +58,8 @@ public class RegisterController implements Controller {
             language = "English";
         } else if (languageFromBox.equals("中国人")){
             language = "Chinese";
+        } else if (languageFromBox.equals("ދިވެހި")){
+            language = "Divehi";
         }
 
         String questionOne = questionOneField.getText();
