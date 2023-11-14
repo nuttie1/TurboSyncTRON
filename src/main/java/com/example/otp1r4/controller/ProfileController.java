@@ -32,7 +32,7 @@ public class ProfileController implements Controller {
     public void initialize() throws SQLException {
         usernameField.setText(userData.getUsername());
         oldUsername = userData.getUsername();
-        languageBox.setValue(dao.getLanguage(userData.getUsername()));
+        languageBox.setValue(langDBtoGUI());
         languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人", "ދިވެހި"));
     }
 
@@ -94,6 +94,19 @@ public class ProfileController implements Controller {
     public void clickBack() {
         Stage stage = (Stage) backLink.getScene().getWindow();
         stage.close();
+    }
+
+    public String langDBtoGUI() throws SQLException {
+        if (dao.getLanguage(userData.getUsername()).equals("Finnish")) {
+            return "Suomi";
+        } else if (dao.getLanguage(userData.getUsername()).equals("English")) {
+            return "English";
+        } else if (dao.getLanguage(userData.getUsername()).equals("Chinese")) {
+            return "中国人";
+        } else if (dao.getLanguage(userData.getUsername()).equals("Divehi")) {
+            return "ދިވެހި";
+        }
+        return "Tänne ei pitäs päästä!";
     }
 
     public void languageChanged() {
