@@ -27,7 +27,7 @@ public class RegisterController implements Controller {
     @FXML
     Label usernameErrorLabel, passwordErrorLabel, errorLabelQandA1, errorLabelQandA2, errorLabelQandA3;
     @FXML
-    ComboBox languageBox;
+    ComboBox<String> languageBox;
 
     UserDAO dao;
     UserData userData = UserData.getInstance();
@@ -38,6 +38,7 @@ public class RegisterController implements Controller {
 
     public void initialize() {
         languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人"));
+        languageBox.setValue("Suomi");
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
