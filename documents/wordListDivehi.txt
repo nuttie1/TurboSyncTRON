@@ -1,0 +1,176 @@
+#AddDeviceController
+
+DeviceDescription=ޑިވައިސްޑިސްކްރިޕްޝަން
+Optional=އިޚްތިޔާރީ
+
+Device=ޑިވައިސް
+Light=އަލި
+Sensor=ސެންސަރ
+WashingMachine=ދޮންނަ މެޝިން
+Dishwasher=ޑިޝްވާޝަރ
+VacuumCleaner=ވެކިއުމްކްލީނަރ
+Sauna=ސައުނާ
+Lock=ލޮކް
+Camera=ކެމެރާ
+Temperature=ފިނިހޫނުމިން
+Humidity=ހޫނުމިން
+CO2=ސީއޯ2
+Motion=ހުށަހެޅުން
+Cotton=ކޮޓަން
+FineWash=ފައިންވޮޝް
+Sport=ކުޅިވަރު
+Eco=އީކޯ
+Fast=ރޯދަ
+PowerWash=ޕަވަރވޮޝް
+
+AddDeviceName=ޑިވައިސްނަން އިތުރުކުރުން
+SelectDeviceType=ސެލެކްޓްޑިވައިސްޓައިޕް
+SelectDeviceSubtype=ސެލެކްޓްޑިވައިސްސަބްޓައިޕް
+SelectSensorType=ސެލެކްޓްސެންސަރޓައިޕް
+
+AddingDeviceSuccessfull=އެޑިންގޑިވައިސްސަކްސެސްފު
+DeviceAddedSuccessfully=ޑިވައިސްއެޑްޑްސަކްސެސްލީ
+PowerOn=ޕަވަރއޮން
+PowerOff=ޕަވަރއޮފް
+CO2Concentration=ސީއޯ2ކޮންސެންޓްރޭޝަން
+Cold=ފިނި
+Neutral=ނިއުޓްރަލް
+Warm=ހޫނު
+Brightness=އަލިކަން
+Function=ފަންކްޝަން
+
+Monday=ހޯމަ ދުވަސް
+Tuesday=އަންގާރަ ދުވަހު
+Wednesday=ބުދަ ދުވަހު
+Thursday=ބުރާސްފަތި ދުވަހު
+Friday=ހުކުރު ދުވަހު
+Saturday=ހޮނިހިރު ދުވަސް
+Sunday=ހުކުރު ދުވަހު
+
+Vacuuming=ވެކިއުމް ކުރުން
+Mopping=މޮޕިންގ
+Locking=ލޮކްކުރުން
+Recording=ރެކޯޑިންގ
+
+
+#DataDisplayController
+
+UnexpectedValue=ހީވެސް ނުކުރާ އަގު
+
+
+#ForgotPasswordController
+
+EnterUsername=އެންޓަރޔޫޒަރނޭމް
+UserNotFound=ޔޫޒަރނޮޓްފޯއުންޑް
+EnterTheAnswersToTheQuestions=ސުވާލުތަކަށް ޖަވާބުތައް ލިޔެލާށެވެ
+TheAnswersDoNotMatch=ދައަންސަރސްޑޯނޮޓްމެޗް
+EnterPassword=އެންޓަރޕާސްވޯޑް
+PasswordChanged=ޕާސްވޯޑްބަދަލުކުރެވިއްޖެ
+PasswordChangedSuccessfully=ޕާސްވޯޑް ބަދަލުކޮށްފައިވަނީ ކާމިޔާބުކަމާއެކު
+
+
+#LoginController
+
+EnterUsernameInCorrectFormat=އެންޓަރޔޫޒަރނޭމްއިންކަރެކްޓްފޯމެޓް
+IncorrectUsernameOrPassword=ގޯސް ޔޫޒަރނަން ނުވަތަޕާސްވޯޑް
+
+
+#ProfileController
+
+UsernameReserved=ޔޫޒަރނޭމްރިޒާވްޑް
+UsernameChanged=ޔޫޒަރނޭމްޗޭންޖްޑް
+UsernameChangedSuccessfully=ޔޫޒަރނޭމްޗޭންޖްޑްސަކްސެސްލީ
+EnterQuestionAnswer=އެންޓަރކުއެސްޝަންއަންސަރ
+InvalidQuestionAnswer=ސައްހަ ނޫންސުވާލުޖަވާބު
+UserCreated=ޔޫޒަރކްރިއޭޓް ކުރެވިފައިވާ
+UserCreatedSuccessfully=ޔޫޒަރކްރިއޭޓްޑްސަކްސެސްލީ
+
+
+#addDevice
+
+AddNewDevice=އެޑްނިއުޑިވައިސް
+DeviceName=ޑިވައިސްނަން
+Name=ނަން
+Type=ވައްތަރު
+DeviceType=ޑިވައިސްޓައިޕް
+Description=ސިފަކުރުން
+SensorType=ސެންސަރޓައިޕް
+LightBrightness=ލައިޓްބްރައިޓްނެސް
+ColorTemperature=ކުލަ ޓެމްޕަރޭޗަރ
+LightStatus=ލައިޓްސްޓޭޓަސް
+MotionSensor=މޯޝަންސެންސަރ
+StartNow=ސްޓާޓްނޯ
+Timer=ޓައިމަރ
+FastWash=ފަސްޓްވޮޝް
+WashProgram=ވޮޝްޕްރޮގްރާމް
+Spinning=އެނބުރުން
+ExtraRinse=އެކްސްޓްރާރިންސް
+Program=ޕްރޮގްރާމް
+CleaningDays=ސާފުކުރުމުގެ ދުވަސްތައް
+ActiveTime=އެކްޓިވްޓައިމް
+Command=ކޮމާންޑް
+HeatingTime=ހޫނުކުރާ ވަގުތު
+Locked=ތަޅުލާފައި
+CameraOn=ކެމެރާއޮން
+AddDeviceToFavorites=އެޑްޑިވައިސްޓުފޭވަރިޓްސް
+AddDevice=އެޑްޑިވައިސް
+
+
+#allDevicesView
+
+Favorite=ފޭވަރިޓް
+AllDevices=ހުރިހާ ޑިވައިސްތަކެއް
+
+
+#deviceDataView
+
+ChooseDevice=ޗޫސްޑިވައިސް
+Messages=މެސެޖުތައް
+DeviceData=ޑިވައިސްޑޭޓާ
+
+
+#favoriteDevicesView
+
+FavoriteDevice=ފފޭވަރިޓްޑިވައިސް
+
+
+#forgotPasswordView
+
+Answer=ޖަވާބު
+Back=ފަހަތަށް
+Submit=ހުށަހެޅުން
+Question1=ސުވާލު1
+Question2=ސުވާލު2
+Question3=ސުވާލު3
+PasswordResetQuestions=ޕާސްވޯޑްރީސެޓްކުއެސްޓްތައް
+NewPassword=ނިއުޕާސްވޯޑް
+ChangePassword=ޗޭންޖްޕާސްވޯޑް
+
+
+#login
+
+SignIn=ސައިންއިން
+CreateUser=ކްރިއޭޓްޔޫޒަރ
+ForgotPassword=ފޯގޮޓްޕާސްވޯޑް
+
+
+#mainView
+
+FavoriteDevices=ފޭވަރިޓްޑިވައިސްސް
+AllDevices=ހުރިހާ ޑިވައިސްތަކެއް
+Profile=ޕްރޮފައިލް
+Logout=ލޮގްއައުޓް
+
+
+#profileView
+
+MyProfile=މައިޕްރޮފައިލް
+EditProfile=އެޑިޓްޕްރޮފައިލް
+Save=ސޭވް
+
+
+#registerView
+
+Register=ރަޖިސްޓްރީވުން
+PasswordRecoveryQuestions=ޕާސްވޯޑްރިކަވަރީސުވާލުތައް
+CreateUser=ކްރިއޭޓްޔޫޒަރ
