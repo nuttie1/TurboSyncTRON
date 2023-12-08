@@ -51,16 +51,14 @@ public class LoginController implements Controller {
     }
 
     public void initialize() {
-        languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人"));
-        languageBox.setValue("Suomi");
-
-        bundle = ResourceBundle.getBundle("TextResources");
-
-        languageBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                updateLocale(newValue);
-            }
-        });
+           List<String> languages = new ArrayList<>();
+            languages.add("Suomi");
+            languages.add("English");
+            languages.add("中国人");
+            languageBox.setItems(FXCollections.observableArrayList(languages));
+            languageBox.getSelectionModel().selectFirst();
+            languageBox.setOnAction(event -> updateLocale(languageBox.getValue()));
+            updateLocale(languageBox.getValue());
     }
 
     public void clickLogin(ActionEvent actionEvent) throws Exception {
@@ -75,16 +73,16 @@ public class LoginController implements Controller {
         boolean isValid = true;
 
         if(username.isEmpty()) {
-            errorLabelUsername.setText(Language.getString("errorEmptyUsername"));
+            errorLabelUsername.setText(bundle.getString("errorEmptyUsername"));
             isValid = false;
         }  else if (!username.matches("([A-Za-z0-9\\-\\_]+)")){
             usernameField.setText("");
-            errorLabelUsername.setText(Language.getString("errorIllegalUsername"));
+            errorLabelUsername.setText(bundle.getString("errorIllegalUsername"));
             isValid =false;
         }
 
         if (password.isEmpty()){
-            errorLabelPassword.setText(Language.getString("errorEmptyPassword"));
+            errorLabelPassword.setText(bundle.getString("errorEmptyPassword"));
             isValid = false;
         }
 
@@ -101,7 +99,7 @@ public class LoginController implements Controller {
                 ObservableDevices.getInstance().setObservableList(deviceDAO.getDevices(username));
                 this.changeScene("mainView.fxml", usernameField);
             }else {
-                errorLabelPassword.setText(Language.getString("errorWrongPassword"));
+                errorLabelPassword.setText(bundle.getString("errorWrongPassword"));
             }
         }
     }
@@ -143,7 +141,7 @@ public class LoginController implements Controller {
                 newLocale = new Locale("mv");
                 break;
         }
-        Language.setLocale(newLocale);
+        bundle = ResourceBundle.getBundle("TextResources", newLocale);
         updateUI();
     }
 
@@ -151,11 +149,11 @@ public class LoginController implements Controller {
         errorLabelUsername.setText("");
         errorLabelPassword.setText("");
 
-        usernameLabel.setText(getUtfText("usernameLabel", Language.getLocale()));
-        passwordLabel.setText(getUtfText("passwordLabel", Language.getLocale()));
-        signUpLink.setText(getUtfText("createUser", Language.getLocale()));
-        forgotPasswordLink.setText(getUtfText("forgotPassword", Language.getLocale()));
-        loginButton.setText(getUtfText("loginButton", Language.getLocale()));
+        usernameLabel.setText(bundle.getString("usernameLabel"));
+        passwordLabel.setText(bundle.getString("passwordLabel"));
+        signUpLink.setText(bundle.getString("createUser"));
+        forgotPasswordLink.setText(bundle.getString("forgotPassword"));
+        loginButton.setText(bundle.getString("loginButton"));
     }
 
     private void swapNodes(Node nodeLeft, Node nodeRight) {

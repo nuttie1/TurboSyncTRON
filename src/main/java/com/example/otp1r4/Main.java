@@ -23,7 +23,7 @@ public class Main extends Application{
         JDBCConnection jdbc = new JDBCConnection();
         jdbc.start();
 
-        ResourceBundle bundle = ResourceBundle.getBundle("TextResources", new Locale("fi"));
+        ResourceBundle bundle = ResourceBundle.getBundle("TextResources");
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         fxmlLoader.setResources(bundle);

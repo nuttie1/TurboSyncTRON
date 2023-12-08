@@ -11,11 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,8 +58,14 @@ public class MainViewController implements Controller, Initializable {
     }
 
     public void clickLogout() throws IOException {
-        user = null;
-        this.changeScene("login.fxml", logoutButton);
+        ResourceBundle bundle = ResourceBundle.getBundle("TextResources");
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+        fxmlLoader.setResources(bundle);
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage window = (Stage) logoutButton.getScene().getWindow();
+        window.setScene(scene);
+        window.centerOnScreen();
     }
 
     public void clickProfile() throws IOException {
