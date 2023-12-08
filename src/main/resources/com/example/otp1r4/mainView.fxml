@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #23E2F7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.MainViewController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.MainViewController">
    <children>
       <TabPane fx:id="mainViewTabPane" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -53,20 +53,20 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="103.0" fitWidth="289.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="1120.0" layoutY="68.0" text="Profiili" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="1179.0" layoutY="68.0" text="Kirjaudu ulos" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="86.0" fitWidth="84.0" layoutX="40.0" layoutY="7.0">
          <image>
-            <Image url="@../../../images/turbosynctronLogo1.jpg" />
+            <Image url="@../../../images/turbosynclogo3.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="1120.0" layoutY="68.0" text="Profiili">
-         <font>
-            <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="1179.0" layoutY="68.0" text="Kirjaudu ulos">
-         <font>
-            <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

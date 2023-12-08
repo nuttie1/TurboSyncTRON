@@ -21,11 +21,11 @@
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
          </font></Label>
-      <Button fx:id="clickEditButton" layoutX="239.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickEdit" style="-fx-background-color: #23E2F7;" text="Muokkaa tietoja">
+      <Button fx:id="clickEditButton" layoutX="239.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickEdit" style="-fx-background-color: #212121;" text="Muokkaa tietoja" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="saveButton" disable="true" layoutX="264.0" layoutY="322.0" mnemonicParsing="false" onAction="#clickSave" style="-fx-background-color: #23E2F7;" text="Tallenna">
+      <Button fx:id="saveButton" disable="true" layoutX="264.0" layoutY="322.0" mnemonicParsing="false" onAction="#clickSave" style="-fx-background-color: #212121;" text="Tallenna" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
          </font></Button>

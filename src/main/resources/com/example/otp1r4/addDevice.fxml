@@ -309,7 +309,7 @@
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
          </font></CheckBox>
-      <Button layoutX="597.0" layoutY="692.0" mnemonicParsing="false" onAction="#addDeviceButton" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #23E2F7;" text="Lisää laite">
+      <Button layoutX="597.0" layoutY="692.0" mnemonicParsing="false" onAction="#addDeviceButton" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #212121;" text="Lisää laite" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="17.0" />
          </font></Button>

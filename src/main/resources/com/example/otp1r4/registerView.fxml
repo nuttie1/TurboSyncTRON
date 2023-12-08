@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane minHeight="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.RegisterController">
-    <Button fx:id="submitButton" layoutX="149.0" layoutY="306.0" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #23E2F7;" text="Rekistöröidy">
+    <Button fx:id="submitButton" layoutX="149.0" layoutY="306.0" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #212121;" text="Rekistöröidy" textFill="WHITE">
       <font>
          <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
       </font></Button>
