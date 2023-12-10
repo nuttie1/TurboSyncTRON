@@ -10,28 +10,28 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.ProfileController">
    <children>
-      <Label layoutX="257.0" layoutY="14.0" text="Oma profiili">
+      <Label fx:id="myProfile" layoutX="257.0" layoutY="14.0" text="%MyProfile">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameField" disable="true" layoutX="278.0" layoutY="74.0" promptText="käyttäjätunnus" />
+      <TextField fx:id="usernameField" disable="true" layoutX="278.0" layoutY="74.0" promptText="%usernameLabel" />
       <Hyperlink fx:id="backLink" layoutX="275.0" layoutY="363.0" onAction="#clickBack" style="-fx-underline: true;" text="Takaisin" />
-      <Label layoutX="174.0" layoutY="78.0" text="Käyttäjätunnus:">
+      <Label fx:id="usernameLabel" layoutX="174.0" layoutY="78.0" text="%usernameLabel">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
          </font></Label>
-      <Button fx:id="clickEditButton" layoutX="239.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickEdit" style="-fx-background-color: #212121;" text="Muokkaa tietoja" textFill="WHITE">
+      <Button fx:id="clickEditButton" layoutX="239.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickEdit" style="-fx-background-color: #212121;" text="%EditProfile" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="saveButton" disable="true" layoutX="264.0" layoutY="322.0" mnemonicParsing="false" onAction="#clickSave" style="-fx-background-color: #212121;" text="Tallenna" textFill="WHITE">
+      <Button fx:id="saveButton" disable="true" layoutX="264.0" layoutY="322.0" mnemonicParsing="false" onAction="#clickSave" style="-fx-background-color: #212121;" text="%Save" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
          </font></Button>
       <Label fx:id="usernameErrorLabel" layoutX="278.0" layoutY="102.0" prefHeight="39.0" prefWidth="149.0" textFill="RED" />
       <Label fx:id="usernameSuccessLabel" layoutX="278.0" layoutY="113.0" textFill="#1aff00" />
-      <Label layoutX="205.0" layoutY="148.0" text="Kieli:">
+      <Label fx:id="languageLabel" layoutX="205.0" layoutY="148.0" text="%languageLabel">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
          </font>

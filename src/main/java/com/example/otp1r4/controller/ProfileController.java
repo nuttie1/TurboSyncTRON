@@ -1,6 +1,7 @@
 package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.UserDAO;
+import com.example.otp1r4.model.LocaleManager;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -9,24 +10,25 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ProfileController implements Controller {
 
     @FXML
     private TextField usernameField;
     @FXML
-    private Label usernameErrorLabel;
+    private Label myProfile, usernameLabel, languageLabel, usernameErrorLabel;
     @FXML
     private Button saveButton, clickEditButton;
     @FXML
     private Hyperlink backLink;
     @FXML
     ComboBox languageBox;
-
     private String oldUsername;
-    
     private UserData userData = UserData.getInstance();
-
+    private LocaleManager localeManager = LocaleManager.getInstance();
+    private ResourceBundle bundle;
     private UserDAO dao = new UserDAO();
 
     public void initialize() throws SQLException {
@@ -34,6 +36,7 @@ public class ProfileController implements Controller {
         oldUsername = userData.getUsername();
         languageBox.setValue(langDBtoGUI());
         languageBox.setItems(FXCollections.observableArrayList( "Suomi", "English", "中国人", "ދިވެހި"));
+        bundle = localeManager.getBundle();
     }
 
     public void clickEdit() throws IOException {
@@ -43,22 +46,22 @@ public class ProfileController implements Controller {
         clickEditButton.setDisable(true);
     }
 
-    public void clickSave() throws IOException {
+    public void clickSave() throws SQLException {
 
         String usernamePattern = "^[a-zA-Z0-9_]{3,20}$";
         boolean isValid = true;
 
         if(usernameField.getText().isEmpty()) {
             usernameField.setText("");
-            usernameErrorLabel.setText("Syötä käyttäjätunnus!");
+            usernameErrorLabel.setText(bundle.getString("usernameErrorLabelEmpty"));
             isValid = false;
         } else if (usernameField.getText().equals(oldUsername)) {
             isValid = true;
         } else if (!usernameField.getText().matches(usernamePattern)) {
-            usernameErrorLabel.setText("Syötä käyttäjätunnus\nhyväksytyssä muodossa!");
+            usernameErrorLabel.setText(bundle.getString("usernameErrorLabelInvalid"));
             isValid =false;
         } else if(dao.checkUsername(usernameField.getText())) {
-            usernameErrorLabel.setText("Käyttäjätunnus varattu!");
+            usernameErrorLabel.setText(bundle.getString("UsernameReserved"));
             isValid = false;
         }
 
@@ -85,6 +88,12 @@ public class ProfileController implements Controller {
             usernameErrorLabel.setText("");
             clickEditButton.setDisable(false);
 
+            String userLanguage = langDBtoBundle();
+            Locale userLocale = new Locale(userLanguage);
+            localeManager.setLocale(userLocale);
+            bundle = localeManager.getBundle();
+            languageChanged();
+
             Stage stage = (Stage) usernameField.getScene().getWindow();
             showSuccessMessage(stage, "Muutokset tallennettu", "Muutokset tallennettu onnistuneesti!", 3);
         }
@@ -109,8 +118,26 @@ public class ProfileController implements Controller {
         return "Tänne ei pitäs päästä!";
     }
 
+    public String langDBtoBundle() throws SQLException {
+        if (dao.getLanguage(userData.getUsername()).equals("Finnish")) {
+            return "fi";
+        } else if (dao.getLanguage(userData.getUsername()).equals("English")) {
+            return "en";
+        } else if (dao.getLanguage(userData.getUsername()).equals("Chinese")) {
+            return "cn";
+        } else if (dao.getLanguage(userData.getUsername()).equals("Divehi")) {
+            return "di";
+        }
+        return "Tänne ei pitäs päästä!";
+    }
+
     public void languageChanged() {
-        // TODO: implement
+        myProfile.setText(bundle.getString("MyProfile"));
+        usernameLabel.setText(bundle.getString("usernameLabel"));
+        languageLabel.setText(bundle.getString("languageLabel"));
+        clickEditButton.setText(bundle.getString("EditProfile"));
+        saveButton.setText(bundle.getString("Save"));
+        backLink.setText(bundle.getString("Back"));
     }
 
 }

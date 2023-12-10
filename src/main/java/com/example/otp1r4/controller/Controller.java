@@ -1,6 +1,7 @@
 package com.example.otp1r4.controller;
 
 import com.example.otp1r4.Main;
+import com.example.otp1r4.model.LocaleManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -25,7 +26,9 @@ public interface Controller {
      * @throws IOException
      */
     default void changeScene(String nextView, Node currentNode) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource(nextView));
+        //Parent root = FXMLLoader.load(Main.class.getResource(nextView));
+        Parent root = new FXMLLoader(Main.class.getResource(nextView))
+                .load(Main.class.getResource(nextView), LocaleManager.getInstance().getBundle());
         Stage window = (Stage) currentNode.getScene().getWindow();
         window.setScene(new Scene(root));
         window.centerOnScreen();
@@ -36,7 +39,9 @@ public interface Controller {
      * @throws IOException
      */
     default void addSceneOnTop(String nextView, Node currentNode) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource(nextView));
+        //Parent root = FXMLLoader.load(Main.class.getResource(nextView));
+        Parent root = new FXMLLoader(Main.class.getResource(nextView))
+                .load(Main.class.getResource(nextView), LocaleManager.getInstance().getBundle());
         Stage window = new Stage();
         window.initOwner(currentNode.getScene().getWindow());
 
