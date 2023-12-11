@@ -26,7 +26,7 @@
                      </font>
                   </Label>
                   <Label layoutX="5.0" layoutY="23.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
-                  <Label fx:id="deviceType1" alignment="CENTER_RIGHT" layoutX="122.0" layoutY="3.0" prefHeight="20.0" prefWidth="52.0" text="Valaisin">
+                  <Label fx:id="deviceType1" alignment="CENTER_RIGHT" layoutX="122.0" layoutY="3.0" prefHeight="20.0" prefWidth="52.0" text="%Light">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
@@ -43,7 +43,7 @@
                         <ToggleGroup fx:id="colorTemp" />
                      </toggleGroup>
                   </RadioButton>
-                  <Label layoutX="75.0" layoutY="107.0" text="Värilämpötila:" />
+                  <Label layoutX="75.0" layoutY="107.0" text="%ColorTemperature" />
                   <RadioButton fx:id="lightColorTemp2" layoutX="144.0" layoutY="128.0" mnemonicParsing="false" text="Neutraali" toggleGroup="$colorTemp" />
                   <RadioButton fx:id="lightColorTemp3" layoutX="229.0" layoutY="128.0" mnemonicParsing="false" text="Lämmin" toggleGroup="$colorTemp" />
                   <Label layoutX="135.0" layoutY="28.0" text="Valaisimen kirkkaus:" />
@@ -56,7 +56,7 @@
                   <RadioButton fx:id="lightBrightness3" layoutX="206.0" layoutY="50.0" mnemonicParsing="false" text="3" toggleGroup="$colorBrightness" />
                   <RadioButton fx:id="lightBrightness4" layoutX="239.0" layoutY="50.0" mnemonicParsing="false" text="4" toggleGroup="$colorBrightness" />
                   <CheckBox fx:id="mvmntSensor" layoutX="212.0" layoutY="83.0" mnemonicParsing="false" text="Päällä" />
-                  <Label layoutX="134.0" layoutY="83.0" text="Liiketunnistin:" />
+                  <Label layoutX="134.0" layoutY="83.0" text="%MotionSensor" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="deviceSensor" layoutX="13.0" layoutY="13.0" minHeight="150.0" minWidth="300.0" prefHeight="165.0" prefWidth="279.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -66,8 +66,8 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="5.0" layoutY="23.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
-                  <Label fx:id="deviceType" alignment="CENTER_RIGHT" layoutX="127.0" layoutY="4.0" prefHeight="19.0" prefWidth="47.0" text="Sensori">
+                  <Label layoutX="5.0" layoutY="23.0" prefHeight="18.0" prefWidth="42.0" text="%Description" />
+                  <Label fx:id="deviceType" alignment="CENTER_RIGHT" layoutX="127.0" layoutY="4.0" prefHeight="19.0" prefWidth="47.0" text="%Sensor">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
@@ -93,7 +93,7 @@
                      </font>
                   </Label>
                   <Label layoutX="5.0" layoutY="22.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
-                  <Label fx:id="deviceType2" layoutX="118.0" layoutY="5.0" prefHeight="19.0" prefWidth="64.0" text="Pesukone">
+                  <Label fx:id="deviceType2" layoutX="118.0" layoutY="5.0" prefHeight="19.0" prefWidth="64.0" text="%WashingMachine">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
@@ -105,13 +105,13 @@
                      </children>
                   </Pane>
                   <ComboBox fx:id="washingProgram" layoutX="73.0" layoutY="45.0" prefHeight="25.0" prefWidth="117.0" promptText="Pesuohjelma" />
-                  <ComboBox fx:id="washingTemp" layoutX="73.0" layoutY="79.0" prefHeight="25.0" prefWidth="117.0" promptText="Lämpötila" />
+                  <ComboBox fx:id="washingTemp" layoutX="73.0" layoutY="79.0" prefHeight="25.0" prefWidth="117.0" promptText="%Temperature" />
                   <ComboBox fx:id="washingSpeed" layoutX="73.0" layoutY="113.0" prefHeight="25.0" prefWidth="117.0" promptText="Linkous" />
                   <TextField fx:id="washingTimer" layoutX="6.0" layoutY="114.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
-                  <CheckBox fx:id="extraWash" layoutX="198.0" layoutY="83.0" mnemonicParsing="false" text="Lisähuuhtelu" />
-                  <CheckBox fx:id="quickWash" layoutX="198.0" layoutY="49.0" mnemonicParsing="false" text="Pikapesu" />
-                  <CheckBox fx:id="washNow" layoutX="198.0" layoutY="117.0" mnemonicParsing="false" text="Käynnistä nyt" />
-                  <Label layoutX="6.0" layoutY="96.0" text="Ajastus:" />
+                  <CheckBox fx:id="extraWash" layoutX="198.0" layoutY="83.0" mnemonicParsing="false" text="%ExtraRinse" />
+                  <CheckBox fx:id="quickWash" layoutX="198.0" layoutY="49.0" mnemonicParsing="false" text="%FastWash" />
+                  <CheckBox fx:id="washNow" layoutX="198.0" layoutY="117.0" mnemonicParsing="false" text="%StartNow" />
+                  <Label layoutX="6.0" layoutY="96.0" text="%Timer" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="deviceDishwasher" layoutX="23.0" layoutY="23.0" minHeight="150.0" minWidth="300.0" prefHeight="190.0" prefWidth="340.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -173,7 +173,7 @@
                         <ToggleGroup fx:id="vacuumPrograms" />
                      </toggleGroup>
                   </RadioButton>
-                  <Label layoutX="161.0" layoutY="21.0" text="Siivouspäivät:" />
+                  <Label layoutX="161.0" layoutY="21.0" text="%CleaningDays" />
                   <CheckBox fx:id="vacuumDay1" layoutX="161.0" layoutY="38.0" mnemonicParsing="false" text="MA" />
                   <CheckBox fx:id="vacuumDay2" layoutX="161.0" layoutY="53.0" mnemonicParsing="false" text="TI" />
                   <CheckBox fx:id="vacuumDay6" layoutX="161.0" layoutY="114.0" mnemonicParsing="false" text="LA" />
@@ -215,7 +215,7 @@
                   <TextField fx:id="saunaTimer1" layoutX="125.0" layoutY="64.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
                   <Label layoutX="125.0" layoutY="41.0" text="Lämmitysaika:" />
                   <TextField fx:id="saunaTimer2" layoutX="187.0" layoutY="64.0" prefHeight="25.0" prefWidth="42.0" promptText="0000" />
-                  <Label layoutX="126.0" layoutY="110.0" text="Lämpötila:" />
+                  <Label layoutX="126.0" layoutY="110.0" text="%Temperature" />
                   <TextField fx:id="saunaTemp" layoutX="191.0" layoutY="106.0" prefHeight="25.0" prefWidth="34.0" promptText="000" />
                   <Line endX="-87.0" layoutX="271.0" layoutY="76.0" startX="-100.0" />
                </children>
@@ -250,7 +250,7 @@
                      </font>
                   </Label>
                   <Label layoutX="7.0" layoutY="26.0" prefHeight="18.0" prefWidth="42.0" text="Kuvaus:" />
-                  <Label fx:id="deviceType4111" layoutX="123.0" layoutY="4.0" prefHeight="19.0" prefWidth="55.0" text="Kamera">
+                  <Label fx:id="deviceType4111" layoutX="123.0" layoutY="4.0" prefHeight="19.0" prefWidth="55.0" text="%Camera">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font>
@@ -261,7 +261,7 @@
                         <Polygon fx:id="isFavorite7" fill="WHITE" layoutX="29.0" layoutY="19.0" points="-23.0, -12.0, -67.0, -11.0, -29.0, 7.0, -41.0, 50.0, -12.0, 20.0, 15.0, 50.0, 5.0, 7.0, 37.0, -12.0, -3.0, -12.0, -12.0, -48.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: yellow;" />
                      </children>
                   </Pane>
-                  <CheckBox fx:id="cameraOn" layoutX="139.0" layoutY="44.0" mnemonicParsing="false" text="Kamera päällä" />
+                  <CheckBox fx:id="cameraOn" layoutX="139.0" layoutY="44.0" mnemonicParsing="false" text="%CameraOn" />
                </children>
             </AnchorPane>
          </children>

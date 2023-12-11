@@ -5,6 +5,7 @@ import com.example.otp1r4.model.LocaleManager;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -131,7 +132,7 @@ public class ProfileController implements Controller {
         return "Tänne ei pitäs päästä!";
     }
 
-    public void languageChanged() {
+    public void languageChanged() throws SQLException {
         myProfile.setText(bundle.getString("MyProfile"));
         usernameLabel.setText(bundle.getString("usernameLabel"));
         languageLabel.setText(bundle.getString("languageLabel"));
@@ -139,5 +140,25 @@ public class ProfileController implements Controller {
         saveButton.setText(bundle.getString("Save"));
         backLink.setText(bundle.getString("Back"));
     }
+
+    /*
+    private void swapNodes(Node nodeLeft, Node nodeRight) {
+        double x1 = nodeLeft.getLayoutX();
+        double x2 = nodeRight.getBoundsInParent().getMaxX() - nodeLeft.getBoundsInParent().getWidth();
+
+        nodeLeft.setLayoutX(340);
+        nodeRight.setLayoutX(278);
+    }
+
+    private void swapNodes2(Node nodeLeft, Node nodeRight) {
+        double x1 = nodeLeft.getLayoutX();
+        double x2 = nodeRight.getBoundsInParent().getMaxX() - nodeLeft.getBoundsInParent().getWidth()+50;
+
+        nodeLeft.setLayoutX(x2);
+        nodeRight.setLayoutX(x1);
+
+    }
+
+     */
 
 }

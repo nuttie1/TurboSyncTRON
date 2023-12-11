@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.ProfileController">
@@ -17,18 +18,10 @@
       </Label>
       <TextField fx:id="usernameField" disable="true" layoutX="278.0" layoutY="74.0" promptText="%usernameLabel" />
       <Hyperlink fx:id="backLink" layoutX="275.0" layoutY="363.0" onAction="#clickBack" style="-fx-underline: true;" text="Takaisin" />
-      <Label fx:id="usernameLabel" layoutX="174.0" layoutY="78.0" text="%usernameLabel">
+      <Label fx:id="usernameLabel" layoutX="191.0" layoutY="78.0" text="%usernameLabel">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
          </font></Label>
-      <Button fx:id="clickEditButton" layoutX="239.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickEdit" style="-fx-background-color: #212121;" text="%EditProfile" textFill="WHITE">
-         <font>
-            <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
-         </font></Button>
-      <Button fx:id="saveButton" disable="true" layoutX="264.0" layoutY="322.0" mnemonicParsing="false" onAction="#clickSave" style="-fx-background-color: #212121;" text="%Save" textFill="WHITE">
-         <font>
-            <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
-         </font></Button>
       <Label fx:id="usernameErrorLabel" layoutX="278.0" layoutY="102.0" prefHeight="39.0" prefWidth="149.0" textFill="RED" />
       <Label fx:id="usernameSuccessLabel" layoutX="278.0" layoutY="113.0" textFill="#1aff00" />
       <Label fx:id="languageLabel" layoutX="205.0" layoutY="148.0" text="%languageLabel">
@@ -37,5 +30,23 @@
          </font>
       </Label>
       <ComboBox fx:id="languageBox" disable="true" layoutX="278.0" layoutY="144.0" onAction="#languageChanged" prefWidth="150.0" />
+      <StackPane layoutX="226.0" layoutY="285.0" prefHeight="39.0" prefWidth="150.0">
+         <children>
+            <Button fx:id="clickEditButton" mnemonicParsing="false" onAction="#clickEdit" style="-fx-background-color: #212121;" text="%EditProfile" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </StackPane>
+      <StackPane layoutX="239.0" layoutY="324.0" prefHeight="39.0" prefWidth="122.0">
+         <children>
+            <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#clickSave" style="-fx-background-color: #212121;" text="%Save" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

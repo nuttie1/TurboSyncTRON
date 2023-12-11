@@ -4,6 +4,7 @@ import com.example.otp1r4.Main;
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.dao.UserDAO;
 import com.example.otp1r4.model.Device;
+import com.example.otp1r4.model.LocaleManager;
 import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.ListChangeListener;
@@ -92,6 +93,7 @@ public class FavoriteDevicesController implements Controller, Initializable {
         if (!devices.isEmpty()) {
             for (Device device : devices) {
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("favoriteDevice.fxml"));
+                loader.setResources(LocaleManager.getInstance().getBundle());
                 deviceNode = loader.load();
                 controller = loader.getController();
                 controller.setDevice(device);
