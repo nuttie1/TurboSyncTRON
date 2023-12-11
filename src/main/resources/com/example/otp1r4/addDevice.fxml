@@ -20,30 +20,30 @@
          <children>
             <AnchorPane prefHeight="307.0" prefWidth="1300.0">
                <children>
-                  <Text layoutX="350.0" layoutY="33.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää uusi laite" textAlignment="CENTER" wrappingWidth="601.0">
+                  <Text layoutX="350.0" layoutY="33.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="%AddNewDevice" textAlignment="CENTER" wrappingWidth="601.0">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Label layoutX="346.0" layoutY="125.0" text="Laitteen nimi:">
+                  <Label layoutX="346.0" layoutY="125.0" text="%DeviceName">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="deviceName" layoutX="453.0" layoutY="119.0" prefHeight="27.0" prefWidth="186.0" promptText="Nimi" />
-                  <Text layoutX="692.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tyyppi:">
+                  <TextField fx:id="deviceName" layoutX="453.0" layoutY="119.0" prefHeight="27.0" prefWidth="186.0" promptText="%Name" />
+                  <Text layoutX="692.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%Type">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
                      </font>
                   </Text>
-                  <ComboBox fx:id="deviceType" layoutX="761.0" layoutY="119.0" onAction="#typeChanged" prefWidth="150.0" promptText="Laitteen tyyppi" />
+                  <ComboBox fx:id="deviceType" layoutX="761.0" layoutY="119.0" onAction="#typeChanged" prefWidth="150.0" promptText="%SelectDeviceType" />
                   <Label fx:id="deviceDescriptionLabel" layoutX="344.0" layoutY="172.0" prefHeight="44.0" prefWidth="106.0" text="Laitteen kuvaus:">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
                      </font></Label>
-                  <TextArea fx:id="deviceDescription" layoutX="453.0" layoutY="172.0" prefHeight="69.0" prefWidth="186.0" promptText="Kuvaus" />
-                  <ComboBox fx:id="deviceSubType" layoutX="761.0" layoutY="169.0" onAction="#subTypeChanged" prefWidth="150.0" promptText="Laitetyyppi" visible="false" />
-                  <Label fx:id="deviceSubTypeLabel" layoutX="680.0" layoutY="174.0" text="Laitetyyppi:" visible="false">
+                  <TextArea fx:id="deviceDescription" layoutX="453.0" layoutY="172.0" prefHeight="69.0" prefWidth="186.0" promptText="%Description" />
+                  <ComboBox fx:id="deviceSubType" layoutX="761.0" layoutY="169.0" onAction="#subTypeChanged" prefWidth="150.0" promptText="%SelectDeviceSubtype" visible="false" />
+                  <Label fx:id="deviceSubTypeLabel" layoutX="680.0" layoutY="174.0" text="%SelectDeviceSubtype" visible="false">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
                      </font></Label>
@@ -157,7 +157,7 @@
             </AnchorPane>
             <AnchorPane fx:id="dishwasherPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
-                  <RadioButton fx:id="radioEco" layoutX="454.0" layoutY="52.0" mnemonicParsing="false" text="Eko">
+                  <RadioButton fx:id="radioEco" layoutX="454.0" layoutY="52.0" mnemonicParsing="false" text="%Eco">
                      <toggleGroup>
                         <ToggleGroup fx:id="dishWasherMode" />
                      </toggleGroup>
@@ -165,23 +165,23 @@
                         <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="radioQuick" layoutX="511.0" layoutY="52.0" mnemonicParsing="false" text="Pika" toggleGroup="$dishWasherMode">
+                  <RadioButton fx:id="radioQuick" layoutX="511.0" layoutY="52.0" mnemonicParsing="false" text="%Fast" toggleGroup="$dishWasherMode">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
                      </font></RadioButton>
-                  <RadioButton fx:id="radioEff" layoutX="572.0" layoutY="52.0" mnemonicParsing="false" text="Teho" toggleGroup="$dishWasherMode">
+                  <RadioButton fx:id="radioEff" layoutX="572.0" layoutY="52.0" mnemonicParsing="false" text="%PowerWash" toggleGroup="$dishWasherMode">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
                      </font></RadioButton>
-                  <Label layoutX="454.0" layoutY="20.0" text="Pesuohjelma:">
+                  <Label layoutX="454.0" layoutY="20.0" text="%WashProgram">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                      </font></Label>
-                  <CheckBox fx:id="dishwasherStartNow" layoutX="454.0" layoutY="96.0" mnemonicParsing="false" onAction="#dishwasherStartNowClicked" text="Käynnistä nyt">
+                  <CheckBox fx:id="dishwasherStartNow" layoutX="454.0" layoutY="96.0" mnemonicParsing="false" onAction="#dishwasherStartNowClicked" text="%StartNow">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
                      </font></CheckBox>
-                  <Label fx:id="dishwasherTimerLabel" layoutX="454.0" layoutY="138.0" text="Ajastus:">
+                  <Label fx:id="dishwasherTimerLabel" layoutX="454.0" layoutY="138.0" text="%Timer">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
                      </font></Label>
@@ -305,11 +305,11 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <CheckBox fx:id="favCheck" layoutX="451.0" layoutY="660.0" mnemonicParsing="false" text="Lisää laite suosikiksi">
+      <CheckBox fx:id="favCheck" layoutX="451.0" layoutY="660.0" mnemonicParsing="false" text="%AddDeviceToFavorites">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="15.0" />
          </font></CheckBox>
-      <Button layoutX="597.0" layoutY="692.0" mnemonicParsing="false" onAction="#addDeviceButton" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #212121;" text="Lisää laite" textFill="WHITE">
+      <Button layoutX="597.0" layoutY="692.0" mnemonicParsing="false" onAction="#addDeviceButton" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #212121;" text="%AddDevice" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="17.0" />
          </font></Button>

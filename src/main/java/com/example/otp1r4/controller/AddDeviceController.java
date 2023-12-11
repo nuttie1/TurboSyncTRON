@@ -2,6 +2,7 @@ package com.example.otp1r4.controller;
 
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.model.Device;
+import com.example.otp1r4.model.LocaleManager;
 import com.example.otp1r4.model.ObservableDevices;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
@@ -13,6 +14,7 @@ import javafx.util.Duration;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class AddDeviceController implements Controller {
 
@@ -103,30 +105,37 @@ public class AddDeviceController implements Controller {
     ObservableDevices observableDevices = ObservableDevices.getInstance();
     DeviceDAO dDao = new DeviceDAO();
 
+    private LocaleManager localeManager = LocaleManager.getInstance();
+    private ResourceBundle bundle;
+
     String deviceControl = "";
     String format = "";
     String unit = "";
 
     public void initialize() {
-        deviceDescriptionLabel.setText("Laitteen kuvaus:\n(valinnainen)");
-        deviceType.setItems(FXCollections.observableArrayList( "Laite", "Valaisin", "Sensori"));
-        deviceSubType.setItems(FXCollections.observableArrayList("Pesukone", "Astianpesukone", "Imuri", "Sauna", "Lukko", "Kamera"));
-        sensorType.setItems(FXCollections.observableArrayList("Lämpötila", "Ilmankosteus", "CO2", "Liike"));
-        washerMode.setItems(FXCollections.observableArrayList("Puuvilla", "Hienopesu", "Sport"));
+        bundle = localeManager.getBundle();
+
+        deviceDescriptionLabel.setText(bundle.getString("DeviceDescription") + "\n" + bundle.getString("Optional"));
+        deviceType.setItems(FXCollections.observableArrayList( bundle.getString("Device"), bundle.getString("Light"), bundle.getString("Sensor")));
+        deviceSubType.setItems(FXCollections.observableArrayList(bundle.getString("WashingMachine"), bundle.getString("Dishwasher"),
+                bundle.getString("VacuumCleaner"), bundle.getString("Sauna"), bundle.getString("Lock"), bundle.getString("Camera")));
+        sensorType.setItems(FXCollections.observableArrayList(bundle.getString("Temperature"), bundle.getString("Humidity"), bundle.getString("CO2"),
+                bundle.getString("Motion")));
+        washerMode.setItems(FXCollections.observableArrayList(bundle.getString("Cotton"), bundle.getString("FineWash"), bundle.getString("Sport")));
         washerTemp.setItems(FXCollections.observableArrayList("30", "40", "60", "90"));
         washerSpin.setItems(FXCollections.observableArrayList("0", "600", "800", "1000", "1200"));
     }
 
     public void typeChanged() {
         hideAll(false);
-        if(deviceType.getValue().equals("Laite")) {
+        if(deviceType.getValue().equals(bundle.getString("Device"))) {
             deviceSubTypeLabel.setVisible(true);
             deviceSubType.setVisible(true);
-        } else if(deviceType.getValue().equals("Valaisin")) {
-            deviceLabel.setText("Valaisin:");
+        } else if(deviceType.getValue().equals(bundle.getString("Light"))) {
+            deviceLabel.setText(bundle.getString("Light") + ":");
             lightingPane.setVisible(true);
-        } else if(deviceType.getValue().equals("Sensori")) {
-            deviceLabel.setText("Sensori");
+        } else if(deviceType.getValue().equals(bundle.getString("Sensor"))) {
+            deviceLabel.setText(bundle.getString("Sensor"));
             sensorTypeLabel.setVisible(true);
             sensorType.setVisible(true);
             sensorPane.setVisible(true);
@@ -135,23 +144,23 @@ public class AddDeviceController implements Controller {
 
     public void subTypeChanged() {
         hideAll(true);
-        if (deviceSubType.getValue().equals("Pesukone")) {
-            deviceLabel.setText("Pesukone:");
+        if (deviceSubType.getValue().equals(bundle.getString("WashingMachine"))) {
+            deviceLabel.setText(bundle.getString("WashingMachine") + ":");
             washerPane.setVisible(true);
-        } else if (deviceSubType.getValue().equals("Astianpesukone")) {
-            deviceLabel.setText("Astianpesukone:");
+        } else if (deviceSubType.getValue().equals(bundle.getString("Dishwasher"))) {
+            deviceLabel.setText(bundle.getString("Dishwasher") + ":");
             dishwasherPane.setVisible(true);
-        } else if (deviceSubType.getValue().equals("Imuri")) {
-            deviceLabel.setText("Imuri:");
+        } else if (deviceSubType.getValue().equals(bundle.getString("VacuumCleaner"))) {
+            deviceLabel.setText(bundle.getString("VacuumCleaner") + ":");
             vacuumPane.setVisible(true);
-        } else if (deviceSubType.getValue().equals("Sauna")) {
-            deviceLabel.setText("Sauna:");
+        } else if (deviceSubType.getValue().equals(bundle.getString("Sauna"))) {
+            deviceLabel.setText(bundle.getString("Sauna") + ":");
             saunaPane.setVisible(true);
-        } else if (deviceSubType.getValue().equals("Lukko")) {
-            deviceLabel.setText("Lukko:");
+        } else if (deviceSubType.getValue().equals(bundle.getString("Lock"))) {
+            deviceLabel.setText(bundle.getString("Lock") + ":");
             lockPane.setVisible(true);
-        } else if (deviceSubType.getValue().equals("Kamera")) {
-            deviceLabel.setText("Kamera:");
+        } else if (deviceSubType.getValue().equals(bundle.getString("Camera"))) {
+            deviceLabel.setText(bundle.getString("Camera") + ":");
             cameraPane.setVisible(true);
         }
     }
@@ -179,23 +188,23 @@ public class AddDeviceController implements Controller {
             isValid = false;
         }
 
-        if (deviceType.getValue().equals("Laite")) {
-            if (deviceSubType.getValue().equals("Pesukone")) {
+        if (deviceType.getValue().equals(bundle.getString("Device"))) {
+            if (deviceSubType.getValue().equals(bundle.getString("WashingMachine"))) {
                 generateWasherControl();
-            } else if (deviceSubType.getValue().equals("Astianpesukone")) {
+            } else if (deviceSubType.getValue().equals(bundle.getString("Dishwasher"))) {
                 generateDishwasherControl();
-            } else if (deviceSubType.getValue().equals("Imuri")) {
+            } else if (deviceSubType.getValue().equals(bundle.getString("VacuumCleaner"))) {
                 generateVacuumControl();
-            } else if (deviceSubType.getValue().equals("Sauna")) {
+            } else if (deviceSubType.getValue().equals(bundle.getString("Sauna"))) {
                 generateSaunaControl();
-            } else if (deviceSubType.getValue().equals("Lukko")) {
+            } else if (deviceSubType.getValue().equals(bundle.getString("Lock"))) {
                 generateLockControl();
-            } else if (deviceSubType.getValue().equals("Kamera")) {
+            } else if (deviceSubType.getValue().equals(bundle.getString("Camera"))) {
                 generateCameraControl();
             }
-        } else if (deviceType.getValue().equals("Valaisin")) {
+        } else if (deviceType.getValue().equals(bundle.getString("Light"))) {
             generateLightingControl();
-        } else if (deviceType.getValue().equals("Sensori")) {
+        } else if (deviceType.getValue().equals(bundle.getString("Sensor"))) {
             generateSensorControl();
         }
 
@@ -210,7 +219,7 @@ public class AddDeviceController implements Controller {
             int last = deviceList.size() -1;
             observableDevices.addDevice(deviceList.get(last));
             Stage stage = (Stage) deviceName.getScene().getWindow();
-            showSuccessMessage(stage, "Laitteen lisäys onnistui!", "Laite lisätty onnistuneesti!", 3);
+            showSuccessMessage(stage, bundle.getString("AddingDeviceSuccessfull"), bundle.getString("DeviceAddedSuccessfully"), 3);
         }
     }
 
@@ -299,7 +308,7 @@ public class AddDeviceController implements Controller {
     }
 
     public void generateDishwasherControl() {
-        deviceControl = "Laite;" + deviceSubType.getValue() + ";";
+        deviceControl = "Laite;" + "Astianpesukone" + ";";
         if (radioEco.isSelected()) {
             deviceControl += "Eko";
         } else if (radioQuick.isSelected()) {
