@@ -4,6 +4,7 @@ package com.example.otp1r4.controller;
 import com.example.otp1r4.Main;
 import com.example.otp1r4.dao.DeviceDAO;
 import com.example.otp1r4.model.Device;
+import com.example.otp1r4.model.LocaleManager;
 import com.example.otp1r4.model.UserData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,9 +38,13 @@ public class MainViewController implements Controller, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         FXMLLoader tab1Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/favoriteDevicesView.fxml"));
+        tab1Loader.setResources(LocaleManager.getInstance().getBundle());
         FXMLLoader tab2Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/allDevicesView.fxml"));
+        tab2Loader.setResources(LocaleManager.getInstance().getBundle());
         FXMLLoader tab3Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/deviceDataView.fxml"));
+        tab3Loader.setResources(LocaleManager.getInstance().getBundle());
         FXMLLoader tab4Loader = new FXMLLoader(getClass().getResource("/com/example/otp1r4/addDevice.fxml"));
+        tab4Loader.setResources(LocaleManager.getInstance().getBundle());
         try {
             Node tab1Content = tab1Loader.load();
             Node tab2Content = tab2Loader.load();

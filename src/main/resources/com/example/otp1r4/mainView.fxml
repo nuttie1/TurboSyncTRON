@@ -13,22 +13,22 @@
    <children>
       <TabPane fx:id="mainViewTabPane" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="favoriteDevicesTab" text="Lempi laitteet">
+          <Tab fx:id="favoriteDevicesTab" text="%FavoriteDevices">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="1300.0" />
             </content>
           </Tab>
-          <Tab fx:id="allDevicesTab" text="Kaikki laitteet">
+          <Tab fx:id="allDevicesTab" text="%AllDevices">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-            <Tab fx:id="deviceDataTab" text="Laitedata">
+            <Tab fx:id="deviceDataTab" text="%DeviceData">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="382.0" prefWidth="605.0" />
               </content>
             </Tab>
-            <Tab fx:id="addDevicesTab" text="Lisää laite">
+            <Tab fx:id="addDevicesTab" text="%AddDevice">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
@@ -53,12 +53,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="1120.0" layoutY="68.0" text="Profiili" textFill="WHITE">
+      <Label layoutX="1120.0" layoutY="68.0" text="%Profile" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="1179.0" layoutY="68.0" text="Kirjaudu ulos" textFill="WHITE">
+      <Label layoutX="1179.0" layoutY="68.0" text="%Logout" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="14.0" />
          </font>

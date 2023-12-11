@@ -95,7 +95,7 @@ public class ProfileController implements Controller {
             languageChanged();
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
-            showSuccessMessage(stage, "Muutokset tallennettu", "Muutokset tallennettu onnistuneesti!", 3);
+            showSuccessMessage(stage, bundle.getString("UsernameChanged"), bundle.getString("UsernameChangedSuccessfully"), 3);
         }
 
     }
