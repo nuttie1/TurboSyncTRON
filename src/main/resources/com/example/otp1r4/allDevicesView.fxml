@@ -14,17 +14,17 @@
         <content>
           <AnchorPane fx:id="allDevicesPane" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefWidth="1300.0">
                <children>
-                  <Label layoutX="24.0" layoutY="24.0" text="Nimi">
+                  <Label layoutX="24.0" layoutY="24.0" text="%Name">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="224.0" layoutY="24.0" text="Kuvaus">
+                  <Label layoutX="224.0" layoutY="24.0" text="%Description">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="415.0" layoutY="23.0" text="Suosikki">
+                  <Label layoutX="415.0" layoutY="23.0" text="%Favorite">
                      <font>
                         <Font name="Tw Cen MT Condensed Extra Bold" size="22.0" />
                      </font>
@@ -43,7 +43,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Label layoutX="585.0" layoutY="14.0" text="Kaikki laitteet">
+      <Label layoutX="585.0" layoutY="14.0" text="%AllDevices">
          <font>
             <Font name="Tw Cen MT Condensed Extra Bold" size="24.0" />
          </font>
