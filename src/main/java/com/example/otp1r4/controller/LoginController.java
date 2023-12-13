@@ -55,6 +55,7 @@ public class LoginController implements Controller {
             languages.add("Suomi");
             languages.add("English");
             languages.add("中国人");
+            languages.add("ދިވެހި");
             languageBox.setItems(FXCollections.observableArrayList(languages));
             languageBox.getSelectionModel().selectFirst();
             languageBox.setOnAction(event -> updateLocale(languageBox.getValue()));
@@ -73,22 +74,21 @@ public class LoginController implements Controller {
         boolean isValid = true;
 
         if(username.isEmpty()) {
-            errorLabelUsername.setText(bundle.getString("errorEmptyUsername"));
+            errorLabelUsername.setText(bundle.getString("usernameErrorLabelEmpty"));
             isValid = false;
         }  else if (!username.matches("([A-Za-z0-9\\-\\_]+)")){
             usernameField.setText("");
-            errorLabelUsername.setText(bundle.getString("errorIllegalUsername"));
+            errorLabelUsername.setText(bundle.getString("EnterUsernameInCorrectFormat"));
             isValid =false;
         }
 
         if (password.isEmpty()){
-            errorLabelPassword.setText(bundle.getString("errorEmptyPassword"));
+            errorLabelPassword.setText(bundle.getString("EnterPassword"));
             isValid = false;
         }
 
         if(isValid) {
             if(dao.authenticate(username,password)){
-                dao.changeLanguage(userLanguage, username);
                 UserData userData = UserData.getInstance();
                 userData.setUsername(username);
                 int userId = dao.getUserID(username);
@@ -99,7 +99,7 @@ public class LoginController implements Controller {
                 ObservableDevices.getInstance().setObservableList(deviceDAO.getDevices(username));
                 this.changeScene("mainView.fxml", usernameField);
             }else {
-                errorLabelPassword.setText(bundle.getString("errorWrongPassword"));
+                errorLabelPassword.setText(bundle.getString("IncorrectUsernameOrPassword"));
             }
         }
     }
@@ -124,7 +124,7 @@ public class LoginController implements Controller {
                 userLanguage = "Finnish";
                 break;
             case "English":
-                newLocale = Locale.US;
+                newLocale = new Locale("en");
                 if (userLanguage != "Finnish" && userLanguage != "") {
                     swapNodes(usernameField, usernameLabel);
                     swapNodes(passwordField, passwordLabel);
@@ -132,16 +132,29 @@ public class LoginController implements Controller {
                 userLanguage = "English";
                 break;
             case "中国人":
-                newLocale = Locale.SIMPLIFIED_CHINESE;
+                newLocale = new Locale("cn");
+
+                if (userLanguage == "Divehi") {
+                    userLanguage = "Chinese";
+                    break;
+                }
                 userLanguage = "Chinese";
                 swapNodes2(usernameLabel, usernameField);
                 swapNodes2(passwordLabel, passwordField);
                 break;
-            case "":
-                newLocale = new Locale("mv");
+            case "ދިވެހި":
+                newLocale = new Locale("di");
+
+                if (userLanguage == "Chinese") {
+                    userLanguage = "Divehi";
+                    break;
+                }
+                userLanguage = "Divehi";
+                swapNodes2(usernameLabel, usernameField);
+                swapNodes2(passwordLabel, passwordField);
                 break;
         }
-        bundle = ResourceBundle.getBundle("TextResources", newLocale);
+        bundle = ResourceBundle.getBundle("lang", newLocale);
         updateUI();
     }
 
@@ -150,16 +163,13 @@ public class LoginController implements Controller {
         errorLabelPassword.setText("");
 
         usernameLabel.setText(bundle.getString("usernameLabel"));
-        passwordLabel.setText(bundle.getString("passwordLabel"));
-        signUpLink.setText(bundle.getString("createUser"));
-        forgotPasswordLink.setText(bundle.getString("forgotPassword"));
-        loginButton.setText(bundle.getString("loginButton"));
+        passwordLabel.setText(bundle.getString("PasswordLabel"));
+        signUpLink.setText(bundle.getString("CreateUser"));
+        forgotPasswordLink.setText(bundle.getString("ForgotPassword"));
+        loginButton.setText(bundle.getString("SignIn"));
     }
 
     private void swapNodes(Node nodeLeft, Node nodeRight) {
-        double x1 = nodeLeft.getLayoutX();
-        double x2 = nodeRight.getBoundsInParent().getMaxX() - nodeLeft.getBoundsInParent().getWidth();
-
         nodeLeft.setLayoutX(378);
         nodeRight.setLayoutX(269);
     }
@@ -170,19 +180,5 @@ public class LoginController implements Controller {
 
         nodeLeft.setLayoutX(x2);
         nodeRight.setLayoutX(x1);
-    }
-
-    private String getUtfText(String key, Locale locale) {
-        String fileName = "TextResources_" + locale.toString() + ".properties";
-
-        Properties properties = new Properties();
-
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream(fileName);
-             InputStreamReader reader = new InputStreamReader(input, StandardCharsets.UTF_8)) {
-            properties.load(reader);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return properties.getProperty(key);
     }
 }

@@ -64,7 +64,7 @@ public class MainViewController implements Controller, Initializable {
 
     public void clickLogout() throws IOException {
         user = null;
-        ResourceBundle bundle = ResourceBundle.getBundle("TextResources");
+        ResourceBundle bundle = ResourceBundle.getBundle("lang");
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         fxmlLoader.setResources(bundle);

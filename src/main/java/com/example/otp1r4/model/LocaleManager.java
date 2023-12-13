@@ -61,16 +61,23 @@ public class LocaleManager {
     }
 
     private String getLanguageFromDatabase() throws SQLException {
-        if (dao.getLanguage(userData.getUsername()).equals("Finnish")) {
+        String userLanguage = dao.getLanguage(userData.getUsername());
+        if (userLanguage != null) {
+            switch (userLanguage) {
+                case "Finnish":
+                    return "fi";
+                case "English":
+                    return "en";
+                case "Chinese":
+                    return "cn";
+                case "Divehi":
+                    return "di";
+                default:
+                    return "fi";
+            }
+        } else {
             return "fi";
-        } else if (dao.getLanguage(userData.getUsername()).equals("English")) {
-            return "en";
-        } else if (dao.getLanguage(userData.getUsername()).equals("Chinese")) {
-            return "cn";
-        } else if (dao.getLanguage(userData.getUsername()).equals("Divehi")) {
-            return "di";
         }
-        return "fi";
     }
 
 }

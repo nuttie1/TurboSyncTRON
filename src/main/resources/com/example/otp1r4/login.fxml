@@ -13,37 +13,37 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.LoginController">
+<BorderPane fx:id="borderPane" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.otp1r4.controller.LoginController">
    <right>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="usernameLabel" layoutX="268.0" layoutY="125.0" minHeight="28.0" minWidth="142.0" text="%usernameLabel">
+            <Label fx:id="usernameLabel" layoutX="268.0" layoutY="128.0" text="%usernameLabel">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="passwordLabel" layoutX="269.0" layoutY="192.0" minHeight="28.0" minWidth="142.0" text="%passwordLabel">
+            <Label fx:id="passwordLabel" layoutX="268.0" layoutY="192.0" text="%PasswordLabel">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
             </Label>
             <TextField fx:id="usernameField" layoutX="378.0" layoutY="126.0" />
             <PasswordField fx:id="passwordField" layoutX="378.0" layoutY="193.0" />
-            <Button fx:id="loginButton" layoutX="390.0" layoutY="259.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="37.0" prefWidth="125.0" style="-fx-background-color: #23E2F7;" text="%loginButton">
+            <Button fx:id="loginButton" layoutX="390.0" layoutY="259.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="37.0" prefWidth="125.0" style="-fx-background-color: #212121;" text="%SignIn" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="16.0" />
                </font>
             </Button>
-            <Hyperlink fx:id="signUpLink" layoutX="418.0" layoutY="317.0" onAction="#clickSignup" style="-fx-underline: true;" text="%createUser" />
-            <Hyperlink fx:id="forgotPasswordLink" layoutX="390.0" layoutY="349.0" onAction="#clickForgotPassword" style="-fx-underline: true;" text="%forgotPassword" />
+            <Hyperlink fx:id="signUpLink" layoutX="418.0" layoutY="317.0" onAction="#clickSignup" style="-fx-underline: true;" text="%CreateUser" />
+            <Hyperlink fx:id="forgotPasswordLink" layoutX="390.0" layoutY="349.0" onAction="#clickForgotPassword" style="-fx-underline: true;" text="%ForgotPassword" />
             <Label fx:id="errorLabelUsername" layoutX="378.0" layoutY="154.0" prefHeight="34.0" prefWidth="186.0" textFill="RED" />
             <Label fx:id="errorLabelPassword" layoutX="378.0" layoutY="227.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
             <Line endX="20.0" endY="377.0" layoutX="228.0" layoutY="23.0" startX="20.0" startY="-23.0" />
-            <AnchorPane layoutX="-1.0" layoutY="-5.0" prefHeight="406.0" prefWidth="249.0" style="-fx-background-color: #23E2F7;">
+            <AnchorPane layoutX="-1.0" layoutY="-5.0" prefHeight="406.0" prefWidth="249.0" style="-fx-background-color: #000000;">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="32.0" layoutY="103.0">
                      <image>
-                        <Image url="@../../../images/turbosynctronLogo1.jpg" />
+                        <Image url="@../../../images/tubosynclogo2.jpg" />
                      </image>
                   </ImageView>
                </children>
